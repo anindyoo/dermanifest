@@ -33,22 +33,22 @@
             </div>
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img src="" class="d-block w-100" alt="Visit Dermanifest on Shopee">
+                <img src="img/hero-1.svg" class="d-block w-100" alt="Visit Dermanifest on Shopee">
               </div>
               <div class="carousel-item">
-                <img src="" class="d-block w-100" alt="Dermanifest Aromatherapy Candles New Edition">
+                <img src="img/hero-2.svg" class="d-block w-100" alt="Dermanifest Aromatherapy Candles New Edition">
               </div>
               <div class="carousel-item">
-                <img src="" class="d-block w-100" alt="Dermanifest Organic Beauty Mask">
+                <img src="img/hero-3.svg" class="d-block w-100" alt="Dermanifest Organic Beauty Mask">
               </div>
               <div class="carousel-item">
-                <img src="" class="d-block w-100" alt="Dermanifest Etawa Goat Milk Mask">
+                <img src="img/hero-4.svg" class="d-block w-100" alt="Dermanifest Etawa Goat Milk Mask">
               </div>
               <div class="carousel-item">
-                <img src="" class="d-block w-100" alt="Dermanifest Scented Candle Classic Edtion">
+                <img src="img/hero-5.svg" class="d-block w-100" alt="Dermanifest Scented Candle Classic Edtion">
               </div>
               <div class="carousel-item">
-                <img src="" class="d-block w-100" alt="Dermanifest Candlenut Oil">
+                <img src="img/hero-6.svg" class="d-block w-100" alt="Dermanifest Candlenut Oil">
               </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -103,8 +103,8 @@
       </div>
 
       <div class="col-lg-4 col-md-6 col-sm-12">
-        <div class="vmage-about">
-          <img src="" alt="">
+        <div class="image-about">
+          <img src="img/about-pics.svg" alt="">
         </div>
       </div>
     </div>
@@ -187,7 +187,7 @@
         </div>
       </div>
       <div class="col-lg-6 col-md-6 col-sm-12 col-12 col-img">
-        <img src="" alt="Dermanifest Organic Beauty Mask">
+        <img src="img/buy-pic.svg" alt="Dermanifest Organic Beauty Mask">
       </div>
     </div>
 
@@ -195,12 +195,12 @@
       <div class="col-lg-12 col-md-12 col-sm-12 col-12 col-eshop">
         <div class="image-item">
             <a href="https://shopee.co.id/dermanifest">
-              <img src=" alt="Shopee Logo">
+              <img src="img/shopee.svg" alt="Shopee Logo">
             </a>
         </div>
         <div class="image-item">
             <a href="https://www.instagram.com/dermanifest/">
-              <img src=" alt="Instagram Logo">
+              <img src="img/instagram.svg" alt="Instagram Logo">
             </a>
         </div>
       </div>
