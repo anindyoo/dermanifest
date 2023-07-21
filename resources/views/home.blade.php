@@ -17,8 +17,8 @@
             </p>
             <br>
             <div>
-              <a href="" class="btn btn-primary-native">Log In</a>
-              <a href="" class="btn btn-secondary-native secondary-color-light">Register</a>
+              <a href="/login" class="btn btn-primary-native">Log In</a>
+              <a href="/register" class="btn btn-secondary-native secondary-color-light">Register</a>
             </div>
           </div>
           
