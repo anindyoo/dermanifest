@@ -46,6 +46,14 @@
             <li class="nav-item me-4">
               <a class="nav-link" href="#"><i class='bx bx-user' ></i></a>
             </li>
+            @auth
+              <li class="nav-item me-4">
+                <form action="/logout" method="post" class="nav-link">
+                  @csrf
+                  <button type="submit" class="logout-button">Logout</button>
+                </form>
+              </li>            
+            @endauth
           </div>
         </ul>
       </div>

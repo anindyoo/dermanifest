@@ -8,20 +8,35 @@
       <div class="col-lg-12 col-md-12 col-sm-12">
         <div class="hero-col">
           <div class="text-hero">
-            <h2>
-              Welcome to</br>Dermanifest!
-            </h2>
-            <p>
-              Take a litte journey here</br>
-              and we will guide you manifest your inner-out tranquilty.
-            </p>
-            <br>
-            <div>
-              <a href="/login" class="btn btn-primary-native">Log In</a>
-              <a href="/register" class="btn btn-secondary-native secondary-color-light">Register</a>
-            </div>
+            @auth
+              <h2>Hello, {{ Auth::user()->name_customer }}!</h2>
+              <p>
+                Let's take a litte journey</br>
+                at Dermanifest today!
+              </p>
+            @endauth
+            @guest
+              <h2>
+                Welcome to</br>Dermanifest!
+              </h2>
+              <p>
+                Take a litte journey here</br>
+                and we will guide you manifest your inner-out tranquilty.
+              </p>
+              <br>
+              <div>        
+                <a href="/login" class="btn btn-primary-native">Log In</a>
+                <a href="/register" class="btn btn-secondary-native secondary-color-light">Register</a>              
+              </div>
+            @endguest
           </div>
-          
+          @if(session()->has('success'))
+            <div class="home-alert">
+              <div class="alert alert-success" role="alert">
+                {{ session('success') }}
+              </div>
+            </div>
+          @endif
           <div id="carouselExampleIndicators" class="image-hero carousel slide" data-bs-ride="carousel" data-bs-touch="true">
             <div class="carousel-indicators">
               <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
