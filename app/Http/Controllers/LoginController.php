@@ -19,9 +19,12 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::guard('web')->attempt($credentials)) {
             $request->session()->regenerate();
             return redirect()->intended('/')->with('success', 'Login with email:'. $credentials['email'] .' is successful!');
+        } elseif (Auth::guard('admin')->attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->intended('admin')->with('success', 'Login with email:'. $credentials['email'] .' is successful!');
         }
 
         return back()->with('loginError', 'Login failed.');
