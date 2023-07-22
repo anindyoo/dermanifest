@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Auth\Events\Registered;
 use Symfony\Component\Console\Input\Input;
 
 class RegisterController extends Controller
@@ -24,6 +26,12 @@ class RegisterController extends Controller
             'phone' => 'required|numeric|digits_between:8,13|unique:customers',
         ]);
         $validatedData['password'] = Hash::make($validatedData['password']);
-        Customer::create($validatedData);
+        $customer = Customer::create($validatedData);
+
+        event(new Registered($customer));
+
+        Auth::login($customer);
+
+        return redirect('email/verify');
     }
 }
