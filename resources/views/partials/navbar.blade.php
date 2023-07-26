@@ -44,9 +44,17 @@
               </span>
             </li>
             <li class="nav-item me-4">
-              <a class="nav-link" href="#"><i class='bx bx-user' ></i></a>
+              <a class="nav-link" href="/profile"><i class='bx bx-user' ></i></a>
             </li>
-            @auth
+            @auth('web')
+              <li class="nav-item me-4">
+                <form action="/logout" method="post" class="nav-link">
+                  @csrf
+                  <button type="submit" class="logout-button">Logout</button>
+                </form>
+              </li>            
+            @endauth
+            @auth('admin')
               <li class="nav-item me-4">
                 <form action="/logout" method="post" class="nav-link">
                   @csrf
