@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RajaOngkirController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
@@ -58,3 +60,15 @@ Route::get('/auth/google/callback', [GoogleController::class, 'googleCallbackHan
 
 // Logout
 Route::post('/logout', [LoginController::class, 'logout']);
+
+// Profile
+Route::get('/profile', [ProfileController::class, 'index'])->middleware(['auth', 'verified']);
+Route::put('/profile/update', [ProfileController::class, 'updateProfile'])->middleware(['auth', 'verified']);
+Route::put('/password/update', [ProfileController::class, 'updatePassword'])->middleware(['auth', 'verified']);
+
+// Addresses
+Route::post('/address', [ProfileController::class, 'addAddress'])->middleware(['auth', 'verified']);
+Route::post('/citiesByProvinceId/{province_id}', [RajaOngkirController::class, 'citiesByProvinceId'])->middleware(['auth', 'verified']);;
+Route::get('/profile/address/update/{address_id}', [ProfileController::class, 'updateAddress'])->middleware(['auth', 'verified']);
+Route::put('/profile/address/update/{address_id}', [ProfileController::class, 'updateAddressValidate'])->middleware(['auth', 'verified']);
+Route::delete('/profile/address/destroy/{address_id}', [ProfileController::class, 'deleteAddress'])->middleware(['auth', 'verified']);
