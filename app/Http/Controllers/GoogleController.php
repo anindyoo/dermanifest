@@ -30,7 +30,7 @@ class GoogleController extends Controller
                 Customer::where('email', $userGoogle->getEmail())->update(['email_verified_at' => $current_time]);
             }
             Auth::guard('web')->login($findUser);
-            return redirect()->intended('/')->with('success', $findUser['email_verified_at']);
+            return redirect()->intended('/')->with('success', 'Login successful. Welcome to Dermanifest, ' . $userGoogle->getName() . '!' );
         } elseif ($findAdmin) {
             Auth::guard('admin')->login($findAdmin);
             return redirect()->intended('admin')->with('success', 'Login with email:'. $findAdmin['email'] .' is successful!');            
@@ -42,6 +42,7 @@ class GoogleController extends Controller
                 'google_id' => $userGoogle->getId(),
                 'password' => $random_password,
                 'phone' => "",
+                'google_avi' => $userGoogle->getAvatar(),
                 "email_verified_at" => $current_time,
             ]);
 
