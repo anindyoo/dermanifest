@@ -23,10 +23,13 @@
         </a>
       </li>
       <li>
-        <a href="">
-          <span class="icon"><i class="fa fa-sign-out" aria-hidden="true"></i></span>
-          <span class="title">Log Out</span>
-        </a>
+        <form action="/logout" method="post" class="nav-link">
+          @csrf
+            <button type="submit" class="logout-button">
+              <span class="icon"><i class="fa fa-sign-out" aria-hidden="true"></i></span>
+              <span class="title">Log Out</span>
+            </button>
+        </form>
       </li>
     </ul>
   </div>
@@ -36,10 +39,13 @@
     <div class="topbar sticky-div">
       <div class="toggle active" onclick="toggleMenu();"></div>
       <div class="logout">
-        <a href="" class="btn-primary-native">
-          <span><i class="fa fa-sign-out" aria-hidden="true"></i></span>
-          <span>Log Out</span>
-        </a>
+        <form action="/logout" method="post" class="nav-link">
+          @csrf
+          <button type="submit" class="btn-primary-native-regular pe-2 ps-2 pb-1 pt-1 rounded-1">
+            <span><i class="fa fa-sign-out" aria-hidden="true"></i></span>
+            <span>Log Out</span>
+          </button>
+        </form>
       </div>
     </div>
   
