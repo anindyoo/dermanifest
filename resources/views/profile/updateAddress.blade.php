@@ -1,11 +1,14 @@
+@if(Auth::user()->id != $address_data->id_customer)
+<script>window.location = "/profile";</script>
+
+@elseif(Auth::user()->id == $address_data->id_customer)
 @extends('layouts.header')
 
 @section('csrf_token')
 <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 
-@section('content')
-@if(Auth::user()->id == $address_data->id_customer)
+  @section('content')
 <section>
   <div class="modal position-static d-block" tabindex="-1">
     <div class="modal-dialog">
@@ -52,9 +55,6 @@
     </div>
   </div>
 </section>
-@else
-<script>window.location = "/profile";</script>
-@endif
 @endsection
 
 @section('js_code')
@@ -114,3 +114,4 @@ $(document).ready(function() {
 }); 
 </script>
 @endsection
+@endif
