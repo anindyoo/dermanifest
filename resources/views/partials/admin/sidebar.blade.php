@@ -17,7 +17,7 @@
         </a>
       </li>
       <li>
-        <a href="/admin/category" class="{{ (Request::is('admin/category') ? 'link-active' : '') }}">
+        <a href="/admin/categories" class="{{ (Request::is('admin/categories') ? 'link-active' : '') }}">
           <span class="icon"><i class="fa fa-solid fa-tags" aria-hidden="true"></i></span>
           <span class="title">Categories</span>
         </a>

@@ -14,7 +14,7 @@
     @endif
   </div>
   <div>
-    <a href="" class="btn btn-primary-native mb-3"><span class="fa-solid fa-plus me-2"></span>Add Category</a>
+    <a href="/admin/categories/create" class="btn btn-primary-native mb-3"><span class="fa-solid fa-plus me-2"></span>Add Category</a>
   </div>
   <div class="table-wrapper" style="overflow-x: auto;">
     <table class="table table-bordered table-striped table-hover">
