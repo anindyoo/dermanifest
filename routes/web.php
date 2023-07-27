@@ -72,3 +72,10 @@ Route::post('/citiesByProvinceId/{province_id}', [RajaOngkirController::class, '
 Route::get('/profile/address/update/{address_id}', [ProfileController::class, 'updateAddress'])->middleware(['auth', 'verified']);
 Route::put('/profile/address/update/{address_id}', [ProfileController::class, 'updateAddressValidate'])->middleware(['auth', 'verified']);
 Route::delete('/profile/address/destroy/{address_id}', [ProfileController::class, 'deleteAddress'])->middleware(['auth', 'verified']);
+
+// Admin
+Route::get('/admin', function () {
+    return view('admin.home', [
+        "title" => "Home"
+    ]);
+})->middleware(['auth:admin']);
