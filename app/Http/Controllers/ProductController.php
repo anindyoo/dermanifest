@@ -33,6 +33,19 @@ class ProductController extends Controller
         ]);
     }
 
+    public function show($id) {
+        $productData = (new Product)->getProductById($id);
+        $categoryData = (new Category)->getCategoryById($productData->category_id)->name_category;
+        $picturesData = (new Picture)->getPicturesByProductId($productData->id);
+
+        return view('admin.products.show', [
+            'title' => 'Product Detail',
+            'product_data' => $productData,
+            'category_name' => $categoryData,
+            'pictures_data' => $picturesData,
+        ]);
+    }
+
     public function store(Request $request) {
         $validatedData = $request->validate([
             'name_product' => 'required|max:255',
