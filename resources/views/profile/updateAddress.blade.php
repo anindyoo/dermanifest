@@ -1,7 +1,7 @@
-@if(Auth::user()->id != $address_data->id_customer)
+@if(Auth::user()->id != $address_data->customer_id)
 <script>window.location = "/profile";</script>
 
-@elseif(Auth::user()->id == $address_data->id_customer)
+@elseif(Auth::user()->id == $address_data->customer_id)
 @extends('layouts.header')
 
 @section('csrf_token')
