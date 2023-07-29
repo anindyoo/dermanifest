@@ -10,4 +10,8 @@ class Picture extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
+    public function getPicturesByProductId($procduct_id) {
+        return $this::where('product_id', $procduct_id)->get();
+    }
 }
