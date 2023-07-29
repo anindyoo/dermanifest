@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="content">
-  <h2>Update Category</h2>
+  <h2>Edit Category</h2>
   <hr>
   <form action="/admin/categories/{{ $category_data->id }}" method="post">
     @method('put')
