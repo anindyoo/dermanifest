@@ -11,8 +11,16 @@ use \Cviebrock\EloquentSluggable\Services\SlugService;
 class ProductController extends Controller
 {
     public function index() {
+        $productsData = Product::all();
+
+        foreach ($productsData as $key => $product) {
+            $productsData[$key]['category_name'] = (new Category)->getCategoryById($product->category_id)->name_category;
+        }
+
         return view('admin.products.index', [
             'title' => 'Products',
+            'categories_data' => '$categoriesData',
+            'products_data' => $productsData,
         ]);
     }
 
