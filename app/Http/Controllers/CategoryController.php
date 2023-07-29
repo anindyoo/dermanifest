@@ -26,7 +26,7 @@ class CategoryController extends Controller
         $categoryData = Category::findOrFail($id);
 
         return view('admin.categories.edit', [
-            'title' => 'Add Category',
+            'title' => 'Edit Category',
             'category_data' => $categoryData,
         ]);
     }
