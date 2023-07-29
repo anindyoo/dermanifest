@@ -52,13 +52,12 @@
 @foreach($categories_data as $category)
   @include('partials/modal', [
     'modal_id' => 'deleteCategoryModal-' . $category->id,
-    'modal_title' => 'Delete Address',
+    'modal_title' => 'Delete Category',
     'include_form' => 'true',
     'form_action' => '/admin/categories/' . $category->id ,
     'form_method' => 'post', 
     'additional_form_method' => 'delete', 
-    'modal_body' => '
-    Are you sure to delete address: <strong>' . $category->name_category . '</strong>',
+    'modal_body' => 'Are you sure to delete category: <strong>' . $category->name_category . '</strong>',
     'modal_footer' => '
     <button type="submit" class="btn btn-outline-danger"><span class="fa-regular fa-trash-can me-1"></span>Delete Category</button>
     <button type="button" class="btn btn-primary-native-regular" data-bs-dismiss="modal"><span class="fa-solid fa-pen-to-square me-1"></span>Cancel Delete</button>
