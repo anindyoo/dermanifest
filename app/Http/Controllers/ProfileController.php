@@ -14,7 +14,7 @@ class ProfileController extends Controller
 {
     public function index() {
         $provincesFinal = $this->getProvincesOptions();
-        $customerAddresses = Address::whereIn('id_customer', [Auth::user()->id])->get();
+        $customerAddresses = Address::whereIn('customer_id', [Auth::user()->id])->get();
         
         return view('profile.index', [
             'title' => 'Profile',
@@ -46,17 +46,17 @@ class ProfileController extends Controller
     }
 
     public function updateProfile(Request $request) {
-        $id_customer = Auth::user()->id;
+        $customer_id = Auth::user()->id;
         $validatedData = $request->validate([
             'name_customer' => 'required|max:255',
             'phone' => 'required|numeric|digits_between:8,13|unique:customers',
         ]);
-        Customer::where('id', $id_customer)->update($validatedData);
+        Customer::where('id', $customer_id)->update($validatedData);
         return redirect('profile')->with('success', 'Profile data has been updated.');
     }
 
     public function updatePassword(Request $request) {
-        $id_customer = Auth::user()->id;
+        $customer_id = Auth::user()->id;
         
         $validator = Validator::make($request->all(), [
             'password' => 'required|between:6,255|confirmed',
@@ -69,7 +69,7 @@ class ProfileController extends Controller
         $validated = $validator->validated();
         $validated['password'] = Hash::make($validated['password']);
         
-        Customer::where('id', $id_customer)->update($validated);
+        Customer::where('id', $customer_id)->update($validated);
         
         return redirect('profile')->with('success', 'Password has been updated.');
     }
@@ -82,9 +82,9 @@ class ProfileController extends Controller
             'city' => 'required|max:255',
             'postal_code' => 'required|numeric'
         ]);
-        $validatedData['id_customer'] = Auth::user()->id;
+        $validatedData['customer_id'] = Auth::user()->id;
 
-        $totalAddress = count(Address::where('id_customer', Auth::user()->id)->get());
+        $totalAddress = count(Address::where('customer_id', Auth::user()->id)->get());
         if (($totalAddress) >= 3) {
             return redirect('/profile')->with('fail', 'Failed to add address. You have reached the maximum amount of addresses.');
         }
