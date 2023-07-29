@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RajaOngkirController;
 use App\Http\Controllers\RegisterController;
@@ -83,3 +84,6 @@ Route::get('/admin', function () {
 
 // Admin Categories
 Route::resource('/admin/categories', CategoryController::class)->middleware(['auth:admin']);
+
+// Admin Products
+Route::resource('/admin/products', ProductController::class)->middleware(['auth:admin']);
