@@ -31,29 +31,45 @@
         </tr>
       </thead>
       <tbody>
+        @foreach ($products_data as $product)
           <tr>
-            <td>1</td>
-            <td>Id 1</td>
-            <td>Pic 1</td>
-            <td>Name 1</td>
-            <td>Category 1</td>
-            <td>10000</td>
-            <td>5</td>
+            <td>{{ $loop->iteration }}</td>
+            <td>{{ $product->id }}</td>
+          <td><img src="{{ asset("storage/{$product->main_picture}") }}" width="120" height="auto"></td>
+            <td>{{ $product->name_product }}</td>
+            <td>{{ $product->category_name }}</td>
+            <td>Rp{{ number_format($product->price,0,',','.') }},-</td>
+            <td>{{ $product->stock }} pc(s)</td>
             <td>
-              <a href="" class="btn btn-info text-white">
+              <a href="/admin/products/{{ $product->id }}" class="btn btn-info text-white">
                 <span><i class="fa-regular fa-pen-to-square me-1"></i></span>Detail
               </a>
-              <a href="" class="btn btn-primary">
+              <a href="/admin/products/{{ $product->id }}/edit" class="btn btn-primary">
                 <span><i class="fa-regular fa-pen-to-square me-1"></i></span>Update
               </a>
               <a href="" class="btn btn-success">
                 <span><i class="fa-regular fa-pen-to-square me-1"></i></span>Pictures
               </a>
-              <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteProductModal-">
+              <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteProductModal-{{ $product->id }}">
                 <span><i class="fa-regular fa-trash-can me-1"></i></span>Delete
               </a>
             </td>
-          </tr>          
+          </tr>       
+          
+          @include('partials/modal', [
+            'modal_id' => 'deleteProductModal-' . $product->id,
+            'modal_title' => 'Delete Product',
+            'include_form' => 'true',
+            'form_action' => '/admin/products/' . $product->id ,
+            'form_method' => 'post', 
+            'additional_form_method' => 'delete', 
+            'modal_body' => 'Are you sure to delete address: <strong>' . $product->name_product . '</strong>',
+            'modal_footer' => '
+            <button type="submit" class="btn btn-outline-danger"><span class="fa-regular fa-trash-can me-1"></span>Delete Category</button>
+            <button type="button" class="btn btn-primary-native-regular" data-bs-dismiss="modal"><span class="fa-solid fa-pen-to-square me-1"></span>Cancel Delete</button>
+            ',
+          ])
+        @endforeach
       </tbody>
     </table>
   </div>
