@@ -8,6 +8,10 @@
     @method('put')
     @csrf
     <div class="form-group mb-3">
+      <label class="form-label">Category Id</label>
+      <input type="text" class="form-control" name="name_category" value="{{ $category_data->id }}" readonly disabled>
+    </div>
+    <div class="form-group mb-3">
       <label class="form-label">Category Name</label>
       <input type="text" class="form-control" name="name_category" value="{{ $category_data->name_category }}" required>
     </div>
