@@ -7,6 +7,7 @@ use App\Models\Picture;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -46,6 +47,17 @@ class ProductController extends Controller
         ]);
     }
 
+    public function edit($id) {
+        $productData = (new Product)->getProductById($id);
+        $categoriesData = Category::all();
+
+        return view('admin.products.edit', [
+            'title' => 'Edit Products',
+            'product_data' => $productData,
+            'categories_data' => $categoriesData,
+        ]);
+    }
+
     public function store(Request $request) {
         $validatedData = $request->validate([
             'name_product' => 'required|max:255',
@@ -65,8 +77,8 @@ class ProductController extends Controller
 
         $mainPicExtension = $request->pictures[0]->getClientOriginalExtension();
         $mainPicNewName =  $request->slug . '-0.' . $mainPicExtension;
-        $mainPicture = $request->pictures[0]->storeAs('products', $mainPicNewName);
-        $validatedData['main_picture'] = $mainPicture;
+        $request->pictures[0]->storeAs('products', $mainPicNewName);
+        $validatedData['main_picture'] = $mainPicNewName;
 
         $createProduct = Product::create($validatedData);
         $lastInsertedProductId = $createProduct->id;
@@ -87,4 +99,35 @@ class ProductController extends Controller
         return redirect('/admin/products')->with('success', 'Product: <strong>' . $request->name_product . '</strong> has been added.');
     }
     
+    public function update(Request $request, Product $product) {
+        $validatedData = $request->validate([
+            'name_product' => 'required|max:255',
+            'category_id' => 'required',
+            'slug' => 'required|max:255',
+            'price' => 'required',
+            'discount_price' => '',
+            'stock' => 'required',
+            'description' => 'required',
+            'instruction' => 'required',
+            'ingredients' => 'required',
+            'gross_weight' => 'required',
+            'net_weight' => 'required',
+            'main_picture' => 'image',
+        ]);  
+
+        if (isset($validatedData['main_picture'])) {
+            $oldPicture = $product->main_picture;
+            Storage::delete($oldPicture);
+            
+            $extension = $request->file('main_picture')->getClientOriginalExtension();
+            $newPicName =  $request->slug . '-' . '0' . '.' . $extension;
+            $request->file('main_picture')->storeAs('products', $newPicName);
+            $validatedData['main_picture'] = $newPicName;
+            Picture::where('name_picture', $oldPicture)->update(['name_picture' => $newPicName]);
+        }
+
+        Product::where('id', $product->id)->update($validatedData);
+
+        return redirect('admin/products')->with('Product has been updated.');
+    }
 }
