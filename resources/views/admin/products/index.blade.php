@@ -42,7 +42,7 @@
             <td>{{ $product->stock }} pc(s)</td>
             <td>
               <a href="/admin/products/{{ $product->id }}" class="btn btn-info text-white">
-                <span><i class="fa-regular fa-pen-to-square me-1"></i></span>Detail
+                <span><i class="fa-solid fa-circle-info me-1"></i></span>Detail
               </a>
               <a href="/admin/products/{{ $product->id }}/edit" class="btn btn-primary">
                 <span><i class="fa-regular fa-pen-to-square me-1"></i></span>Update
@@ -65,7 +65,7 @@
             'additional_form_method' => 'delete', 
             'modal_body' => 'Are you sure to delete address: <strong>' . $product->name_product . '</strong>',
             'modal_footer' => '
-            <button type="submit" class="btn btn-outline-danger"><span class="fa-regular fa-trash-can me-1"></span>Delete Category</button>
+            <button type="submit" class="btn btn-outline-danger"><span class="fa-regular fa-trash-can me-1"></span>Delete Product</button>
             <button type="button" class="btn btn-primary-native-regular" data-bs-dismiss="modal"><span class="fa-solid fa-pen-to-square me-1"></span>Cancel Delete</button>
             ',
           ])

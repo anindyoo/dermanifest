@@ -34,7 +34,7 @@
             <td>{{ $category->name_category }}</td>
             <td>
               <a href="/admin/categories/{{ $category->id }}/edit" class="btn btn-primary">
-                <span><i class="fa-regular fa-pen-to-square me-1"></i></span>Update
+                <span><i class="fa-solid fa-circle-info me-1"></i></span>Update
               </a>
               <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCategoryModal-{{ $category->id }}">
                 <span><i class="fa-regular fa-trash-can me-1"></i></span>Delete
