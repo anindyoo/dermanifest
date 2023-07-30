@@ -35,7 +35,7 @@
           <tr>
             <td>{{ $loop->iteration }}</td>
             <td>{{ $product->id }}</td>
-          <td><img src="{{ asset("storage/{$product->main_picture}") }}" width="120" height="auto"></td>
+          <td><img src="{{ asset("storage/products/{$product->main_picture}") }}" width="120" height="auto"></td>
             <td>{{ $product->name_product }}</td>
             <td>{{ $product->category_name }}</td>
             <td>Rp{{ number_format($product->price,0,',','.') }},-</td>
