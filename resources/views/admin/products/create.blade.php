@@ -5,7 +5,7 @@
   <h2>Add Product</h2>
   <hr>
   @foreach ($errors->all() as $error)
-    <div class="alert alert-success" role="alert">
+    <div class="alert alert-danger" role="alert">
       {{ $error }}<br/>
     </div>
   @endforeach
