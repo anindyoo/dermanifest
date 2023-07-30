@@ -117,7 +117,7 @@ class ProductController extends Controller
 
         if (isset($validatedData['main_picture'])) {
             $oldPicture = $product->main_picture;
-            Storage::delete($oldPicture);
+            Storage::delete("products/$oldPicture");
             
             $extension = $request->file('main_picture')->getClientOriginalExtension();
             $newPicName =  $request->slug . '-' . '0' . '.' . $extension;
@@ -129,5 +129,16 @@ class ProductController extends Controller
         Product::where('id', $product->id)->update($validatedData);
 
         return redirect('admin/products')->with('Product has been updated.');
+    }
+
+    public function destroy(Product $product) {
+        $picturesData = (new Picture)->getPicturesByProductId($product->id);
+        foreach ($picturesData as $pic) {
+            Storage::delete("products/$pic->name_picture");
+        }
+
+        Product::destroy($product->id);
+
+        return redirect('admin/products')->with('success', 'Product: <strong>' . $product->name_product . '</strong> has been deleted.');
     }
 }
