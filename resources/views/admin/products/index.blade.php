@@ -47,7 +47,7 @@
               <a href="/admin/products/{{ $product->id }}/edit" class="btn btn-primary">
                 <span><i class="fa-regular fa-pen-to-square me-1"></i></span>Update
               </a>
-              <a href="" class="btn btn-success">
+              <a href="/admin/pictures/{{ $product->id }}" class="btn btn-success">
                 <span><i class="fa-regular fa-pen-to-square me-1"></i></span>Pictures
               </a>
               <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteProductModal-{{ $product->id }}">
@@ -63,7 +63,7 @@
             'form_action' => '/admin/products/' . $product->id ,
             'form_method' => 'post', 
             'additional_form_method' => 'delete', 
-            'modal_body' => 'Are you sure to delete address: <strong>' . $product->name_product . '</strong>',
+            'modal_body' => 'Are you sure to delete address: <strong>' . $product->name_product . '</strong>?',
             'modal_footer' => '
             <button type="submit" class="btn btn-outline-danger"><span class="fa-regular fa-trash-can me-1"></span>Delete Product</button>
             <button type="button" class="btn btn-primary-native-regular" data-bs-dismiss="modal"><span class="fa-solid fa-pen-to-square me-1"></span>Cancel Delete</button>
