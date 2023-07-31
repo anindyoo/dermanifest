@@ -40,7 +40,7 @@ body {
 	position: fixed;
 	width: 300px;
 	height: 100%;
-	background: linear-gradient(to right bottom, #333d29, #3c462f, #454f35, #4e583c, #586142, #5d6646, #636a4a, #686f4e, #6a7151, #6c7254, #6e7457, #70765a);
+	background: radial-gradient(140.29% 242.83% at -18.69% 15.34%, #333D29 30.64%, #656D4A 100%);
 	transition: 0.5s;
 	overflow: hidden;
 	box-shadow: 5px 0px 12px 2px #b5b5b5;
@@ -82,7 +82,7 @@ button, input[type="submit"], input[type="reset"] {
 
 .my-navbar ul li:hover,
 .link-active {
-	background: #A4AC86;
+	background: #808864;
 }
 
 .my-navbar ul li:nth-child(1) {
@@ -102,7 +102,7 @@ button, input[type="submit"], input[type="reset"] {
 	width: 100%;
 	display: flex;
 	text-decoration: none;
-	color: #EFEFDC;
+	color: #EFEFDC !important;
 }
 
 .my-navbar ul li a:hover,
