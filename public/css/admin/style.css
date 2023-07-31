@@ -329,3 +329,11 @@ button, input[type="submit"], input[type="reset"] {
 .card-value {
   font-size: 20px;
 }
+
+trix-editor {
+	min-height: 10em!important;
+}
+
+.trix-button-group--file-tools {
+	display: none !important;
+}
