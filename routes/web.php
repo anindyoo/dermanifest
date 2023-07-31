@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PictureController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RajaOngkirController;
@@ -87,3 +88,6 @@ Route::resource('/admin/categories', CategoryController::class)->middleware(['au
 
 // Admin Products
 Route::resource('/admin/products', ProductController::class)->middleware(['auth:admin']);
+
+// Admin Product Pictures
+Route::resource('/admin/pictures', PictureController::class)->middleware(['auth:admin']);
