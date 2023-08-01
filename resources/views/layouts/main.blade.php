@@ -2,8 +2,8 @@
 
 @section('content')
   @include('partials/navbar')
-  <div>
-    @yield('container')
-  </div>
+  
+  @yield('container')
+
   @include('partials/bottom_navbar')  
 @endsection
