@@ -23,7 +23,7 @@
       @foreach ($products_data as $product)
       @if ($category->id == $product->category_id)
       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 swiper-slide">
-        <a href="/products/{{ $product->id }}">
+        <a href="/products/{{ $product->slug }}">
           <div class="card swiper-slide">
             <div class="image-product">
               <div class="hover-desc">
