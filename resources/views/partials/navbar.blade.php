@@ -22,10 +22,10 @@
           </li>
           <li class="nav-item me-4 dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Shop
+              Shop
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">All Product</a></li>
+              <li><a class="dropdown-item" href="/products">All Product</a></li>
               <li><a class="dropdown-item" href="#">Dermanifest Classic Powder Beauty Mask</a></li>
               <li><a class="dropdown-item" href="#">Dermanifest Classic Candlenut Oil</a></li>
               <li><a class="dropdown-item" href="#">Dermanifest Classic Scented Candle</a></li>
