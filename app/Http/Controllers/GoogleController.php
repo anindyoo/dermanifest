@@ -22,7 +22,6 @@ class GoogleController extends Controller
 
         $findAdmin = Admin::where('email', $userGoogle->getEmail())->first();
         $findUser = Customer::where('email', $userGoogle->getEmail())->first();
-        // $findUser = [2];
         $current_time = Carbon::now();
 
         if ($findUser) {
