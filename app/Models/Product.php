@@ -14,4 +14,8 @@ class Product extends Model
     public function getProductById($id) {
         return $this->find($id);
     }
+
+    public function getProductBySlug($slug) {
+        return $this::where('slug', $slug)->first();
+    }
 }
