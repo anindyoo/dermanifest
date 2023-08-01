@@ -2,7 +2,13 @@
 
 @section('container')
 <section class="product container container-product">
-
+  @if(session()->has('success'))
+    <div class="home-alert">
+      <div class="alert alert-success" role="alert">
+        {{ session('success') }}
+      </div>
+    </div>
+  @endif
   <h1>All Product</h1>
   @foreach ($categories_data as $category)
   <div class="swiper productSwiper mb-4">
