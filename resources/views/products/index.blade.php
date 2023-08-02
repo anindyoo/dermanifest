@@ -11,7 +11,7 @@
   @endif
   <h1>All Product</h1>
   @foreach ($categories_data as $category)
-  <div class="swiper productSwiper mb-4">
+  <div class="swiper productSwiper mb-4" id="{{ $category->name_category }}">
     <div class="row row-title-product">
       <div class="col-lg-12 col-md-12 col-sm-12">
         <div class="m-2">
@@ -25,7 +25,7 @@
       </div>
     </div>
 
-    <div class="row row-product swiper-wrapper mb-5" id="scrollhere">
+    <div class="row row-product swiper-wrapper mb-5">
       @foreach ($products_data as $product)
       @if ($category->id == $product->category_id)
       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 swiper-slide">
