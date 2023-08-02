@@ -633,6 +633,68 @@ h4, h5, h6 {
     height: 38px !important;
 }
 
+/* PRODUCT DETAIL */
+.product-detail .swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.product-detail .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-detail .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.product-detail .thumbs .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 60%;
+    object-fit: cover;
+}
+
+.product-detail .swiper {
+    width: 100%;
+    height: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.product-detail .swiper-slide {
+    background-size: cover;
+    background-position: center;
+}
+
+.product-detail .mySwiper2 {
+    height: 80%;
+    width: 100%;
+}
+
+.product-detail .mySwiper {
+    height: 20%;
+    box-sizing: border-box;
+    padding: 10px 0;
+}
+
+.product-detail .mySwiper .swiper-slide {
+    width: 25%;
+    height: 100%;
+    opacity: 0.4;
+}
+
+.product-detail .mySwiper .swiper-slide-thumb-active {
+    opacity: 1;
+}
+
 /* size 992 */
 @media screen and (max-width: 992px) {
     .nav-logo {
