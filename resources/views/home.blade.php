@@ -201,7 +201,7 @@
             </p>
         </div>
         <div class="button-buy">
-          <a href="" class="btn btn-buy">Shop Now</a>
+          <a href="/products" class="btn btn-buy">Shop Now</a>
         </div>
       </div>
       <div class="col-lg-6 col-md-6 col-sm-12 col-12 col-img">
