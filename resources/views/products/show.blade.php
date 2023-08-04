@@ -77,15 +77,15 @@
       <h2>{{ $product_data->name_product }}</h2>
       <div class="description-detail mt-3">
         <h4>Description</h4>
-        <p>{!! $product_data->description !!}</p>
+        <div>{!! $product_data->description !!}</div>
       </div>
       <div class="instruction-detail mt-3">
         <h4>How to Use</h4>
-        <p>{!! $product_data->instruction !!}</p>
+        <div>{!! $product_data->instruction !!}</div>
       </div>
       <div class="ingredients-detail mt-3">
         <h4>Ingredients</h4>
-        <p>{!! $product_data->ingredients !!}</p>
+        <div>{!! $product_data->ingredients !!}</div>
       </div>
       <div class="neto-price d-flex justify-content-between">
         <div class="neto-detail mt-3">
