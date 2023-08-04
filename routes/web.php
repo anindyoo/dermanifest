@@ -12,6 +12,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RajaOngkirController;
 use App\Http\Controllers\ProductListController;
+use App\Http\Controllers\TopProductController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
@@ -95,3 +96,6 @@ Route::resource('/admin/products', ProductController::class)->middleware(['auth:
 
 // Admin Product Pictures
 Route::resource('/admin/pictures', PictureController::class)->middleware(['auth:admin']);
+
+// Admin Top Products Management
+Route::resource('/admin/top_products', TopProductController::class)->middleware(['auth:admin']);
