@@ -20,7 +20,6 @@ class ProductController extends Controller
 
         return view('admin.products.index', [
             'title' => 'Products',
-            'categories_data' => '$categoriesData',
             'products_data' => $productsData,
         ]);
     }
