@@ -142,40 +142,43 @@
       </div>
     </div>
     <div class="row row-product swiper-wrapper mb-5" id="scrollhere">
+      @foreach ($products_data as $product)
       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 swiper-slide">
-        <a href="#">
+        <a href="/products/{{ $product->slug }}">
           <div class="card swiper-slide">
             <div class="image-product">
               <div class="hover-desc">
                 <p><i class="fa fa-search" aria-hidden="true"></i></p>
               </div>
-              <img src="#" alt="...">
+              <img src="{{ asset("storage/products/$product->main_picture") }}" alt="...">
             </div>
-
             <div class="product-content">
               <div class="text-content">
-                <h5>Nama Produk</h5>
-                <p>Kategori</p>
+                <h5 class="fw-bold">{{ $product->name_product }}</h5>
+                <p class="m-0">{{ $product->category_name }}</p>
+                <p class="m-0">{{ $product->net_weight }} gr</p>
               </div>
-
-              <div class="price-rate">
-                <div class="product-price">
-                  <p>Rp30.000,-</p>
-                </div>
+              <div class="product-price d-flex flex-column justify-content-end align-items-end mb-2">
+                @if ($product->discount_price)
+                  <h5 class="fw-bold">Rp{{ number_format($product->discount_price, 0, ',', '.') }},-</h5>
+                  <del>Rp{{ number_format($product->price, 0, ', ', '.') }},-</del>                    
+                @else
+                  <h5 class="fw-bold">Rp{{ number_format($product->price, 0, ', ', '.') }},-</h5>                    
+                @endif
               </div>
-
-              <a href="#" class="btn btn-buy btn-cart">
+              <a href="" class="btn btn-buy btn-cart">
                 <box-icon type='solid' name='cart-add'><i class='bx bxs-cart-add' style="width: 20px; height: auto;"></i></box-icon> Add to Cart 
               </a>
             </div>
           </div>
         </a>
       </div>
+      @endforeach
     </div> 
-    <div class="row">
-      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 d-flex col-button">
-        <p class="button-prev me-3">PREV</p>
+    <div class="row me-2">
+      <div class="mt-4 col-xl-12 col-lg-12 col-md-12 col-sm-12 d-flex col-button flex-row-reverse">
         <p class="button-next">NEXT</p>
+        <p class="button-prev me-3">PREV</p>
       </div>
     </div>
   </div>
@@ -222,4 +225,45 @@
     </div>
   </div>
 </section>
+@endsection
+
+@section('js_code')
+<script>
+// Product List Swiper
+var swiper = new Swiper(".productSwiper", {
+  grabCursor: true,
+  slidesPerView: 4,
+  slidesPerColumn: 0,
+  spaceBetween: 10,
+  loop: true,
+  breakpoints: {
+    1200: {
+      slidesPerView: {{ count($products_data) }} < 4 ? {{ count($products_data) }} : 4,
+      spaceBetween: 0
+    },
+
+    768: {
+      slidesPerView: 3,
+      spaceBetween: 0
+    },
+    412: {
+      slidesPerView: 2,
+      spaceBetween: 0
+    },
+    240: {
+      slidesPerView: 1,
+      spaceBetween: 0
+    },
+    
+  },
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+  navigation: {
+    nextEl: ".button-next",
+    prevEl: ".button-prev",
+  },
+});
+</script>
 @endsection
