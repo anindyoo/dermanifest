@@ -25,7 +25,7 @@
       @else
       <p class="mb-1">Product has not been set.</p>
       @endif
-      <select class="form-select" name="product_id[]" aria-label="Default select example">
+      <select class="form-select select-2" id="" name="product_id[]" aria-label="Default select example">
         <option value="" hidden selected>Select Product</option>
         <option value="">-Unset Product-</option>
         @foreach ($products_data as $product)
@@ -44,7 +44,7 @@
     <div class="form-group mb-4">
       <label class="form-label"><h5>Product #{{ $i }}</h5></label>
       <p class="mb-1">Product has not been set.</p>
-      <select class="form-select" name="product_id[]" aria-label="Default select example">
+      <select class="form-select select-2" id="" name="product_id[]" aria-label="Default select example">
         <option value="" hidden selected>Select Product</option>
         @foreach ($products_data as $product)
           <option value="{{ $product->id }}">{{ $product->name_product }}</option>                  
@@ -62,4 +62,7 @@
 @endsection
 
 @section('js_code')
+<script>
+  $('.select-2').select2();
+</script>
 @endsection
