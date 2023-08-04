@@ -634,6 +634,9 @@ h4, h5, h6 {
 }
 
 /* PRODUCT DETAIL */
+.product-detail li, .product-detail ul {
+    list-style: unset;
+}
 .product-detail .swiper {
     width: 100%;
     height: 100%;
