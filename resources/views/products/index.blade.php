@@ -4,9 +4,10 @@
 <section class="product container container-product">
   @if(session()->has('success'))
     <div class="home-alert">
-      <div class="alert alert-success" role="alert">
-        {{ session('success') }}
-      </div>
+      @include('partials/alert', [
+        'status' => 'success',
+        'message' => session('success'),
+      ])
     </div>
   @endif
   <h1>All Product</h1>
@@ -29,8 +30,8 @@
       @foreach ($products_data as $product)
       @if ($category->id == $product->category_id)
       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 swiper-slide">
-        <a href="/products/{{ $product->slug }}">
-          <div class="card swiper-slide">
+        <div class="card swiper-slide">
+            <a href="/products/{{ $product->slug }}">
             <div class="image-product">
               <div class="hover-desc">
                 <p><i class="fa fa-search" aria-hidden="true"></i></p>
@@ -43,20 +44,24 @@
                 <p class="m-0">{{ $category->name_category }}</p>
                 <p class="m-0">{{ $product->net_weight }} gr</p>
               </div>
-              <div class="product-price d-flex flex-column justify-content-end align-items-end mb-2">
-                @if ($product->discount_price)
-                  <h5 class="fw-bold">Rp{{ number_format($product->discount_price, 0, ',', '.') }},-</h5>
-                  <del>Rp{{ number_format($product->price, 0, ', ', '.') }},-</del>                    
-                @else
-                  <h5 class="fw-bold">Rp{{ number_format($product->price, 0, ', ', '.') }},-</h5>                    
-                @endif
-              </div>
-              <a href="" class="btn btn-buy btn-cart">
-                <box-icon type='solid' name='cart-add'><i class='bx bxs-cart-add' style="width: 20px; height: auto;"></i></box-icon> Add to Cart 
-              </a>
+            </a>
+            <div class="product-price d-flex flex-column justify-content-end align-items-end mb-2">
+              @if ($product->discount_price)
+                <h5 class="fw-bold m-0">Rp{{ number_format($product->discount_price, 0, ',', '.') }},-</h5>
+                <del>Rp{{ number_format($product->price, 0, ', ', '.') }},-</del>                    
+              @else
+                <h5 class="fw-bold m-0">Rp{{ number_format($product->price, 0, ', ', '.') }},-</h5>                    
+              @endif
             </div>
+            <form action="/cart" method="post">
+              @csrf
+              <input type="hidden" name="id" value="{{ $product->id }}">
+              <button type="submit" class="btn btn-buy btn-cart">
+                <box-icon type='solid' name='cart-add'><i class='bx bxs-cart-add' style="width: 20px; height: auto;"></i></box-icon> Add to Cart 
+              </button>
+            </form>
           </div>
-        </a>
+        </div>
       </div>
       @endif        
       @endforeach

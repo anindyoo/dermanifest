@@ -4,9 +4,10 @@
 <section class="product-detail container mb-5">
   @if(session()->has('success'))
     <div class="home-alert">
-      <div class="alert alert-success" role="alert">
-        {{ session('success') }}
-      </div>
+      @include('partials/alert', [
+        'status' => 'success',
+        'message' => session('success'),
+      ])
     </div>
   @endif
   <div class="row mt-3">
@@ -102,8 +103,14 @@
           @endif
         </div>    
       </div>
-      <div class="d-flex mt-4">
-        <a href="" class="btn btn-buy w-100"><i class="fas fa-cart-plus"></i>  Add to Cart</a>
+      <div class="mt-4">
+        <form action="/cart" method="post">
+          @csrf
+          <input type="hidden" name="id" value="{{ $product_data->id }}">
+          <button type="submit" class="btn btn-buy btn-primary-native w-100">
+            <box-icon type='solid' name='cart-add'><i class='bx bxs-cart-add' style="width: 20px; height: auto;"></i></box-icon> Add to Cart 
+          </button>
+        </form>
       </div>
     </div>
   </div>
