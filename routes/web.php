@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -9,6 +10,7 @@ use App\Http\Controllers\PictureController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RajaOngkirController;
 use App\Http\Controllers\ProductListController;
@@ -26,11 +28,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 |
 */
 // Home
-Route::get('/', function () {
-    return view('home', [
-        "title" => "Home"
-    ]);
-});
+Route::resource('/', HomeController::class);
 
 // Register
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
@@ -80,6 +78,10 @@ Route::delete('/profile/address/destroy/{address_id}', [ProfileController::class
 
 // Product List
 Route::resource('/products', ProductListController::class);
+
+// Cart
+Route::resource('/cart', CartController::class);
+Route::post('/cart/destroyAll', [CartController::class, 'destroyAll']);
 
 // Admin
 Route::get('/admin', function () {
