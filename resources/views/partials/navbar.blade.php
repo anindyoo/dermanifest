@@ -10,15 +10,15 @@
       </button>
 
       <li class="navbar-toggler nav-toggle">
-        <a class="n" href="#"><i class='bx bx-cart'></i></a>
+        <a class="nav-link" href="/cart"><i class='bx bx-cart'></i></a>
       </li>
       <div class="collapse navbar-collapse dorpdown-mobile" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item me-4">
-            <a class="nav-link" href="#">Home</a>
+            <a class="nav-link" href="/">Home</a>
           </li>
           <li class="nav-item me-4">
-            <a class="nav-link" href="index.php#scroll-about">About</a>
+            <a class="nav-link" href="#">About</a>
           </li>
           <li class="nav-item me-4 dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -32,14 +32,18 @@
             </ul>
           </li>
           <li class="nav-item me-4">
-            <a class="nav-link" href="index.php#scroll-footer">Contact</a>
+            <a class="nav-link" href="#">Contact</a>
           </li>
           
           <div class="nav-ico-mobile">
             <li class="nav-item me-4 cart-nav hide-med">
-              <a class="nav-link" href="#"><i class='bx bx-cart'></i></a>
+              <a class="nav-link" href="/cart"><i class='bx bx-cart'></i></a>
               <span class='badge badge-warning' id='lblCartCount'>
-                0                    
+                @if (session()->has('cart'))
+                  {{ session()->get('cart')['total_quantity'] }}
+                @else
+                  0
+                @endif
               </span>
             </li>
             <li class="nav-item me-4">
