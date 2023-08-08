@@ -81,11 +81,13 @@
           @endif
         </div>
         <div class="text-end">
-          <button class="btn btn-primary-native mt-2" data-bs-toggle="modal" data-bs-target="#addAddressModal">
+          <a href="/profile/address/create" class="btn btn-primary-native mt-2">
             <span class="fa-solid fa-plus me-2"></span>Add Address
-          </button>
+          </a>
         </div>
       </div>
+
+      {{-- ORDER HISTORY --}}
     </div>
 
     {{-- UPDATE PROFILE MODAL --}}  
@@ -154,98 +156,7 @@
     @endforeach      
     @endif
     
-    {{-- ADD ADDRESS MODAL --}}
-    @include('partials/modal', [
-      'modal_id' => 'addAddressModal',
-      'modal_title' => 'Add Address',
-      'include_form' => 'true',
-      'form_action' => '/address',
-      'form_method' => 'post',
-      'modal_body' => '
-      <div class="mb-2 address-input form-group">
-        <label for="address-input" class="form-label">Address Title</label>            
-        <input type="text" id="address-input" class="form-control" name="name_address" placeholder="e.g.: My House, New Office, Mom\'s House etc." required>
-      </div>
-      <div class="mb-2 address-input form-group">
-        <label for="address-input" class="form-label">Main Address</label>            
-        <textarea id="address-input" class="form-control" name="address" placeholder="e.g.: Jalan Jendral Sudirman No. 2..." required></textarea>
-      </div>
-      <div class="mb-2 address-input form-group d-flex flex-column">
-        <label for="address-input" class="form-label">Province</label>   
-        <input id="province_id-input" type="hidden" name="province_api_id" required>         
-        <select id="province-select" class="form-select" aria-label="Select Province" name="province" required>
-          <option hidden disabled selected value>Select Province</option>' .
-            $provinces
-        .'</select>
-      </div>
-      <div class="mb-2 address-input form-group d-flex flex-column">
-        <label for="address-input" class="form-label">City/District</label>    
-        <input id="city_id-input" type="hidden" name="city_api_id" required>                 
-        <select id="city-select" class="form-select" aria-label="Select City" name="city" required disabled>
-          <option hidden disabled selected value>Select City/District</option>
-        </select>
-      </div>
-      <div class="mb-2 address-input form-group">
-        <label for="address-input" class="form-label">Postal Code</label>            
-        <input id="postal_code" type="text" id="address-input" class="form-control" name="postal_code" placeholder="e.g.: 13220" required>
-      </div>
-      ',
-      'modal_footer' => '
-        <button type="submit" class="btn btn-primary-native-regular"><span class="fa-solid fa-circle-check"></span> Add Address</button>
-      ',
-    ])
-
   </div>
 </section>
 @endsection
 
-@section('js_code')
-<script>
-// Rajaongkir Dependent Select Option
-$(document).ready(function() {
-  $.ajaxSetup({
-    headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-  });
-
-  $('#province-select').change(function () {
-    $('#city-select').removeAttr('disabled');
-  })
-
-  // Get City Based on Province
-  $('#province-select').on("change", function() {
-    var selectedProvinceId = $("option:selected", this).attr("province_id");
-    $('#province_id-input').val(selectedProvinceId);
-    $.ajax({
-      type: 'post',
-      url: '/citiesByProvinceId/' + selectedProvinceId,
-      data: {},
-    }).done(function(cities) {           
-      $('#city-select').find('option').remove().end()
-        .append('<option hidden disabled selected value>Select City/District</option>');
-      $.each(cities, function(key, city) {   
-        $('#city-select').append(
-          $("<option></option>")
-            .attr("value", city['type'] + ' ' + city['city_name'])
-            .attr("id", city['city_id'])
-            .attr("city_id", city['city_id'])
-            .attr("postal_code", city['postal_code'])
-            .text(city['type'] + ' ' + city['city_name'])
-        ); 
-      });
-    });
-  });
-
-  $('#city-select').on("change", function() {
-    var selectedCityId = $("option:selected", this).attr("city_id");
-    $('#city_id-input').val(selectedCityId);
-  });
-  
-  $('#city-select').select2({
-    dropdownParent: $('#addAddressModal')
-  });
-
-});
-</script>
-@endsection
