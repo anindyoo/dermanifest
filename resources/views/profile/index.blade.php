@@ -242,10 +242,6 @@ $(document).ready(function() {
     $('#city_id-input').val(selectedCityId);
   });
   
-  $('#province-select').select2({
-    dropdownParent: $('#addAddressModal')
-  });
-  
   $('#city-select').select2({
     dropdownParent: $('#addAddressModal')
   });

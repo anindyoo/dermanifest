@@ -115,8 +115,6 @@ $(document).ready(function() {
     var selectedCityId = $("option:selected", this).attr("city_id");
     $('#city_id-input').val(selectedCityId);
   });
-
-  $('#update-province-select').select2();
   
   $('#update-city-select').select2();
 }); 
