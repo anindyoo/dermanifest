@@ -106,7 +106,7 @@
     </div>
   </div>
   @else
-    <div class="empty-cart rounded-3 mt-4 mb-5">
+    <div class="empty-cart rounded-3 mt-5">
       <h2>Your cart is still empty. Let's shop something!</h2>
       <a href="/products" class="btn btn-primary-native mt-4">Shop Products</a>
     </div>      
