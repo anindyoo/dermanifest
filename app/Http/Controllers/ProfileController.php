@@ -14,13 +14,19 @@ use Throwable;
 class ProfileController extends Controller
 {
     public function index() {
-        $provincesFinal = $this->getProvincesOptions();
         $customerAddresses = Address::whereIn('customer_id', [Auth::user()->id])->get();
         
         return view('profile.index', [
             'title' => 'Profile',
-            'provinces' => $provincesFinal,
             'addresses' => $customerAddresses,
+        ]);
+    }
+
+    public function createAddress() {
+        $provincesFinal = $this->getProvincesOptions();
+        return view('profile.createAddress', [
+            'title' => 'Add Address',
+            'provinces' => $provincesFinal,
         ]);
     }
 
@@ -66,7 +72,7 @@ class ProfileController extends Controller
         return redirect('profile')->with('success', 'Password has been updated.');
     }
 
-    public function addAddress(Request $request) {
+    public function storeAddress(Request $request) {
         $validatedData = $request->validate([
             'province_api_id' => 'required|numeric',
             'city_api_id' => 'required|numeric',
