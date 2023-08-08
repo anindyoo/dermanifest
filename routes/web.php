@@ -71,7 +71,8 @@ Route::put('/profile/update', [ProfileController::class, 'updateProfile'])->midd
 Route::put('/password/update', [ProfileController::class, 'updatePassword'])->middleware(['auth', 'verified']);
 
 // Addresses
-Route::post('/address', [ProfileController::class, 'addAddress'])->middleware(['auth', 'verified']);
+Route::get('/profile/address/create', [ProfileController::class, 'createAddress'])->middleware(['auth', 'verified']);
+Route::post('/profile/address/create', [ProfileController::class, 'storeAddress'])->middleware(['auth', 'verified']);
 Route::post('/citiesByProvinceId/{province_id}', [RajaOngkirController::class, 'citiesByProvinceId'])->middleware(['auth', 'verified']);;
 Route::get('/profile/address/update/{address_id}', [ProfileController::class, 'updateAddress'])->middleware(['auth', 'verified']);
 Route::put('/profile/address/update/{address_id}', [ProfileController::class, 'updateAddressValidate'])->middleware(['auth', 'verified']);
