@@ -30,15 +30,17 @@
             </div>
             <div class="mb-2 address-input form-group d-flex flex-column">
               <label for="address-input" class="form-label">Province</label>
+                <input id="province_id-input" type="hidden" name="province_api_id" value="{{ $address_data->province_api_id }}" required>         
                 <select id="update-province-select" class="form-select" aria-label="Select Province" name="province" required>
-                  {!! $selected_province !!}
+                  <option province_id="{{ $address_data->province_api_id }}" value="{{ $address_data->province }}" selected>{{ $address_data->province }}</option>        
                   {!! $provinces !!}
                 </select>
             </div>
             <div class="mb-2 address-input form-group d-flex flex-column">
-              <label for="address-input" class="form-label">City</label>            
+              <label for="address-input" class="form-label">City</label> 
+              <input id="city_id-input" type="hidden" name="city_api_id" value="{{ $address_data->city_api_id }}" required>         
               <select id="update-city-select" class="form-select" aria-label="Select City" name="city" required>
-                <option value="{{ $address_data->city }}" selected>{{ $address_data->city }}</option>        
+                <option city_id="{{ $address_data->city_api_id }}" value="{{ $address_data->city }}" selected>{{ $address_data->city }}</option>        
               </select>
             </div>
             <div class="mb-2 address-input form-group">
@@ -88,6 +90,7 @@ $(document).ready(function() {
 
   $('#update-province-select').on("change", function() {
     var selectedProvinceId = $("option:selected", this).attr("province_id");
+    $('#province_id-input').val(selectedProvinceId);
     $.ajax({
       type: 'post',
       url: '/citiesByProvinceId/' + selectedProvinceId,
@@ -106,6 +109,11 @@ $(document).ready(function() {
         ); 
       });
     });
+  });
+
+  $('#update-city-select').on("change", function() {
+    var selectedCityId = $("option:selected", this).attr("city_id");
+    $('#city_id-input').val(selectedCityId);
   });
 
   $('#update-province-select').select2();
