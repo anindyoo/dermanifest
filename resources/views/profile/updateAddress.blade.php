@@ -8,13 +8,13 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 
-  @section('content')
+@section('content')
 <section>
   <div class="modal position-static d-block" tabindex="-1">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Modal title</h5>
+          <h5 class="modal-title">Update Address</h5>
         </div>
         <form action="/profile/address/update/{{ $address_data->id }}" method="post">
           @method('put')
