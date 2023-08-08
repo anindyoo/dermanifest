@@ -17,8 +17,6 @@ class OrderController extends Controller
         $cartItems = $cart['cart_items'];
         $productsData = $cart['products_data'];
         $addressesData = (new Address)->getAddressesByCustomerId(Auth::user()->id);
-        // dd($addressesData);
-        // $provinces = "cute  ";
         $provinces = (new ProfileController)->getProvincesOptions();
         $date = Carbon::now();
 
