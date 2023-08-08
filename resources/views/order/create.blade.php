@@ -51,6 +51,7 @@
               <td class="td-product">   
                 <div class="d-flex">
                   <a href="/products/{{ $product->slug }}"><img src="{{ asset('storage/products/' . $product->main_picture) }}" alt="" style="object-fit: contain;"></a>
+                  <input type="hidden" name="main_picture[]" value="{{ $product->main_picture }}" required>                
                   <div class="d-flex flex-column ms-4">
                     <div class="data-text">
                       <a href="/products/{{ $product->slug }}" class="to-product">
@@ -152,6 +153,7 @@
           <div class="form-group mb-2">
             <label class="form-label">Name</label>
             <input id="name" type="text" class="form-control" name="recipient" value="{{ Auth::user()->name_customer }}" required>
+            <input id="customer_id" type="hidden" class="form-control" name="customer_id" value="{{ Auth::user()->id }}" required>
           </div>
           <div class="form-group mb-2">
             <label class="form-label">Email</label>
@@ -165,10 +167,10 @@
       </div>
       <div class="delivery-detail accdetail">
         <h5>Delivery</h5>
-        <div class="address-row d-flex flex-column mt-3">
+        <div class="address-row d-flex flex-column mt-3 mb-3">
           @if (count($addresses_data) > 0)
             <label class="radio-card-container card-input">
-              <input type="radio" class="card-input-element" value="0"/>
+              <input type="radio" class="card-input-element" name="address_id" value="0"/>
               <div class="card card-input-selected address-card mb-3">
                 <div class="card-body d-flex justify-content-between flex-column">
                   <div>
@@ -206,6 +208,10 @@
           @endif
         </div>
         <div class="checkout-data">
+          <div class="mb-2 address-input form-group">
+            <label for="address-input" class="form-label">Address Title</label>            
+            <input type="text" id="address_name-input" class="form-control" name="name_address" placeholder="e.g.: My House, New Office, Mom\'s House etc." required>
+          </div>
           <div class="form-group mb-2">
             <label class="form-label">Address</label>
             <textarea class="form-control" name="address" id="address-input" rows="3" required></textarea>
@@ -213,6 +219,7 @@
           <div class="form-group mb-2">
             <label class="form-label">Province</label>
             <input id="province_id-input" type="hidden" name="province_api_id" required>         
+            <input id="province_name-input" type="hidden" name="province" required>
             <span id="province-loader">
               <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
               <p class="d-inline">Loading Province...</p>
@@ -225,11 +232,12 @@
           <div class="form-group mb-2">
             <label class="form-label">City/District</label>
             <input id="city_id-input" type="hidden" name="city_api_id" required>                 
+            <input id="city_name-input" type="hidden" name="city" required>
             <span id="city-loader">
               <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
               <p class="d-inline">Loading City...</p>
             </span>
-            <select id="city-select" class="form-select" aria-label="Select City" name="city" required>
+            <select id="city-select" class="form-select" aria-label="Select City" required>
               <option hidden disabled selected value>Select City/District</option>              
             </select>
           </div>
@@ -271,11 +279,14 @@ $(document).ready(function() {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
   });
-
+  
+  $('#city-select').select2();
   var costAjax = [];
   
   function getCostByCity() {
     var selectedCityId = $("option:selected", this).attr("city_id");
+    var selectedCityName = $("option:selected", this).val();
+    $('#city_name-input').val(selectedCityName);
     $('#city_id-input').val(selectedCityId);
 
     var data = {
@@ -342,6 +353,8 @@ $(document).ready(function() {
 
   $('#province-select').on("change", function() {
     var selectedProvinceId = $("option:selected", this).attr("province_id");
+    var selectedProvinceName = $("option:selected", this).val();
+    $('#province_name-input').val(selectedProvinceName);
     $('#province_id-input').val(selectedProvinceId);
     $('#city-loader').show();
     $.ajax({
@@ -400,9 +413,7 @@ $(document).ready(function() {
     $('#grand_total-summary').text('Rp' + grandTotal.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.') + ',-');
   });
 
-  $('#province-select').select2();
   
-  $('#city-select').select2();
 
   $('.card-input').find('.fa-check-circle').hide();
   $('.card-input').find('.fa-circle').show();
@@ -432,21 +443,23 @@ $(document).ready(function() {
         url: '/get_address',
         data: {option: selectedCard},
       }).done(function(address) {           
-        $('#address-input').val(address.address).prop('readonly', true);
-        $('#province-select').select2({disabled:'readonly'});
+        $('#address_name-input').val(address.name_address);
+        $('#address-input').val(address.address);
+        $('#province_name-input').val(address.province);
         $('#province-select').append(
           $("<option></option>")
-            .attr('value', address)
+            .attr('value', address.province)
             .attr('id', address.province_api_id)
             .attr('province_id', address.province_api_id)
             .attr('postal_code', address.postal_code)
             .prop('selected', true)
             .text(address.province)
         ); 
+        $('#city_name-input').val(address.city);
         $('#city-select').select2({disabled:'readonly'});
         $('#city-select').append(
           $("<option></option>")
-            .attr('value', address)
+            .attr('value', address.city)
             .attr('id', address.city_api_id)
             .attr('city_id', address.city_api_id)
             .attr('postal_code', address.postal_code)
@@ -454,9 +467,11 @@ $(document).ready(function() {
             .text(address.city)
         );
         $('#city-select').each(getCostByCity);
-        $('#postal_code-input').val(address.postal_code).prop('readonly', true);
+        $('#postal_code-input').val(address.postal_code);
       });
     } else {
+      $('#address_name-input').val('');
+      $('#postal_code-input').val('');
       $('#province-select').prop('disabled', false);
       $('#city-select').prop('disabled', false);
       $('#province-loader').hide();
