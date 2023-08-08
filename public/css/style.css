@@ -750,7 +750,8 @@ h4, h5, h6 {
 /* cart */
 .empty-cart {
     text-align: center;
-    padding: 40px 200px;
+    padding: 40px;
+    margin-bottom: 120px;
     background-color: #E5E9DB;
 }
 .cart table {
