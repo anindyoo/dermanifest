@@ -35,4 +35,31 @@ class RajaOngkirController extends Controller
         
         return $citiesByProvinceId;
     }
+
+    public function getDeliveryCost(Request $request) {    
+        $reponseCostJNE = $this->getDeliveryCostByCourier($request, 'jne');
+        $reponseCostTIKI = $this->getDeliveryCostByCourier($request, 'tiki');
+        $reponseCostPOS = $this->getDeliveryCostByCourier($request, 'pos');
+
+        $reponseCost = [
+            'jne' => $reponseCostJNE['rajaongkir']['results'][0]['costs'],
+            'tiki' => $reponseCostTIKI['rajaongkir']['results'][0]['costs'],
+            'pos' => $reponseCostPOS['rajaongkir']['results'][0]['costs'],
+        ];
+
+        return $reponseCost;
+    }
+
+    public function getDeliveryCostByCourier($request, $courier) {
+        $cost = Http::withHeaders([
+            'key' => env('RAJAONGKIR_KEY')
+        ])->post('https://api.rajaongkir.com/starter/cost', [
+            'origin' => 155, // Jakarta Utara
+            'destination' => $request->option['destination'],
+            'weight' => $request->option['weight'],
+            'courier' => $courier,
+        ]);
+
+        return $cost;
+    }
 }
