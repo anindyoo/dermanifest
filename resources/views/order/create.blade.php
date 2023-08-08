@@ -411,7 +411,6 @@ $(document).ready(function() {
 
   $('.card-input').click(function() {
     if (costAjax.length != 0) {
-      console.log(costAjax[i]);
       $('#province-loader').show();
       $('#city-loader').show();
       $('#service-loader').show();
@@ -421,7 +420,6 @@ $(document).ready(function() {
       }
     }          
     var selectedCard = $(this).find('.card-input-element').val();
-    console.log("pnajng",selectedCard)
     $('.card-input').find('.fa-check-circle').hide();
     $('.card-input').find('.fa-circle').show();
     $('.card-input').find('.card').removeClass('card-input-selected');
@@ -434,7 +432,6 @@ $(document).ready(function() {
         url: '/get_address',
         data: {option: selectedCard},
       }).done(function(address) {           
-        console.log(address);
         $('#address-input').val(address.address).prop('readonly', true);
         $('#province-select').select2({disabled:'readonly'});
         $('#province-select').append(
@@ -460,7 +457,6 @@ $(document).ready(function() {
         $('#postal_code-input').val(address.postal_code).prop('readonly', true);
       });
     } else {
-      console.log('REVERT ALLLLL');
       $('#province-select').prop('disabled', false);
       $('#city-select').prop('disabled', false);
       $('#province-loader').hide();
