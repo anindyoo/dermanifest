@@ -10,30 +10,12 @@ class CartController extends Controller
 {
     public function index() {
         if (session()->has('cart')) {
-            $cart = session('cart');
-            $cartData = session()->get('cart');
-            $cartItems = $cartData['products'];
-            $productsData = [];
-
-            foreach ($cartItems as $item) {
-                $product = Product::find($item['product_id']);
-                if ($product != null) {
-                    if ($product->stock != 0) {
-                        $productsData[$product->id] = $product;
-                    }
-                }
-            }
-
-            foreach ($productsData as $product) {
-                $product['category_name'] = Category::findOrFail($product->category_id)->name_category;
-            }    
-
-            $cart['total_quantity'] = $this->totalQuantity($cart);
-            $cart['subtotal'] = $this->subtotal($cart);
-            session()->put('cart', $cart);
+            $cart = $this->getCart();
+            $cartItems = $cart['cart_items'];
+            $productsData = $cart['products_data'];
         } else {
             $cartItems = [];
-            $productsData =[];
+            $productsData = [];
         }
         
         return view('cart.index' , [
@@ -48,19 +30,19 @@ class CartController extends Controller
         
         $cart = session()->get('cart', []);
 
-        if (!isset($cart['total_quantity'])) {
-            $cart['total_quantity'] = 0;
+        if (!isset($cart['quantity_total'])) {
+            $cart['quantity_total'] = 0;
         }
         
         if (isset($cart['products'][$request->id])) {
             $cart['products'][$request->id]['quantity']++;
-            $cart['total_quantity']++;
+            $cart['quantity_total']++;
         } else {
             $cart['products'][$request->id] = [
                 'quantity' => 1,
                 'product_id' => $productData->id,
             ];  
-            $cart['total_quantity']++;
+            $cart['quantity_total']++;
         }
         session()->put('cart', $cart);
 
@@ -111,6 +93,36 @@ class CartController extends Controller
         return redirect('/cart')->with('success', 'Cart has been emptied.');
     }
 
+    public function getCart() {
+        $cart = session('cart');
+        $cartData = session()->get('cart');
+        $cartItems = $cartData['products'];
+        $productsData = [];
+
+        foreach ($cartItems as $item) {
+            $product = Product::find($item['product_id']);
+            if ($product != null) {
+                if ($product->stock != 0) {
+                    $productsData[$product->id] = $product;
+                }
+            }
+        }
+
+        foreach ($productsData as $product) {
+            $product['category_name'] = Category::findOrFail($product->category_id)->name_category;
+        }    
+
+        $cart['quantity_total'] = $this->quantityTotal($cart);
+        $cart['gross_weight_total'] = $this->grossWeightTotal($cart);
+        $cart['subtotal'] = $this->subtotal($cart);
+        session()->put('cart', $cart);
+
+        return  [
+            'cart_items' => $cartItems,
+            'products_data' => $productsData,
+        ];
+    }
+
     public function subtotal($cart) {
         $cartItems = $cart['products'];
         $subtotal = 0;
@@ -127,14 +139,26 @@ class CartController extends Controller
         return $subtotal;
     }
 
-    public function totalQuantity($cart) {
+    public function quantityTotal($cart) {
         $cartItems = $cart['products'];
-        $totalQuantity = 0;
+        $quantityTotal = 0;
 
         foreach ($cartItems as $item) {
-            $totalQuantity += $item['quantity'];
+            $quantityTotal += $item['quantity'];
         }
 
-        return $totalQuantity;
+        return $quantityTotal;
+    }
+
+    public function grossWeightTotal($cart) {
+        $cartItems = $cart['products'];
+        $grossWeightTotal = 0;
+        // dd($cartItems);
+        foreach ($cartItems as $item) {
+            $productData = Product::findOrFail($item['product_id']);
+            $grossWeightTotal += $item['quantity'] * $productData['gross_weight'];
+        }
+        // dd($grossWeightTotal);
+        return $grossWeightTotal;
     }
 }
