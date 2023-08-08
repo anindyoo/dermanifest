@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
+            $table->integer('province_api_id');
+            $table->integer('city_api_id');
             $table->string('name_address');
             $table->foreignId('customer_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->text('address');
