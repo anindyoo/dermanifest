@@ -27,6 +27,14 @@ h4, h5, h6 {
     color: #333d29;
 }
 
+.poppins-font {
+    font-family: 'Poppins', sans-serif;
+}
+
+.manrope-font {
+    font-family: 'Manrope', sans-serif;
+}
+
 .text-primary-native {
     color: #333d29;
 }
@@ -36,11 +44,50 @@ h4, h5, h6 {
 }
 
 .container-product, 
-.product-detail,
-.container-cart {
+.product-detail {
     padding-top: 68px;
     padding-bottom: 68px;
 }
+
+.lds-ring {
+    display: inline-block;
+    position: relative;
+    width: 25px;
+    height: 20px;
+  }
+  .lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    margin: 8px;
+    border: 3px solid #333D29;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #333D29 transparent transparent transparent;
+  }
+  .lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+  }
+  .lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+  }
+  .lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+  }
+  @keyframes lds-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+.select2 {
+    width: 100% !important;
+}  
 
 /* navbar */
 .badge {
@@ -341,10 +388,12 @@ h4, h5, h6 {
     background-color: #333d29;
     color: #FFFFFF;
     font-weight: 600;
+    box-shadow: 0 0.75rem 1.5rem -0.5rem rgba(51, 61, 41, 0.40);
 }
 .btn-primary-native-regular {
     background-color: #333d29;
     color: #FFFFFF;
+    box-shadow: 0 0.75rem 1.5rem -0.5rem rgba(51, 61, 41, 0.40);
 }
 .btn-buy:hover,
 .btn-primary-native:hover {
@@ -571,12 +620,7 @@ h4, h5, h6 {
     margin-top: 25px;
     margin-bottom: 20px;
 }
-.accdetail >*,
-.bankmetode {
-    margin-bottom: 10px !important;
-}
-.accdetail h5 
-{
+.accdetail h5 {
     color: #333d29;
     font-size: 18px;
     padding: 6px 10px;
@@ -605,7 +649,8 @@ h4, h5, h6 {
 
 /* Address */
 .address-row {
-    overflow-x: auto;
+    max-height: 20vh;
+    overflow-y: auto;
 }
 .address-card {
     min-width: 300px;
@@ -725,7 +770,8 @@ h4, h5, h6 {
     margin-bottom: 20px;
     border-collapse: separate;
 }
-.cart .table-responsive {
+.cart .table-responsive,
+.checkout-summary {
     padding: 0 15px;
 }
 .cart table h5 {
@@ -752,6 +798,36 @@ h4, h5, h6 {
 .td-quantity button{
     max-width: 100px;
 } 
+
+/* checkout */
+.order-checkout .address-row {
+    padding: 0 10px;
+}
+.order-checkout .address-card {
+    max-width: unset !important;
+}
+.checkout-data {
+    padding: 0 10px;
+    margin-bottom: 20px;
+}
+.delivery-detail .card-title{
+    background: none;   
+    padding: 0;
+}
+.card-input-element {
+    width: 1px;
+}
+.card-input-selected {
+    border: 2px solid #333D29;
+}
+.radio-card-container {
+    cursor: pointer;
+}
+.radio-card-container input {
+    position: absolute;
+    opacity: 0;
+}
+
 
 /* size 992 */
 @media screen and (max-width: 992px) {
