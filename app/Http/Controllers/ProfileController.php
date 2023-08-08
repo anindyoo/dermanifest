@@ -27,21 +27,12 @@ class ProfileController extends Controller
         $addressById = Address::where('id', $address_id)->first();
 
         $provincesFinal = $this->getProvincesOptions();
-        $provinces = (new RajaOngkirController)->getProvinces();
-
-        $selectedProvince = '';
-        foreach ($provinces as $prov) {
-            if ($prov['province'] == $addressById->province) {
-                $selectedProvince = '<option id="' . $prov['province_id'] . '" value="' . $prov['province'] . '" province_id="' . $prov['province_id'] . '" selected>' . $prov['province'] . '</option>';
-            }
-        }
 
         return view('profile.updateAddress', [
             'title' => 'Edit Address',
             'provinces' => $provincesFinal,
             'address_id' => $address_id,
             'address_data' => $addressById,
-            'selected_province' => $selectedProvince,
         ]);
     }
 
@@ -76,6 +67,8 @@ class ProfileController extends Controller
 
     public function addAddress(Request $request) {
         $validatedData = $request->validate([
+            'province_api_id' => 'required|numeric',
+            'city_api_id' => 'required|numeric',
             'name_address' => 'required|max:255',
             'address' => 'required',
             'province' => 'required|max:255',
@@ -83,11 +76,6 @@ class ProfileController extends Controller
             'postal_code' => 'required|numeric'
         ]);
         $validatedData['customer_id'] = Auth::user()->id;
-
-        $totalAddress = count(Address::where('customer_id', Auth::user()->id)->get());
-        if (($totalAddress) >= 3) {
-            return redirect('/profile')->with('fail', 'Failed to add address. You have reached the maximum amount of addresses.');
-        }
     
         Address::create($validatedData);    
         return redirect('/profile')->with('success', 'Address has been successfully added.');
@@ -95,6 +83,8 @@ class ProfileController extends Controller
 
     public function updateAddressValidate($address_id, Request $request) {
         $validatedData = $request->validate([
+            'province_api_id' => 'required|numeric',
+            'city_api_id' => 'required|numeric',
             'name_address' => 'required|max:255',
             'address' => 'required',
             'province' => 'required|max:255',
