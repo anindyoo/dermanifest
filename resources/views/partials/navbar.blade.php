@@ -40,7 +40,7 @@
               <a class="nav-link" href="/cart"><i class='bx bx-cart'></i></a>
               <span class='badge badge-warning' id='lblCartCount'>
                 @if (session()->has('cart'))
-                  {{ session()->get('cart')['total_quantity'] }}
+                  {{ session()->get('cart')['quantity_total'] }}
                 @else
                   0
                 @endif
