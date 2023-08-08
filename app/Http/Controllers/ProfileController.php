@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
+use Throwable;
 
 class ProfileController extends Controller
 {
@@ -101,12 +102,16 @@ class ProfileController extends Controller
     }
     
     public function getProvincesOptions() {
-        $provinces = (new RajaOngkirController)->getProvinces();
-
-        $optionProvince = array_map(function ($prov) {
-            return '<option id="' . $prov['province_id'] . '" value="' . $prov['province'] . '" province_id="' . $prov['province_id'] . '">' . $prov['province'] . '</option>';
-        }, $provinces);
-
-        return implode("\n", $optionProvince);
+        try {
+            $provinces = (new RajaOngkirController)->getProvinces();
+    
+            $optionProvince = array_map(function ($prov) {
+                return '<option id="' . $prov['province_id'] . '" value="' . $prov['province'] . '" province_id="' . $prov['province_id'] . '">' . $prov['province'] . '</option>';
+            }, $provinces);
+    
+            return implode("\n", $optionProvince);
+        } catch (Throwable $th) {
+            return '<option>API LIMIT: Please report us via dermanifest@gmail.com for resolving this case.</option>';
+        }
     }
 }
