@@ -23,7 +23,6 @@ class HomeController extends Controller
             }
         }
 
-        // dd($productsData);
         return view('home', [
             'title' => 'Home',
             'products_data' => $productsData,

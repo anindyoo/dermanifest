@@ -23,7 +23,6 @@ class TopProductController extends Controller
 
     public function store(Request $request) {
         $topProductsData = TopProduct::all();
-        // dd($request['product_id']);
         for ($i = 0; $i < 5; $i -=- 1) {
             if ($topProductsData->isEmpty()) {
                 if ($request['product_id'][$i] != null) {

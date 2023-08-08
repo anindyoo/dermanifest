@@ -153,12 +153,10 @@ class CartController extends Controller
     public function grossWeightTotal($cart) {
         $cartItems = $cart['products'];
         $grossWeightTotal = 0;
-        // dd($cartItems);
         foreach ($cartItems as $item) {
             $productData = Product::findOrFail($item['product_id']);
             $grossWeightTotal += $item['quantity'] * $productData['gross_weight'];
         }
-        // dd($grossWeightTotal);
         return $grossWeightTotal;
     }
 }
