@@ -33,6 +33,23 @@ class OrderController extends Controller
         ]);
     }
 
+    public function show($id) {
+        $orderData = Order::findOrFail($id);
+        $orderProductsData = (new OrderProduct)->getOrderProductsByOrderId($id);
+        $orderAddressData = (new OrderAddress)->getOrderAddressByOrderId($id);
+
+        if ($orderData->customer_id == Auth::user()->id) {
+            return view('order.show', [
+                'title' => 'Order Detail',
+                'order_data' => $orderData,
+                'order_products_data' => $orderProductsData,
+                'order_address_data' => $orderAddressData,
+            ]);
+        }
+
+        return view('cart.index', ['title' => 'Cart']);
+    }
+
     public function store(Request $request) {
         $new_address_id = 0;
         if ($request->address_id == null) {
@@ -54,6 +71,7 @@ class OrderController extends Controller
         $validatedOrder = $request->validate([
             'customer_id' => 'required',
             'recipient' => 'required|max:255',
+            'email' => 'required|email:dns|unique:customers',
             'phone' => 'required|numeric|digits_between:8,13',
             'delivery_courier' => 'required|max:255',
             'delivery_service' => 'required|max:255',
