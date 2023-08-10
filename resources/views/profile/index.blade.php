@@ -20,11 +20,11 @@
         <div class="accdetail form">
           @if(session()->has('success'))
             <div class="alert alert-success" role="alert">
-              {{ session('success') }}
+              {!! session('success') !!}
             </div>
           @elseif(session()->has('fail'))
           <div class="alert alert-danger" role="alert">
-            {{ session('fail') }}
+            {!! session('fail') !!}
           </div>
           @endif
           <h5>Profile Details</h5>
@@ -130,7 +130,10 @@
                     <td>{{ $order->grand_total }}</td>
                     <td>@include('partials.status', ['status' => $order->status])</td>
                     <td>
-                      <a href="/order/{{ $order->id }}" class="btn btn-info"><i class="fa-solid fa-circle-info"></i> detail</a>
+                      @include('partials.status_button', [
+                        'status' => $order->status,
+                        'order_id' => $order->id,
+                        ])
                     </td>
                   </tr>                    
                   @empty

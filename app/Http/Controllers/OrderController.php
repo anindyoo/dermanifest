@@ -128,6 +128,12 @@ class OrderController extends Controller
         return redirect('/cart');
     }
 
+    public function destroy(Order $order) {
+        Order::destroy($order->id);
+
+        return redirect('/profile')->with('success', '<strong> Order#' . $order->name_productid . '</strong> has been canceled.');
+    }
+
     public function getAddressById(Request $request) {
         $address = Address::whereIn('customer_id', [Auth::user()->id])->findOrFail($request->option);
         return $address;
