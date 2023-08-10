@@ -88,6 +88,76 @@
       </div>
 
       {{-- ORDER HISTORY --}}
+      <div id="order-history-tab" class="order-history col-lg-12 col-md-12 col-sm-12 mt-4">
+        <h2>Order History</h2>
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="pills-all-order-tab" data-bs-toggle="pill" data-bs-target="#pills-all-order" type="button" role="tab" aria-controls="pills-all-order" aria-selected="true">All Order</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-unpaid-tab" data-bs-toggle="pill" data-bs-target="#pills-unpaid" type="button" role="tab" aria-controls="pills-unpaid" aria-selected="false" tabindex="-1">Unpaid</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-waiting-tab" data-bs-toggle="pill" data-bs-target="#pills-waiting" type="button" role="tab" aria-controls="pills-waiting" aria-selected="false" tabindex="-1">Waiting</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-delivering-tab" data-bs-toggle="pill" data-bs-target="#pills-delivering" type="button" role="tab" aria-controls="pills-delivering" aria-selected="false" tabindex="-1">Delivering</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-completed-tab" data-bs-toggle="pill" data-bs-target="#pills-completed" type="button" role="tab" aria-controls="pills-completed" aria-selected="false" tabindex="-1">Delivering</button>
+          </li>
+        </ul>
+        <div class="tab-content" id="pills-tabContent">
+          <div class="tab-pane fade show active" id="pills-all-order" role="tabpanel" aria-labelledby="pills-all-order-tab" tabindex="0">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class="table-light manrope-font">
+                  <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Order Id</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @forelse ($orders as $order)
+                  <tr>
+                    <th scope="row" class="manrope-font">{{ $loop->iteration }}.</th>
+                    <td>{{ $order->id }}</td>
+                    <td>{{ $order->created_at }} WIB</td>
+                    <td>{{ $order->grand_total }}</td>
+                    <td>@include('partials.status', ['status' => $order->status])</td>
+                    <td>
+                      <a href="/order/{{ $order->id }}" class="btn btn-info"><i class="fa-solid fa-circle-info"></i> detail</a>
+                    </td>
+                  </tr>                    
+                  @empty
+                  <tr>
+                    <td colspan="100%" class="text-center">
+                      <h5>You have no orders, yet.</h5>
+                    </td>
+                  </tr>
+                  @endforelse
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="pills-unpaid" role="tabpanel" aria-labelledby="pills-unpaid-tab" tabindex="0">
+            Unpaid
+          </div>
+          <div class="tab-pane fade" id="pills-waiting" role="tabpanel" aria-labelledby="pills-waiting-tab" tabindex="0">
+            Waiting
+          </div>
+          <div class="tab-pane fade" id="pills-delivering" role="tabpanel" aria-labelledby="pills-delivering-tab" tabindex="0">
+            Delivering
+          </div>
+          <div class="tab-pane fade" id="pills-completed" role="tabpanel" aria-labelledby="pills-completed-tab" tabindex="0">
+            Completed
+          </div>
+        </div>
+      </div>
     </div>
 
     {{-- UPDATE PROFILE MODAL --}}  
@@ -101,11 +171,11 @@
       'modal_body' => '
       <div class="mb-2 accname form-group">             
         <label for="accName" class="form-label">Name</label>
-        <input type="text" id="accName" class="form-control" name="name_customer" value="' . Auth::user()->name_customer . '" required>
+        <input type="text" id="accName-update" class="form-control" name="name_customer" value="' . Auth::user()->name_customer . '" required>
       </div>
       <div class="mb-2 accphone form-group">
         <label for="accPhone" class="form-label">Phone</label>            
-        <input type="tel" id="accPhone" class="form-control" name="phone" value="' . Auth::user()->phone . '" required>
+        <input type="tel" id="accPhone-update" class="form-control" name="phone" value="' . Auth::user()->phone . '" required>
       </div>
       ',
       'modal_footer' => '
@@ -159,4 +229,3 @@
   </div>
 </section>
 @endsection
-
