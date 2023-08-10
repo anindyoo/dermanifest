@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('customer_id')->constrained();
             $table->foreignId('address_id')->constrained();
             $table->string('recipient');
+            $table->string('email');
             $table->string('phone');            
             $table->string('delivery_courier');
             $table->string('delivery_service');
