@@ -689,7 +689,6 @@ h4, h5, h6 {
     width: 100%;
     height: 100%;
 }
-
 .product-detail .swiper-slide {
     text-align: center;
     font-size: 18px;
@@ -698,53 +697,72 @@ h4, h5, h6 {
     justify-content: center;
     align-items: center;
 }
-
 .product-detail .swiper-slide img {
     display: block;
     width: 100%;
     height: auto;
     object-fit: contain;
 }
-
 .product-detail .thumbs .swiper-slide img {
     display: block;
     width: 100%;
     height: 60%;
     object-fit: cover;
 }
-
 .product-detail .swiper {
     width: 100%;
     height: 300px;
     margin-left: auto;
     margin-right: auto;
 }
-
 .product-detail .swiper-slide {
     background-size: cover;
     background-position: center;
 }
-
 .product-detail .mySwiper2 {
     height: 80%;
     width: 100%;
 }
-
 .product-detail .mySwiper {
     height: 20%;
     box-sizing: border-box;
     padding: 10px 0;
 }
-
 .product-detail .mySwiper .swiper-slide {
     width: 25%;
     height: 100%;
     opacity: 0.4;
 }
-
 .product-detail .mySwiper .swiper-slide-thumb-active {
     opacity: 1;
 }
+.nav-pills .nav-link.active {
+    border-radius: 100px;
+    background: radial-gradient(918.01% 141.42% at 0% 100.00%, #414833 0%, rgba(65, 72, 51, 0.85) 100%);
+}
+.order-history .nav-link {
+    color: #2D3D29;
+    font-family: Manrope;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+.order-history thead {
+    background-color: #f8f9fa;
+}
+.nav-link:focus-visible {
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(10, 39, 2, 0.25);
+}
+.status-badge {
+    padding: 0.4vh 0.6vw;
+}
+.danger-status {
+    background-color: #dc3545;
+    color: #ffffff;
+}
+
 
 /* cart */
 .empty-cart {
@@ -759,6 +777,8 @@ h4, h5, h6 {
     background: -webkit-linear-gradient(202.45% 141.41% at -0.00% 99.98%, #F0F0F0 47.44%, rgba(240, 240, 240, 0.20) 100%);
     background: -o-linear-gradient(202.45% 141.41% at -0.00% 99.98%, #F0F0F0 47.44%, rgba(240, 240, 240, 0.20) 100%);
     background: -ms-linear-gradient(202.45% 141.41% at -0.00% 99.98%, #F0F0F0 47.44%, rgba(240, 240, 240, 0.20) 100%);
+    display: block;
+    max-height: 80vh;
 }
 .table>:not(caption)>*>* {
     background-color: unset;
@@ -780,6 +800,17 @@ h4, h5, h6 {
 .cart .btn-outline-danger {
     height: 50px;
     width: 100%;
+}
+.cart .table-responsive { 
+    overflow: auto; 
+    /* height: 100px;  */
+}
+.cart .table-responsive thead th { 
+    position: sticky; 
+    top: 0; 
+    z-index: 1; 
+    backdrop-filter: blur( 10px );
+    -webkit-backdrop-filter: blur( 10px );
 }
 .cart-items img {
     max-width: 160px;
@@ -829,6 +860,51 @@ h4, h5, h6 {
     opacity: 0;
 }
 
+/* Order Detail */
+.order-address-card {
+    padding: 12px;
+    border-radius: 20px;
+    background: rgba(229, 233, 219, 0.75);
+    backdrop-filter: blur(2px);
+    margin-bottom: 20px;
+}
+.order-address-card h5 {
+    margin-top: 8px;
+    margin-bottom: 2px;
+}
+.order-address-card p {
+    margin: 0;
+}
+.gradient-bg {
+    color: #FFFFFF !important;
+    border-radius: 20px;
+
+    padding: 16px 26px;
+    background: linear-gradient(140deg, #41522f, #656d4a, #a4ac86);
+    background-size: 600% 600%;
+    -webkit-animation: AnimationName 59s ease infinite;
+    -moz-animation: AnimationName 59s ease infinite;
+    animation: AnimationName 59s ease infinite;
+}
+.gradient-bg h5 {
+    color: #fff;
+}
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:0% 9%}
+    50%{background-position:100% 92%}
+    100%{background-position:0% 9%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:0% 9%}
+    50%{background-position:100% 92%}
+    100%{background-position:0% 9%}
+}
+@keyframes AnimationName {
+    0%{background-position:0% 9%}
+    50%{background-position:100% 92%}
+    100%{background-position:0% 9%}
+}
 
 /* size 992 */
 @media screen and (max-width: 992px) {
