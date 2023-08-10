@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Address;
 use App\Models\Customer;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -14,11 +15,13 @@ use Throwable;
 class ProfileController extends Controller
 {
     public function index() {
-        $customerAddresses = Address::whereIn('customer_id', [Auth::user()->id])->get();
+        $customerAddresses = (new Address)->getAddressesByCustomerId(Auth::user()->id);
+        $customerOrders = Order::whereIn('customer_id', [Auth::user()->id])->get();
         
         return view('profile.index', [
             'title' => 'Profile',
             'addresses' => $customerAddresses,
+            'orders' => $customerOrders,
         ]);
     }
 
