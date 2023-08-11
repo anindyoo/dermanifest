@@ -454,7 +454,7 @@ $(document).ready(function() {
             .attr('postal_code', address.postal_code)
             .prop('selected', true)
             .text(address.province)
-        ); 
+        ).prop('disabled', true); 
         $('#city_name-input').val(address.city);
         $('#city-select').select2({disabled:'readonly'});
         $('#city-select').append(
