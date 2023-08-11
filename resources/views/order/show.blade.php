@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('container')
-<section class="oder-detail container">
+<section class="order-detail container">
   @if(session()->has('success'))
   <div class="home-alert">
     @include('partials/alert', [
