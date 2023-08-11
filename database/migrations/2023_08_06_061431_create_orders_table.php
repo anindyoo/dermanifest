@@ -25,8 +25,8 @@ return new class extends Migration
             $table->integer('grand_total');
             $table->integer('quantity_total');
             $table->integer('gross_weight_total');
-            $table->string('status');
-            $table->text('note');
+            $table->enum('status', ['unpaid', 'paid', 'delivering', 'completed']);
+            $table->text('note')->nullable();
             $table->timestamps();
         });
     }
