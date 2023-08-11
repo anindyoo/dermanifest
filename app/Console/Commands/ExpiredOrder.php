@@ -31,7 +31,7 @@ class ExpiredOrder extends Command
      */
     public function handle()
     {
-        $expiredOrders = Order::where('updated_at', '<', Carbon::now()->subSeconds(12))->get();
+        $expiredOrders = Order::where('updated_at', '<', Carbon::now()->subDays(3))->get();
 
         if (count($expiredOrders) > 0) {
             foreach ($expiredOrders as $singleExpiredOrder) {
