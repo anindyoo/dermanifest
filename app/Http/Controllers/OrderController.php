@@ -6,6 +6,7 @@ use App\Models\Address;
 use App\Models\Order;
 use App\Models\OrderAddress;
 use App\Models\OrderProduct;
+use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -71,7 +72,7 @@ class OrderController extends Controller
         $validatedOrder = $request->validate([
             'customer_id' => 'required',
             'recipient' => 'required|max:255',
-            'email' => 'required|email:dns|unique:customers',
+            'email' => 'required|email:dns',
             'phone' => 'required|numeric|digits_between:8,13',
             'delivery_courier' => 'required|max:255',
             'delivery_service' => 'required|max:255',
@@ -110,6 +111,8 @@ class OrderController extends Controller
             array_push($productsData, $singleProductData);
         }    
         foreach($productsData as $product) {
+            $newStock = Product::find($product['product_id'])->stock - $product['quantity'];
+            Product::where('id', $product['product_id'])->update(['stock' => $newStock]);
             $insertOrderProduct = OrderProduct::create($product);
         }
 
@@ -125,10 +128,12 @@ class OrderController extends Controller
         $insertOrderAddress = OrderAddress::create($validatedAddress);
 
         session()->forget('cart');
-        return redirect('/cart');
+        return redirect('/order/' . $orderId);
     }
 
     public function destroy(Order $order) {
+        $orderProducts = OrderProduct::where('order_id', $order->id)->get();
+        $this->readdStock($orderProducts);
         Order::destroy($order->id);
 
         return redirect('/profile')->with('success', '<strong> Order#' . $order->name_productid . '</strong> has been canceled.');
@@ -137,5 +142,16 @@ class OrderController extends Controller
     public function getAddressById(Request $request) {
         $address = Address::whereIn('customer_id', [Auth::user()->id])->findOrFail($request->option);
         return $address;
+    }
+
+    public function readdStock($orderProducts) {
+        foreach ($orderProducts as $product) {
+            $productData = Product::find($product['product_id']);
+            $stock = $productData->stock;
+            $quantity = $product['quantity'];
+            $refillStock = $stock + $quantity;
+            
+            Product::where('id', $product['product_id'])->update(['stock' => $refillStock]);
+        }
     }
 }
