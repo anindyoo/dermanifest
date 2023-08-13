@@ -1,5 +1,5 @@
 @if ($status == 'unpaid')
   <span class="text-danger fw-bold">{{ ucfirst($status) }}</span>  
-@elseif (3 ==4)
-    ''
+@elseif ($status == 'paid')
+  <span class="text-success fw-bold">{{ ucfirst($status) }}</span>  
 @endif
