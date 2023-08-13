@@ -8,6 +8,7 @@ use App\Models\OrderAddress;
 use App\Models\OrderProduct;
 use App\Models\Product;
 use Carbon\Carbon;
+use Hamcrest\Number\OrderingComparison;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -127,6 +128,8 @@ class OrderController extends Controller
         $validatedAddress['order_id'] = $orderId;
         $insertOrderAddress = OrderAddress::create($validatedAddress);
 
+        $snapToken = $this->getSnap($orderId);
+        Order::where('id', $orderId)->update(['snap_token' => $snapToken]);
         session()->forget('cart');
         return redirect('/order/' . $orderId);
     }
@@ -136,7 +139,7 @@ class OrderController extends Controller
         $this->readdStock($orderProducts);
         Order::destroy($order->id);
 
-        return redirect('/profile')->with('success', '<strong> Order#' . $order->name_productid . '</strong> has been canceled.');
+        return redirect('/profile')->with('success', '<strong> Order #' . $order->product_id . '</strong> has been canceled.');
     }
 
     public function getAddressById(Request $request) {
@@ -153,5 +156,74 @@ class OrderController extends Controller
             
             Product::where('id', $product['product_id'])->update(['stock' => $refillStock]);
         }
+    }
+
+    public function getSnap($order_id) {
+        \Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY');
+        \Midtrans\Config::$isProduction = false;
+        \Midtrans\Config::$isSanitized = true;
+        \Midtrans\Config::$is3ds = true;
+        $orderData = Order::find($order_id);
+        $orderProducts = (new OrderProduct)->getOrderProductsByOrderId($order_id);
+        $orderAddress = (new OrderAddress)->getOrderAddressByOrderId($order_id);
+
+        $productsRequest = [];
+        for ($i = 0; $i < count($orderProducts); $i -=- 1) {
+            $singleProductData = [];
+            $singleProductData['id'] = $orderProducts[$i]['product_id'];
+            $singleProductData['quantity'] = $orderProducts[$i]['quantity'];            
+            $singleProductData['name'] = $orderProducts[$i]['product_name'];            
+            if ($orderProducts[$i]['discount_price'] > 0) {
+                $singleProductData['price'] = $orderProducts[$i]['discount_price'];
+            } else {
+                $singleProductData['price'] = $orderProducts[$i]['price'];
+            }
+            array_push($productsRequest, $singleProductData);
+        } 
+        
+        array_push($productsRequest, [
+            'id' => $orderData->delivery_courier . '-' . $orderData->delivery_service,
+            'quantity' => '1',
+            'name' => 'Delivery Cost',
+            'price' => $orderData->delivery_cost,
+        ]);
+
+        $params = array(
+            'transaction_details' => array(
+                'order_id' => $orderData->id,
+                'gross_amount' => $orderData->grand_total,
+            ),
+            'customer_details' => array(
+                'first_name' => $orderData->recipient,
+                'last_name' => '',
+                'email' => $orderData->email,
+                'phone' => $orderData->phone,
+                'billing_address' => array(
+                    'first_name' => $orderData->recipient,
+                    'last_name' => '',
+                    'email' => $orderData->email,
+                    'phone' => $orderData->phone,
+                    'address' => $orderAddress->address,
+                    'city' => $orderAddress->city,
+                    'postal_code' => $orderAddress->postal_code,
+                    'country_code' => 'IDN'
+                ),
+            ),
+            'item_details' => $productsRequest,
+            'shipping_address' => array(
+                'first_name' => $orderData->recipient,
+                'last_name' => '',
+                'email' => $orderData->email,
+                'phone' => $orderData->phone,
+                'address' => $orderAddress->address,
+                'city' => $orderAddress->city,
+                'postal_code' => $orderAddress->postal_code,
+                'country_code' => 'IDN'
+              )
+        );
+
+        $snapToken = \Midtrans\Snap::getSnapToken($params);
+
+        return $snapToken;
     }
 }
