@@ -35,9 +35,11 @@ class ExpiredOrder extends Command
 
         if (count($expiredOrders) > 0) {
             foreach ($expiredOrders as $singleExpiredOrder) {
-                $expiredOrderProducts = OrderProduct::where('order_id', $singleExpiredOrder->id)->get();
-                (new OrderController)->readdStock($expiredOrderProducts);
-                $singleExpiredOrder->delete();
+                if ($singleExpiredOrder->status == 'unpaid') {
+                    $expiredOrderProducts = OrderProduct::where('order_id', $singleExpiredOrder->id)->get();
+                    (new OrderController)->readdStock($expiredOrderProducts);
+                    $singleExpiredOrder->delete();
+                }
             }            
     
             return '';    
