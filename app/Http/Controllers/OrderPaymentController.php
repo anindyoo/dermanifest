@@ -20,7 +20,6 @@ class OrderPaymentController extends Controller
     }
 
     public function paymentCallback(Request $request) {
-        // dd($request);
         $serveyKey = env('MIDTRANS_SERVER_KEY');
         $hashed = hash('sha512', $request->order_id . $request->status_code . $request->gross_amount . $serveyKey);
         
