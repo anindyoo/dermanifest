@@ -127,7 +127,7 @@
                     <th scope="row" class="manrope-font">{{ $loop->iteration }}.</th>
                     <td>{{ $order->id }}</td>
                     <td>{{ $order->created_at }} WIB</td>
-                    <td>{{ $order->grand_total }}</td>
+                    <td>Rp{{ number_format($order->grand_total, 0, ', ', '.') }},-</td>
                     <td>@include('partials.status', ['status' => $order->status])</td>
                     <td>
                       @include('partials.status_button', [
