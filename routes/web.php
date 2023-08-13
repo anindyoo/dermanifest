@@ -12,6 +12,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderPaymentController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RajaOngkirController;
 use App\Http\Controllers\ProductListController;
@@ -89,6 +90,9 @@ Route::post('/cart/destroyAll', [CartController::class, 'destroyAll']);
 Route::resource('/order', OrderController::class)->middleware(['auth', 'verified']);
 Route::post('/get_delivery_cost', [RajaOngkirController::class, 'getDeliveryCost'])->middleware(['auth', 'verified']);;
 Route::post('/get_address', [OrderController::class, 'getAddressById'])->middleware(['auth', 'verified']);;
+
+// Order Payment
+Route::resource('/order/payment', OrderPaymentController::class)->middleware(['auth', 'verified']);
 
 // Admin
 Route::get('/admin', function () {
