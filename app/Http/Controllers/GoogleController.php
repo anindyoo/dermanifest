@@ -32,7 +32,7 @@ class GoogleController extends Controller
             return redirect()->intended('/')->with('success', 'Login successful. Welcome to Dermanifest, ' . $userGoogle->getName() . '!' );
         } elseif ($findAdmin) {
             Auth::guard('admin')->login($findAdmin);
-            return redirect()->intended('/admin')->with('success', 'Login with email:'. $findAdmin['email'] .' is successful!');            
+            return redirect('/admin')->with('success', 'Login with email:'. $findAdmin['email'] .' is successful!');            
         } else {
             $random_password = Hash::make(Str::random(10));
             $newUser = Customer::create([
