@@ -21,13 +21,19 @@
     <h3>Payment</h3>
     <div class="col-md-12">
       <div class="payment-info gradient-bg mb-3">
-        <h5>Please make a payment of <strong>Rp{{ number_format($order_data->grand_total, 0, ', ', '.') }},-</strong></h5>
+        @if ($order_data->status == 'unpaid')
+        <h5>Total to be paid: <strong>Rp{{ number_format($order_data->grand_total, 0, ', ', '.') }},-</strong></h5>
+        <h6>Please proceed payment as soon as possible before the date: {{ $order_data->created_at->addDays(3) }} WIB</h6>
+        @elseif ($order_data->status == 'paid')
+        <h5>You have successfully paid the order with the total of: <strong>Rp{{ number_format($order_data->grand_total, 0, ', ', '.') }},-</strong></h5>
+        <h6>Your product will be delivered as soon as possible. Thank you.</h6>
+        @endif
       </div>
       <div class="payment-buttons d-flex justify-content-end">
         <a href="/profile" class="btn btn-secondary-native me-2">
           Back to Profile
         </a>
-        <a href="" class="btn btn-primary-native">
+        <a href="/order/payment/{{ $order_data->id }}" class="btn btn-primary-native">
           Pay Now
         </a>
       </div>
