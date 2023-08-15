@@ -53,9 +53,15 @@
       <a href="/profile" class="btn btn-secondary-native me-2">
         Back to Profile
       </a>
+      @if ($order_data->status == 'unpaid')
       <button id="pay-button" href="" class="btn btn-primary-native">
         Pay Now
-      </button>
+      </button>        
+      @else
+      <a href="/order/invoice/{{ $order_data->id }}" class="btn btn-primary-native me-2">
+        See Invoice
+      </a>
+      @endif
     </div>
   </div>
 </section>
