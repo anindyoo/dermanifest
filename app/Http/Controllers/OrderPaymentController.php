@@ -5,18 +5,24 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\OrderPayment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ProfileController;
 
 class OrderPaymentController extends Controller
 {
     public function show($id) {
         $orderData = Order::find($id);
-        $snapToken = $orderData->snap_token;
-
-        return view('order_payment.show', [
-            'title' => 'Order #' . $id . ' Payment',
-            'order_data' => $orderData,
-            'snap_token' => $snapToken,
-        ]);
+        if ($orderData != null) {
+            if ($orderData->customer_id == Auth::user()->id) {
+                $snapToken = $orderData->snap_token;
+                return view('order_payment.show', [
+                    'title' => 'Order #' . $id . ' Payment',
+                    'order_data' => $orderData,
+                    'snap_token' => $snapToken,
+                ]);
+            }
+            return back();    
+        }
     }
 
     public function paymentCallback(Request $request) {

@@ -36,20 +36,20 @@ class OrderController extends Controller
     }
 
     public function show($id) {
-        $orderData = Order::findOrFail($id);
-        $orderProductsData = (new OrderProduct)->getOrderProductsByOrderId($id);
-        $orderAddressData = (new OrderAddress)->getOrderAddressByOrderId($id);
-
-        if ($orderData->customer_id == Auth::user()->id) {
-            return view('order.show', [
-                'title' => 'Order Detail',
-                'order_data' => $orderData,
-                'order_products_data' => $orderProductsData,
-                'order_address_data' => $orderAddressData,
-            ]);
+        $orderData = Order::find($id);
+        if ($orderData != null) {
+            if ($orderData->customer_id == Auth::user()->id) {
+                $orderProductsData = (new OrderProduct)->getOrderProductsByOrderId($id);
+                $orderAddressData = (new OrderAddress)->getOrderAddressByOrderId($id);
+                return view('order.show', [
+                    'title' => 'Order Detail',
+                    'order_data' => $orderData,
+                    'order_products_data' => $orderProductsData,
+                    'order_address_data' => $orderAddressData,
+                ]);
+            }
         }
-
-        return view('cart.index', ['title' => 'Cart']);
+        return back();
     }
 
     public function store(Request $request) {
