@@ -8,7 +8,7 @@ body {
     font-weight: 400;
 }
 
-p, ul, li, a {
+p, ul, li, a, small {
     font-weight: 400;
     list-style: none;
     text-decoration: none;
@@ -767,7 +767,6 @@ h4, h5, h6 {
     color: #ffffff;
 }
 
-
 /* cart */
 .empty-cart {
     text-align: center;
@@ -894,6 +893,64 @@ h4, h5, h6 {
 .gradient-bg h6 {
     color: #fff;
 }
+
+/* Order Invoice */
+.invoice-row {
+    padding: 0 5px;
+}
+.invoice-container {
+    border: 1.2px solid #6C6C6C;
+    max-width: 714px;
+    padding: 58px 28px;
+    overflow: auto;
+}
+.invoice-header img {
+    height: 12vh;
+}
+.invoice-subheader p {
+    margin-bottom: 3px;
+}
+/* .invoice-subheader > div {
+    max-width: 20vw;
+} */
+.invoice-subheader td, 
+.invoice-delivery td {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+.no-horizontal-p {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+.invoice-products table thead {
+    background: #F8F9FA;
+}
+.invoice-products table tfoot {
+    background: #E5E5E5;
+}
+.invoice-products del {
+    font-size: 0.8em;
+}
+.invoice-totals hr {
+    margin: 7px 0;
+}
+.totals-card {
+    width: 328px;
+    padding: 14px 18px;
+    border-radius: 3.6px;
+    border: 1.2px solid #BDBDBD;
+    background: #E5E9DB;
+}
+.invoice-delivery .field-name {
+    width: 21%;
+}
+.invoice-delivery .colon {
+    width: 1%;
+}
+.invoice-delivery .field-value {
+    width: 68%;
+}
+
 
 @-webkit-keyframes AnimationName {
     0%{background-position:0% 9%}
