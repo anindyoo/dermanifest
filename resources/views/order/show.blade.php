@@ -34,7 +34,7 @@
           Back to Profile
         </a>
         <a href="/order/payment/{{ $order_data->id }}" class="btn btn-primary-native">
-          Pay Now
+          @if ($order_data->status == 'unpaid') Pay Now @else Payment Detail @endif
         </a>
       </div>
     </div>
