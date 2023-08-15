@@ -1,4 +1,4 @@
-<div class="">
+<div>
   <a href="/order/{{ $order_id }}" class="btn btn-info me-1"><i class="fa-solid fa-circle-info"></i> Detail</a>
   @if ($status == 'unpaid')
     <a href="/order/payment/{{ $order_id }}" class="btn btn-success me-1"><i class="fa-regular fa-money-bill-1"></i> Pay</a>
@@ -19,6 +19,6 @@
       ',
     ])
   @elseif ('paid')
-  
+    <a href="/order/invoice/{{ $order_id }}" class="btn btn-secondary"><i class="far fa-file-alt"></i> Invoice</a>
   @endif
 </div>
