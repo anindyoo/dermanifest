@@ -27,6 +27,11 @@
         @elseif ($order_data->status == 'paid')
         <h5>You have successfully paid the order with the total of: <strong>Rp{{ number_format($order_data->grand_total, 0, ', ', '.') }},-</strong></h5>
         <h6>Your product will be delivered as soon as possible. Thank you.</h6>
+        @elseif ($order_data->status == 'delivering')
+        <h5>You have successfully paid the order with the total of: <strong>Rp{{ number_format($order_data->grand_total, 0, ', ', '.') }},-</strong></h5>
+        <h6>Your product is on the way with delivery code: <strong>{{ $order_data->delivery_code }}</strong></h6>
+        @elseif ($order_data->status == 'completed')
+        <h5>You have received your order. Order is completed, thank you.</h5>     
         @endif
       </div>
       <div class="payment-buttons d-flex justify-content-end">
@@ -62,6 +67,10 @@
       </div>
       <div class="order-address-card order-detail-delivery">
         <h4>Delivery</h4>
+        @if ($order_data->delivery_code != null)
+        <h5>Delivery Code</h5>    
+        <p>{{ $order_data->delivery_code }}</p>
+        @endif
         <h5>Address</h5>    
         <p>{{ $order_address_data->name_address }}—{{ $order_address_data->address }}</p>
         <h5>Province</h5>    
