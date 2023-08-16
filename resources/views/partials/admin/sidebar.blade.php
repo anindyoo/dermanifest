@@ -39,6 +39,12 @@
         </a>
       </li>
       <li>
+        <a href="/admin/orders" class="{{ (Request::is('admin/orders*') ? 'link-active' : '') }}">
+          <span class="icon"><i class="fa-solid fa-cart-shopping fa-lg" aria-hidden="true"></i></span>
+          <span class="title">Orders Management</span>
+        </a>
+      </li>
+      <li>
         <form action="/logout" method="post" class="nav-link">
           @csrf
           <button type="submit" class="logout-button">
