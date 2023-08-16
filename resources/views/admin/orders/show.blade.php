@@ -141,5 +141,10 @@
       </tbody>
     </table>
   </div>
+  @if ($order_data->status != 'unpaid')
+  <h5 class="fw-bold mb-2">Order Invoice</h5>
+  <button type="submit" class="btn btn-primary-native" onclick="printDiv()">Print Invoice</button>
+  @include('partials.invoice')  
+  @endif
 </div>
 @endsection
