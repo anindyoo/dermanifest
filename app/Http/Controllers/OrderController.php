@@ -142,6 +142,16 @@ class OrderController extends Controller
         return redirect('/profile')->with('success', '<strong> Order #' . $order->product_id . '</strong> has been canceled.');
     }
 
+    public function update($id) {
+        $orderData = Order::find($id);
+        if ($orderData->customer_id == Auth::user()->id) {        
+            $orderData->update(['status' => 'completed']);
+            return redirect('/profile')->with('success', '<strong> Order #' . $id . '</strong> has been completed. Thank you.');
+        }
+        return redirect('/profile');
+
+    }
+
     public function getAddressById(Request $request) {
         $address = Address::whereIn('customer_id', [Auth::user()->id])->findOrFail($request->option);
         return $address;
