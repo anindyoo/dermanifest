@@ -27,7 +27,8 @@ return new class extends Migration
             $table->integer('gross_weight_total');
             $table->enum('status', ['unpaid', 'paid', 'delivering', 'completed']);
             $table->text('note')->nullable();
-            $table->string('snap_token')->default('0');            
+            $table->string('snap_token')->default('0');   
+            $table->string('delivery_code')->nullable();
             $table->timestamps();
         });
     }
