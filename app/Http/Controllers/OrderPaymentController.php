@@ -39,7 +39,6 @@ class OrderPaymentController extends Controller
                     'payment_type' => $request->payment_type,
                     'gross_amount' => (int)$request->gross_amount,
                     'transaction_time' => $request->transaction_time,
-                    'settlement_time' => $request->settlement_time,
                 ]);
             }
         }

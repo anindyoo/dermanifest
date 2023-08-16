@@ -16,8 +16,7 @@ return new class extends Migration
             $table->foreignId('order_id')->constrained();
             $table->string('payment_type');
             $table->integer('gross_amount');
-            $table->date('transaction_time');
-            $table->date('settlement_time');
+            $table->date('transaction_time')->nullable();
             $table->timestamps();
         });
     }
