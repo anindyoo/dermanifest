@@ -45,7 +45,26 @@
       <button type="submit" class="btn btn-danger">Continue Cancel Order</button>
       ',
     ])
-  @elseif ($status == 'paid' OR $status == 'delivering' OR $status == 'completed')
+  @elseif ($status == 'delivering')
+    <a href="" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#completeOrder-{{ $order_id }}"><i class="fa-solid fa-check"></i> Complete</a>
+    <a href="/order/invoice/{{ $order_id }}" class="btn btn-secondary"><i class="far fa-file-alt"></i> Invoice</a>
+
+    @include('partials/modal', [
+      'modal_id' => 'completeOrder-' . $order_id,
+      'modal_title' => 'Complete Order',
+      'include_form' => 'true',
+      'form_action' => '/order/' . $order_id ,
+      'form_method' => 'post', 
+      'additional_form_method' => 'put', 
+      'modal_body' => ' 
+      <input type="hidden" value="'. $order_id . '" required>
+      <strong>Are you sure to complete Order #' . $order_id . '</strong>? <br> Please make sure you have already received and checked your order. Status reversion cannot be done after the order is completed.',
+      'modal_footer' => '
+      <button type="button" class="btn btn-secondary-native-regular" data-bs-dismiss="modal"> Back</button>
+      <button type="submit" class="btn btn-primary-native-regular">Complete Order</button>
+      ',
+    ])
+  @elseif ($status == 'paid' OR $status == 'completed')
     <a href="/order/invoice/{{ $order_id }}" class="btn btn-secondary"><i class="far fa-file-alt"></i> Invoice</a>
   @endif
 </div>
