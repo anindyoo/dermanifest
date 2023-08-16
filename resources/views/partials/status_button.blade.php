@@ -1,3 +1,29 @@
+@if (isset($role) && $role == 'admin')
+  <div>
+    <a href="/admin/orders/{{ $order_id }}" class="btn btn-info text-white me-1"><i class="fa-solid fa-circle-info"></i> Detail</a>
+  @if ($status == 'unpaid')
+    <a href="" class="btn btn-danger me-1" data-bs-toggle="modal" data-bs-target="#cancelOrder-{{ $order_id }}"><i class="fa-solid fa-xmark"></i> Cancel</a>
+    
+    @include('partials/modal', [
+      'modal_id' => 'cancelOrder-' . $order_id,
+      'modal_title' => 'Cancel Order',
+      'include_form' => 'true',
+      'form_action' => '/order/' . $order_id ,
+      'form_method' => 'post', 
+      'additional_form_method' => 'delete', 
+      'modal_body' => '
+      Are you sure to cancel <strong> Order #' . $order_id . '</strong>?',
+      'modal_footer' => '
+      <button type="button" class="btn btn-secondary-native-regular" data-bs-dismiss="modal"> Back</button>
+      <button type="submit" class="btn btn-danger">Continue Cancel Order</button>
+      ',
+    ])
+  @elseif ('paid')
+    <a href="/admin/orders/{{ $order_id }}/edit" class="btn btn-success"><i class="fa-solid fa-check"></i> Confirm</a>
+    <a href="/admin/orders/invoice/{{ $order_id }}" class="btn btn-secondary"><i class="far fa-file-alt"></i> Invoice</a>
+  @endif
+  </div>
+@else
 <div>
   <a href="/order/{{ $order_id }}" class="btn btn-info me-1"><i class="fa-solid fa-circle-info"></i> Detail</a>
   @if ($status == 'unpaid')
@@ -22,3 +48,4 @@
     <a href="/order/invoice/{{ $order_id }}" class="btn btn-secondary"><i class="far fa-file-alt"></i> Invoice</a>
   @endif
 </div>
+@endif
