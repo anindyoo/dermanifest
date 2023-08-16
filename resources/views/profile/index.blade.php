@@ -98,66 +98,30 @@
             <button class="nav-link" id="pills-unpaid-tab" data-bs-toggle="pill" data-bs-target="#pills-unpaid" type="button" role="tab" aria-controls="pills-unpaid" aria-selected="false" tabindex="-1">Unpaid</button>
           </li>
           <li class="nav-item" role="presentation">
-            <button class="nav-link" id="pills-waiting-tab" data-bs-toggle="pill" data-bs-target="#pills-waiting" type="button" role="tab" aria-controls="pills-waiting" aria-selected="false" tabindex="-1">Waiting</button>
+            <button class="nav-link" id="pills-paid-tab" data-bs-toggle="pill" data-bs-target="#pills-paid" type="button" role="tab" aria-controls="pills-paid" aria-selected="false" tabindex="-1">paid</button>
           </li>
           <li class="nav-item" role="presentation">
             <button class="nav-link" id="pills-delivering-tab" data-bs-toggle="pill" data-bs-target="#pills-delivering" type="button" role="tab" aria-controls="pills-delivering" aria-selected="false" tabindex="-1">Delivering</button>
           </li>
           <li class="nav-item" role="presentation">
-            <button class="nav-link" id="pills-completed-tab" data-bs-toggle="pill" data-bs-target="#pills-completed" type="button" role="tab" aria-controls="pills-completed" aria-selected="false" tabindex="-1">Delivering</button>
+            <button class="nav-link" id="pills-completed-tab" data-bs-toggle="pill" data-bs-target="#pills-completed" type="button" role="tab" aria-controls="pills-completed" aria-selected="false" tabindex="-1">Completed</button>
           </li>
         </ul>
         <div class="tab-content" id="pills-tabContent">
           <div class="tab-pane fade show active" id="pills-all-order" role="tabpanel" aria-labelledby="pills-all-order-tab" tabindex="0">
-            <div class="table-responsive">
-              <table class="table">
-                <thead class="table-light manrope-font">
-                  <tr>
-                    <th scope="col">No.</th>
-                    <th scope="col">Order Id</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Total</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @forelse ($orders as $order)
-                  <tr>
-                    <th scope="row" class="manrope-font">{{ $loop->iteration }}.</th>
-                    <td>{{ $order->id }}</td>
-                    <td>{{ $order->created_at }} WIB</td>
-                    <td>Rp{{ number_format($order->grand_total, 0, ', ', '.') }},-</td>
-                    <td>@include('partials.status', ['status' => $order->status])</td>
-                    <td>
-                      @include('partials.status_button', [
-                        'status' => $order->status,
-                        'order_id' => $order->id,
-                        ])
-                    </td>
-                  </tr>                    
-                  @empty
-                  <tr>
-                    <td colspan="100%" class="text-center">
-                      <h5>You have no orders, yet.</h5>
-                    </td>
-                  </tr>
-                  @endforelse
-                </tbody>
-              </table>
-            </div>
+            @include('partials.order_table', ['orders' => $orders, 'status' => 'all'])
           </div>
           <div class="tab-pane fade" id="pills-unpaid" role="tabpanel" aria-labelledby="pills-unpaid-tab" tabindex="0">
-            Unpaid
+            @include('partials.order_table', ['orders' => $orders, 'status' => 'unpaid'])
           </div>
-          <div class="tab-pane fade" id="pills-waiting" role="tabpanel" aria-labelledby="pills-waiting-tab" tabindex="0">
-            Waiting
+          <div class="tab-pane fade" id="pills-paid" role="tabpanel" aria-labelledby="pills-paid-tab" tabindex="0">
+            @include('partials.order_table', ['orders' => $orders, 'status' => 'paid'])
           </div>
           <div class="tab-pane fade" id="pills-delivering" role="tabpanel" aria-labelledby="pills-delivering-tab" tabindex="0">
-            Delivering
+            @include('partials.order_table', ['orders' => $orders, 'status' => 'delivering'])
           </div>
           <div class="tab-pane fade" id="pills-completed" role="tabpanel" aria-labelledby="pills-completed-tab" tabindex="0">
-            Completed
+            @include('partials.order_table', ['orders' => $orders, 'status' => 'completed'])
           </div>
         </div>
       </div>
