@@ -18,9 +18,10 @@
       <button type="submit" class="btn btn-danger">Continue Cancel Order</button>
       ',
     ])
-  @elseif ('paid')
+  @elseif ($status == 'paid')
     <a href="/admin/orders/{{ $order_id }}/edit" class="btn btn-success"><i class="fa-solid fa-check"></i> Confirm</a>
-    <a href="/admin/orders/invoice/{{ $order_id }}" class="btn btn-secondary"><i class="far fa-file-alt"></i> Invoice</a>
+  @elseif ($status == 'delivering' OR $status == 'completed')
+    <a href="/admin/orders/{{ $order_id }}/edit" class="btn btn-primary"><i class="fa-regular fa-pen-to-square"></i> Edit</a>
   @endif
   </div>
 @else
