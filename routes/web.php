@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminOrderController;
 use App\Http\Controllers\CartController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -116,3 +117,6 @@ Route::resource('/admin/pictures', PictureController::class)->middleware(['auth:
 
 // Admin Top Products Management
 Route::resource('/admin/top_products', TopProductController::class)->middleware(['auth:admin']);
+
+// Admin Orders Management
+Route::resource('/admin/orders', AdminOrderController::class)->middleware(['auth:admin']);
