@@ -18,4 +18,4 @@ use App\Http\Controllers\OrderPaymentController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('order/payment/midtrans_callback', [OrderPaymentController::class, 'paymentCallback']);
+Route::post('/order/payment/midtrans_callback', [OrderPaymentController::class, 'paymentCallback']);
