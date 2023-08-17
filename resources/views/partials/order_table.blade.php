@@ -24,7 +24,11 @@
           @if (isset($role) AND $role == 'admin') <td>{{ $order->recipient }}</td> @endif
           <td>{{ $order->created_at }} WIB</td>
           <td>Rp{{ number_format($order->grand_total, 0, ', ', '.') }},-</td>
-          <td>@include('partials.status', ['status' => $order->status])</td>
+          <td>
+            @include('partials.status', ['status' => $order->status])
+            @if (!isset($role) AND $order->status == 'delivering') 
+            <div class="mt-2">Delivery Code: {{ $order->delivery_code }}</div> @endif
+          </td>
           <td>
             @if (isset($role) AND $role == 'admin')
               @include('partials.status_button', [
