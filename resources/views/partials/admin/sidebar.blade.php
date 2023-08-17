@@ -51,6 +51,12 @@
         </a>
       </li>
       <li>
+        <a href="/admin/customers" class="{{ (Request::is('admin/customers*') ? 'link-active' : '') }}">
+          <span class="icon"><i class="fa-solid fa-user-group fa-lg" aria-hidden="true"></i></span>
+          <span class="title">Completed Orders</span>
+        </a>
+      </li>
+      <li>
         <form action="/logout" method="post" class="nav-link">
           @csrf
           <button type="submit" class="logout-button">
