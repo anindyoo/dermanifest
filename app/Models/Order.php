@@ -11,7 +11,7 @@ class Order extends Model
 
     protected $guarded = ['id'];
 
-    public function getOrderByCustomerId($customer_id) {
+    public function getOrdersByCustomerId($customer_id) {
         return $this::where('customer_id', $customer_id)->get();
     }
 }
