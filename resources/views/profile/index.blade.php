@@ -90,15 +90,15 @@
       {{-- ORDER HISTORY --}}
       <div id="order-history-tab" class="order-history col-lg-12 col-md-12 col-sm-12 mt-4">
         <h2>Order History</h2>
-        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        <ul class="nav nav-pills mb-3 table-responsive flex-nowrap" id="pills-tab" role="tablist">
           <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="pills-all-order-tab" data-bs-toggle="pill" data-bs-target="#pills-all-order" type="button" role="tab" aria-controls="pills-all-order" aria-selected="true">All Order</button>
+            <button class="nav-link active" id="pills-all-order-tab" data-bs-toggle="pill" data-bs-target="#pills-all-order" type="button" role="tab" aria-controls="pills-all-order" aria-selected="true" style="min-width: 120px;">All Order</button>
           </li>
           <li class="nav-item" role="presentation">
             <button class="nav-link" id="pills-unpaid-tab" data-bs-toggle="pill" data-bs-target="#pills-unpaid" type="button" role="tab" aria-controls="pills-unpaid" aria-selected="false" tabindex="-1">Unpaid</button>
           </li>
           <li class="nav-item" role="presentation">
-            <button class="nav-link" id="pills-paid-tab" data-bs-toggle="pill" data-bs-target="#pills-paid" type="button" role="tab" aria-controls="pills-paid" aria-selected="false" tabindex="-1">paid</button>
+            <button class="nav-link" id="pills-paid-tab" data-bs-toggle="pill" data-bs-target="#pills-paid" type="button" role="tab" aria-controls="pills-paid" aria-selected="false" tabindex="-1">Paid</button>
           </li>
           <li class="nav-item" role="presentation">
             <button class="nav-link" id="pills-delivering-tab" data-bs-toggle="pill" data-bs-target="#pills-delivering" type="button" role="tab" aria-controls="pills-delivering" aria-selected="false" tabindex="-1">Delivering</button>
