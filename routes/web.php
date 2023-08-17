@@ -11,6 +11,7 @@ use App\Http\Controllers\PictureController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CustomerManagementController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderInvoiceController;
@@ -107,7 +108,7 @@ Route::get('/admin', function () {
 })->middleware(['auth:admin']);
 
 // Admin Categories
-Route::resource('/admin/categories', CategoryController::class)->middleware(['auth:admin']);
+Route::resource('/admin/categories', CategoryController::class)->   middleware(['auth:admin']);
 
 // Admin Products
 Route::resource('/admin/products', ProductController::class)->middleware(['auth:admin']);
@@ -120,3 +121,6 @@ Route::resource('/admin/top_products', TopProductController::class)->middleware(
 
 // Admin Orders Management
 Route::resource('/admin/orders', AdminOrderController::class)->middleware(['auth:admin']);
+
+// Admin Completed Orders
+Route::get('/admin/completed_orders', [AdminOrderController::class, 'completedOrders'])->middleware(['auth:admin']);
