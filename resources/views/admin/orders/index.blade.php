@@ -44,7 +44,6 @@ $(document).ready(function() {
     $('.table-wrapper').addClass('d-none');
     $('#' + this.value).removeClass('d-none');
   });
-
 });
 </script>
 @endsection
