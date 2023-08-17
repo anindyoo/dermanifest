@@ -10,4 +10,8 @@ class Order extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
+    public function getOrderByCustomerId($customer_id) {
+        return $this::where('customer_id', $customer_id)->get();
+    }
 }
