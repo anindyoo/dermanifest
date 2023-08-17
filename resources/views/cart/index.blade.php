@@ -39,7 +39,8 @@
             </tr>
           </thead>
           <tbody>
-            @foreach ($products_data as $key => $product)            
+            @foreach ($products_data as $key => $product)      
+            @if ($product->stock > 0)
             <tr class="cart-items">
               <td class="td-product">   
                 <div class="d-flex">
@@ -85,6 +86,7 @@
                   @endif
                 </td>
             </tr>
+            @endif
             @endforeach
           </tbody>
         </table>

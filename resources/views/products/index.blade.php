@@ -56,7 +56,10 @@
             <form action="/cart" method="post">
               @csrf
               <input type="hidden" name="id" value="{{ $product->id }}">
-              <button type="submit" class="btn btn-buy btn-cart">
+              @if ($product->stock == 0)
+              <p class="m-0 text-danger">Out of stock!</p>
+              @endif
+              <button type="submit" class="btn btn-buy btn-cart" @if ($product->stock == 0) disabled @endif>
                 <box-icon type='solid' name='cart-add'><i class='bx bxs-cart-add' style="width: 20px; height: auto;"></i></box-icon> Add to Cart 
               </button>
             </form>
