@@ -45,6 +45,18 @@ class AdminOrderController extends Controller
         ]);
     }
 
+    public function completedOrders() {
+        $completedOrdersData = Order::where('status', 'completed')->get();
+        $subtotalQuantity = $this->sumSubtotalQuantity($completedOrdersData);
+
+        return view('admin.orders.completed', [
+            'title' => 'Completed Orders',
+            'completed_orders' => $completedOrdersData,
+            'subtotal' => $subtotalQuantity['subtotal'],
+            'quantity' => $subtotalQuantity['quantity'],
+        ]);
+    }
+
     public function update(Request $request) {
         $validatedData = $request->validate([
             'status' => 'required|max:20',
@@ -65,5 +77,16 @@ class AdminOrderController extends Controller
         Order::destroy($order->id);
 
         return redirect('/admin/orders')->with('success', '<strong> Order #' . $order->product_id . '</strong> has been canceled.');
+    }
+
+    public function sumSubtotalQuantity($completed_orders) {
+        $subtotal = 0;
+        $quantity = 0;
+        foreach ($completed_orders as $order) {
+            $subtotal += $order->subtotal;
+            $quantity += $order->quantity_total;
+        }
+
+        return ['subtotal' => $subtotal, 'quantity' => $quantity];
     }
 }
