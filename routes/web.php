@@ -124,3 +124,6 @@ Route::resource('/admin/orders', AdminOrderController::class)->middleware(['auth
 
 // Admin Completed Orders
 Route::get('/admin/completed_orders', [AdminOrderController::class, 'completedOrders'])->middleware(['auth:admin']);
+
+// Admin Customers Management
+Route::resource('/admin/customers', CustomerManagementController::class)->middleware(['auth:admin']);
