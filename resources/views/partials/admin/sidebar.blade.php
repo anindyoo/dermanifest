@@ -45,6 +45,12 @@
         </a>
       </li>
       <li>
+        <a href="/admin/completed_orders" class="{{ (Request::is('admin/completed_orders*') ? 'link-active' : '') }}">
+          <span class="icon"><i class="fa-solid fa-circle-check fa-lg" aria-hidden="true"></i></span>
+          <span class="title">Completed Orders</span>
+        </a>
+      </li>
+      <li>
         <form action="/logout" method="post" class="nav-link">
           @csrf
           <button type="submit" class="logout-button">
