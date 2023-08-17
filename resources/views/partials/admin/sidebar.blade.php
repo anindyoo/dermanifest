@@ -53,7 +53,7 @@
       <li>
         <a href="/admin/customers" class="{{ (Request::is('admin/customers*') ? 'link-active' : '') }}">
           <span class="icon"><i class="fa-solid fa-user-group fa-lg" aria-hidden="true"></i></span>
-          <span class="title">Completed Orders</span>
+          <span class="title">Customers Management</span>
         </a>
       </li>
       <li>
