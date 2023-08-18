@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminHomeController;
 use App\Http\Controllers\AdminOrderController;
 use App\Http\Controllers\CartController;
 use Illuminate\Http\Request;
@@ -101,14 +102,10 @@ Route::resource('/order/payment', OrderPaymentController::class)->middleware(['a
 Route::resource('/order/invoice', OrderInvoiceController::class)->middleware(['auth', 'verified']);
 
 // Admin
-Route::get('/admin', function () {
-    return view('admin.home', [
-        "title" => "Home"
-    ]);
-})->middleware(['auth:admin']);
+Route::resource('/admin', AdminHomeController::class)->middleware(['auth:admin']);
 
 // Admin Categories
-Route::resource('/admin/categories', CategoryController::class)->   middleware(['auth:admin']);
+Route::resource('/admin/categories', CategoryController::class)->middleware(['auth:admin']);
 
 // Admin Products
 Route::resource('/admin/products', ProductController::class)->middleware(['auth:admin']);
