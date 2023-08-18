@@ -48,7 +48,7 @@
                 <span><i class="fa-regular fa-pen-to-square me-1"></i></span>Update
               </a>
               <a href="/admin/pictures/{{ $product->id }}" class="btn btn-success">
-                <span><i class="fa-regular fa-pen-to-square me-1"></i></span>Pictures
+                <span><i class="far fa-images me-1"></i></span>Pictures
               </a>
               <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteProductModal-{{ $product->id }}">
                 <span><i class="fa-regular fa-trash-can me-1"></i></span>Delete
