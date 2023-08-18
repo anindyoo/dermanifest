@@ -67,4 +67,10 @@ class CustomerManagementController extends Controller
             'completed_orders' => $customerCompletedOrders,  
         ]);
     }
+
+    public function destroy(Customer $customer) {
+        Customer::destroy($customer->id);
+
+        return redirect('/admin/customers')->with('success', 'Customer: <strong>' . $customer->name_customer . '</strong> has been deleted.');
+    }
 }
