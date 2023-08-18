@@ -102,7 +102,7 @@ Route::resource('/order/payment', OrderPaymentController::class)->middleware(['a
 Route::resource('/order/invoice', OrderInvoiceController::class)->middleware(['auth', 'verified']);
 
 // Admin
-Route::resource('/admin', AdminHomeController::class)->middleware(['auth:admin']);
+Route::get('/admin', [AdminHomeController::class, 'index'])->middleware(['auth:admin']);
 
 // Admin Categories
 Route::resource('/admin/categories', CategoryController::class)->middleware(['auth:admin']);
