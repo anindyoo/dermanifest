@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('google_id')->nullable();
             $table->string('google_avi')->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->timestamp('date_created')->nullable();
             $table->timestamps();
         });
     }
