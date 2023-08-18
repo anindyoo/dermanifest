@@ -21,7 +21,19 @@
         </tr>        
         <tr>
           <th>Phone</th>
-          <td>{{ $customer_data->phone }}</td>
+          <td>
+            {{ $customer_data->phone }}
+            @empty($customer_data->phone) - @endempty
+          </td>
+        </tr>        
+        <tr>
+          <th>Email Verified at</th>
+          <td>
+            {{ $customer_data->email_verified_at }}
+            @empty($customer_data->email_verified_at)
+              Not verified yet
+            @endempty
+          </td>
         </tr>        
         <tr>
           <th>Transactions Total</th>
