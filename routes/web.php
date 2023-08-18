@@ -14,6 +14,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerManagementController;
+use App\Http\Controllers\FAQController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderInvoiceController;
@@ -128,3 +129,6 @@ Route::resource('/admin/customers', CustomerManagementController::class)->middle
 
 // Admins Management
 Route::resource('/admin/admins_management', AdminManagementController::class)->middleware(['auth:admin']);
+
+// Admins Management
+Route::resource('/admin/faqs', FAQController::class)->middleware(['auth:admin']);
