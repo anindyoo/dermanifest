@@ -33,8 +33,12 @@ class AdminManagementController extends Controller
         $validatedData['password'] = Hash::make($validatedData['password']);
         $admin = Admin::create($validatedData);
 
-        event(new Registered($admin));
-
         return redirect('/admin/admins_management')->with('success', 'Admin: <strong>' . $request->name_admin . '</strong> has successfully been added.');
+    }
+
+    public function destroy(Request $request, Admin $admin) {        
+        Admin::destroy($request->id);
+
+        return redirect('/admin/admins_management')->with('success', 'Admin: <strong>' . $admin->name_admin . '</strong> has been deleted.');
     }
 }
