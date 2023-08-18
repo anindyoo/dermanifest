@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminHomeController;
+use App\Http\Controllers\AdminManagementController;
 use App\Http\Controllers\AdminOrderController;
 use App\Http\Controllers\CartController;
 use Illuminate\Http\Request;
@@ -124,3 +125,6 @@ Route::get('/admin/completed_orders', [AdminOrderController::class, 'completedOr
 
 // Admin Customers Management
 Route::resource('/admin/customers', CustomerManagementController::class)->middleware(['auth:admin']);
+
+// Admins Management
+Route::resource('/admin/admins_management', AdminManagementController::class)->middleware(['auth:admin']);
