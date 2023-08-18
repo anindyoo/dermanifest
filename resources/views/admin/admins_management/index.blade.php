@@ -42,19 +42,20 @@
             </td>
           </tr>
           @include('partials/modal', [
-          'modal_id' => 'deleteAdmin-' . $admin->id,
-          'modal_title' => 'Delete Admin',
-          'include_form' => 'true',
-          'form_action' => '/admin/admins_management/' . $admin->id ,
-          'form_method' => 'post', 
-          'additional_form_method' => 'delete', 
-          'modal_body' => '
-          Are you sure to delete Admin: <strong>' . $admin->name_admin . '</strong>?',
-          'modal_footer' => '
-          <button type="button" class="btn btn-secondary-native-regular" data-bs-dismiss="modal"> Back</button>
-          <button type="submit" class="btn btn-danger">Continue Delete Admin</button>
-          ',
-        ])
+            'modal_id' => 'deleteAdmin-' . $admin->id,
+            'modal_title' => 'Delete Admin',
+            'include_form' => 'true',
+            'form_action' => '/admin/admins_management/' . $admin->id,
+            'form_method' => 'post', 
+            'additional_form_method' => 'delete', 
+            'modal_body' => '
+            <input type="hidden" name="id" value="' . $admin->id . '" required>
+            Are you sure to delete Admin: <strong>' . $admin->name_admin . '</strong>?',
+            'modal_footer' => '
+            <button type="button" class="btn btn-secondary-native-regular" data-bs-dismiss="modal"> Back</button>
+            <button type="submit" class="btn btn-danger">Continue Delete Admin</button>
+            ',
+          ])
         @endforeach
       </tbody>
     </table>
