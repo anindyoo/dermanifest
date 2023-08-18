@@ -38,7 +38,7 @@ class FAQController extends Controller
         ]);
         Faq::create($validatedData);
 
-        return redirect('admin/faqs')->with('success', 'New FAQ has successfully been added.');
+        return redirect('/admin/faqs')->with('success', 'New FAQ has successfully been added.');
     }
 
     public function update(Request $request, Faq $faq) {
@@ -48,6 +48,12 @@ class FAQController extends Controller
         ]);        
         Faq::where('id', $faq->id)->update($validatedData);
 
-        return redirect('admin/faqs')->with('success', 'Faq has successfully been updated.');
+        return redirect('/admin/faqs')->with('success', '<strong>FAQ #' . $faq->id . '</strong> has successfully been updated.');
+    }
+
+    public function destroy(Faq $faq) {
+        Faq::destroy($faq->id);
+
+        return redirect('/admin/faqs')->with('success', '<strong>FAQ #' . $faq->id . '</strong> has successfully been deleted.');
     }
 }
