@@ -63,6 +63,12 @@
         </a>
       </li>
       <li>
+        <a href="/admin/faqs" class="{{ (Request::is('admin/faqs*') ? 'link-active' : '') }}">
+          <span class="icon"><i class="fa-solid fa-circle-question fa-lg" aria-hidden="true"></i></span>
+          <span class="title">FAQs</span>
+        </a>
+      </li>
+      <li>
         <form action="/logout" method="post" class="nav-link">
           @csrf
           <button type="submit" class="logout-button">
