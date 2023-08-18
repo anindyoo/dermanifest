@@ -57,6 +57,12 @@
         </a>
       </li>
       <li>
+        <a href="/admin/admins_management" class="{{ (Request::is('admin/admins_management*') ? 'link-active' : '') }}">
+          <span class="icon"><i class="fa-solid fa-user-shield fa-lg" aria-hidden="true"></i></span>
+          <span class="title">Admins Management</span>
+        </a>
+      </li>
+      <li>
         <form action="/logout" method="post" class="nav-link">
           @csrf
           <button type="submit" class="logout-button">
