@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('name_admin');
             $table->string('email');
             $table->string('password');
-            $table->timestamp('date_created')->nullable();
             $table->timestamps();
         });
     }
