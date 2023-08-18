@@ -22,6 +22,15 @@ class FAQController extends Controller
         ]);
     }
 
+    public function edit($id) {
+        $faqData = Faq::find($id);
+
+        return view('admin.faqs.edit', [
+            'title' => 'Edit Faq',
+            'faq_data' => $faqData,
+        ]);
+    }
+
     public function store(Request $request) {
         $validatedData = $request->validate([
             'question' => 'required|max:255',
@@ -29,6 +38,16 @@ class FAQController extends Controller
         ]);
         Faq::create($validatedData);
 
-        return redirect('admin/faqs')->with('success', 'New FAQ has been added.');
+        return redirect('admin/faqs')->with('success', 'New FAQ has successfully been added.');
+    }
+
+    public function update(Request $request, Faq $faq) {
+        $validatedData = $request->validate([
+            'question' => 'required|max:255',
+            'answer' => 'required',
+        ]);        
+        Faq::where('id', $faq->id)->update($validatedData);
+
+        return redirect('admin/faqs')->with('success', 'Faq has successfully been updated.');
     }
 }
