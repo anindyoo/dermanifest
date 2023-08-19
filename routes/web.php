@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\AdminHomeController;
 use App\Http\Controllers\AdminManagementController;
 use App\Http\Controllers\AdminOrderController;
@@ -102,6 +103,9 @@ Route::resource('/order/payment', OrderPaymentController::class)->middleware(['a
 
 // Order Invoice
 Route::resource('/order/invoice', OrderInvoiceController::class)->middleware(['auth', 'verified']);
+
+// About Use
+Route::resource('/about_us', AboutUsController::class);
 
 // Admin
 Route::get('/admin', [AdminHomeController::class, 'index'])->middleware(['auth:admin']);
