@@ -885,87 +885,43 @@ h4, h5, h6 {
     padding: 16px 26px;
     background: linear-gradient(140deg, #41522f, #656d4a, #a4ac86);
     background-size: 600% 600%;
-    -webkit-animation: AnimationName 59s ease infinite;
-    -moz-animation: AnimationName 59s ease infinite;
-    animation: AnimationName 59s ease infinite;
+    -webkit-animation: GradientAnimation 59s ease infinite;
+    -moz-animation: GradientAnimation 59s ease infinite;
+    animation: GradientAnimation 59s ease infinite;
 }
 .gradient-bg h5, 
 .gradient-bg h6 {
     color: #fff;
 }
 
-/* Order Invoice */
-.invoice-row {
-    padding: 0 5px;
+@-webkit-keyframes GradientAnimation {
+    0%{background-position:0% 9%}
+    50%{background-position:100% 92%}
+    100%{background-position:0% 9%}
 }
-.invoice-container {
-    border: 1.2px solid #6C6C6C;
-    max-width: 714px;
-    padding: 58px 28px;
-    overflow: auto;
+@-moz-keyframes GradientAnimation {
+    0%{background-position:0% 9%}
+    50%{background-position:100% 92%}
+    100%{background-position:0% 9%}
 }
-.invoice-header img {
-    height: 12vh;
+@keyframes GradientAnimation {
+    0%{background-position:0% 9%}
+    50%{background-position:100% 92%}
+    100%{background-position:0% 9%}
 }
-.invoice-subheader p {
-    margin-bottom: 3px;
-}
-/* .invoice-subheader > div {
-    max-width: 20vw;
+
+/* About Us */
+/* body:has(.about_us) {
+    overflow-x: hidden;
 } */
-.invoice-subheader td, 
-.invoice-delivery td {
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
+.about_us img {
+    max-width: 49.5vw;
 }
-.no-horizontal-p {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+.description-col {
+    padding: 40px;
 }
-.invoice-products table thead {
-    background: #F8F9FA;
-}
-.invoice-products table tfoot {
-    background: #E5E5E5;
-}
-.invoice-products del {
-    font-size: 0.8em;
-}
-.invoice-totals hr {
-    margin: 7px 0;
-}
-.totals-card {
-    width: 328px;
-    padding: 14px 18px;
-    border-radius: 3.6px;
-    border: 1.2px solid #BDBDBD;
-    background: #E5E9DB;
-}
-.invoice-delivery .field-name {
-    width: 21%;
-}
-.invoice-delivery .colon {
-    width: 1%;
-}
-.invoice-delivery .field-value {
-    width: 68%;
-}
-
-
-@-webkit-keyframes AnimationName {
-    0%{background-position:0% 9%}
-    50%{background-position:100% 92%}
-    100%{background-position:0% 9%}
-}
-@-moz-keyframes AnimationName {
-    0%{background-position:0% 9%}
-    50%{background-position:100% 92%}
-    100%{background-position:0% 9%}
-}
-@keyframes AnimationName {
-    0%{background-position:0% 9%}
-    50%{background-position:100% 92%}
-    100%{background-position:0% 9%}
+.about_us li {
+    list-style: unset !important;
 }
 
 /* size 992 */
@@ -1017,17 +973,34 @@ h4, h5, h6 {
         font-size: 16px;
     }
 
-    /* partner */
-
     /* about */
     .item-product {
         display: grid;
         grid-template-columns: repeat(2,1fr);
     }
+
     /* contact */
     .contact-footer {
         display: flex;
         flex-direction: column;
     }
+}
 
+/* Mobile Size */
+@media screen and (max-width: 764px) {
+    /* Navbar */
+    .nav-logo img {
+        max-height: 40px;
+    }
+
+    /* About Us */
+    .about_us-row {
+        flex-direction: column-reverse!important;
+    }
+    .about_us img {
+        max-width: 100vw;
+    }
+    .description-col {
+        padding: 20px;
+    }
 }
