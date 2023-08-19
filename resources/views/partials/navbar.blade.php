@@ -18,7 +18,7 @@
             <a class="nav-link" href="/">Home</a>
           </li>
           <li class="nav-item me-4">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="/about_us">About</a>
           </li>
           <li class="nav-item me-4 dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
