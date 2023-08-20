@@ -20,7 +20,7 @@
         </tr>
         <tr>
           <th>Customer Id</th>
-          <td>{{ $order_data->customer_id }}</td>
+          <td><a href="/admin/customers/{{ $order_data->customer_id }}" class="text-primary-native">{{ $order_data->customer_id }} <i class="fas fa-external-link-alt fa-xs"></i></a></td>
         </tr>
         <tr>
           <th>Recipient Name</th>
