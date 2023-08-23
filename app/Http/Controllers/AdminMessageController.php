@@ -14,5 +14,13 @@ class AdminMessageController extends Controller
             'messages_data' => $messagesData,
         ]);
     }
+
+    public function show($id) {
+        $messageData = Message::find($id);
+        return view('admin.messages.show', [
+            'title' => 'Admin Messages',
+            'message_data' => $messageData,
+        ]);
+    }
     
 }
