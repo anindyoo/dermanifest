@@ -23,6 +23,10 @@ h4, h5 {
 	margin: unset;
 }
 
+.text-primary-native {
+	color: #333D29;
+}
+
 body {
 	background: #EFEFDC;
 	overflow-x: hidden;
@@ -341,4 +345,16 @@ trix-editor {
 
 .trix-button-group--file-tools {
 	display: none !important;
+}
+
+/* Messages */
+.status-badge {
+	padding: 8px 6px;
+}
+.completed-status {
+	background-color: #333d29;
+	color: #ffffff;
+}
+.warning-status {
+	background-color: #ffc107;
 }
