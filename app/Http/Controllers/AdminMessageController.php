@@ -31,4 +31,9 @@ class AdminMessageController extends Controller
         return back()->with('success', 'Message has been marked as Unread.');
     }
 
+    public function destroy(Message $message) {
+        Message::destroy($message->id);
+
+        return back()->with('success', '<strong> Message #' . $message->id . '</strong> has been deleted.');
+    }
 }
