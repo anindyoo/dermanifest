@@ -101,26 +101,16 @@
           <h1>About Us</h1>
         </div>
         <div class="paragpraph mb-5">
-          <p>Dermanifest is a skincare product made from natural and cruelty ingredients,
-              made with love for everyone with any skin and any ages.
-          </p>
+          <p>Dermanifest is a home-based bodycare business from Jakarta, Indonesia, since 2021.</p>
+          <p>Dermanifest provides a variety of bodycare products such as facial Etawa goat milk masks & candlenut oil. Dermanifest also provides a complementary bodycare producs which also become a Customers' favorite, aromatherapy candles.</p>
         </div>
         <div class="subtitle mb-3">
-          <h5>What do we have for you?</h5>
-        </div>
-        <div class="item-product mb-5">
-          <ul class="items">
-            <li class="item">Dermanifest Classic Powder Beauty Mask</li>
-            <li class="item">Dermanifest Classic Candlenut Oil</li>
-            <li class="item">Dermanifest Classic Scented Candle</li>
-            <li class="item">Featured Skincare</li>
-          </ul>
+          <a href="/about_us" class="btn btn-primary-native">Read More About Us</a>
         </div>
       </div>
-
       <div class="col-lg-4 col-md-6 col-sm-12">
         <div class="image-about">
-          <img src="img/about-pics.svg" alt="">
+          <img src="{{ 'img/about-pics.svg' }}" alt="About us collage">
         </div>
       </div>
     </div>
@@ -221,12 +211,12 @@
       <div class="col-lg-12 col-md-12 col-sm-12 col-12 col-eshop">
         <div class="image-item">
             <a href="https://shopee.co.id/dermanifest">
-              <img src="img/shopee.svg" alt="Shopee Logo">
+              <img src="{{ asset('img/shopee.svg') }}" alt="Shopee Logo">
             </a>
         </div>
         <div class="image-item">
             <a href="https://www.instagram.com/dermanifest/">
-              <img src="img/instagram.svg" alt="Instagram Logo">
+              <img src="{{ asset('img/instagram.svg') }}" alt="Instagram Logo">
             </a>
         </div>
       </div>
