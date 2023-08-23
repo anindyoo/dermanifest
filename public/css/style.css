@@ -924,6 +924,26 @@ h4, h5, h6 {
     list-style: unset !important;
 }
 
+/* Contact & Faq */
+.contact-faq input,
+.contact-faq textarea {
+    border: 1px solid #333D29;
+}
+.contact-faq .accordion {
+    --bs-accordion-active-color: #333D29;
+    --bs-accordion-active-bg: rgba(229, 233, 219, 0.75);
+}
+.contact-faq .accordion-item {
+    border: 0px;
+    border-radius: 0;
+    border-bottom: 2px solid #333D29;
+}
+.contact-faq .accordion-button:focus {
+    outline: none;
+    box-shadow: none;
+    background: rgba(229, 233, 219, 0.75);
+}
+
 /* size 992 */
 @media screen and (max-width: 992px) {
     .nav-logo {
