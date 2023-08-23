@@ -69,6 +69,12 @@
         </a>
       </li>
       <li>
+        <a href="/admin/messages" class="{{ (Request::is('admin/faqs*') ? 'link-active' : '') }}">
+          <span class="icon"><i class="fas fa-comments fa-lg" aria-hidden="true"></i></span>
+          <span class="title">Messages</span>
+        </a>
+      </li>
+      <li>
         <form action="/logout" method="post" class="nav-link">
           @csrf
           <button type="submit" class="logout-button">
