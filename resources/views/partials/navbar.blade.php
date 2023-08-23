@@ -32,7 +32,10 @@
             </ul>
           </li>
           <li class="nav-item me-4">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="/contact">Contact</a>
+          </li>
+          <li class="nav-item me-4">
+            <a class="nav-link" href="/contact#faq">FAQs</a>
           </li>
           
           <div class="nav-ico-mobile">
