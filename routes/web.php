@@ -141,3 +141,6 @@ Route::resource('/admin/admins_management', AdminManagementController::class)->m
 
 // FAQs Management
 Route::resource('/admin/faqs', FAQController::class)->middleware(['auth:admin']);
+
+// Admin Messages
+Route::resource('/admin/messages', AdminMessageController::class)->middleware(['auth:admin']);
