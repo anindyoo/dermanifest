@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\AdminHomeController;
 use App\Http\Controllers\AdminManagementController;
+use App\Http\Controllers\AdminMessageController;
 use App\Http\Controllers\AdminOrderController;
 use App\Http\Controllers\CartController;
 use Illuminate\Http\Request;
@@ -14,6 +15,7 @@ use App\Http\Controllers\PictureController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerManagementController;
 use App\Http\Controllers\FAQController;
 use App\Http\Controllers\HomeController;
@@ -104,8 +106,11 @@ Route::resource('/order/payment', OrderPaymentController::class)->middleware(['a
 // Order Invoice
 Route::resource('/order/invoice', OrderInvoiceController::class)->middleware(['auth', 'verified']);
 
-// About Use
+// About Us
 Route::resource('/about_us', AboutUsController::class);
+
+// Contact & FAQ
+Route::resource('/contact', ContactController::class);
 
 // Admin
 Route::get('/admin', [AdminHomeController::class, 'index'])->middleware(['auth:admin']);
@@ -134,5 +139,5 @@ Route::resource('/admin/customers', CustomerManagementController::class)->middle
 // Admins Management
 Route::resource('/admin/admins_management', AdminManagementController::class)->middleware(['auth:admin']);
 
-// Admins Management
+// FAQs Management
 Route::resource('/admin/faqs', FAQController::class)->middleware(['auth:admin']);
