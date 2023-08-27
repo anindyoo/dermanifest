@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Address;
 use App\Models\Customer;
+use App\Models\LogActivity;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AdminOrderController;
 
@@ -15,6 +16,7 @@ class CustomerManagementController extends Controller
         foreach ($customersData as $customer) {
             $customer['transactions_total'] = count((new Order)->getOrdersByCustomerId($customer->id));
         }
+        LogActivity::storeLogActivity('Membuka halaman Customers Management.', 'admin');
         
         return view('admin.customers.index', [
             'title' => 'Customers Management',
@@ -53,6 +55,7 @@ class CustomerManagementController extends Controller
                 $customerCompletedOrders['subtotal'] += $order->subtotal;
             }
         }
+        LogActivity::storeLogActivity('Membuka halaman Customer Detail: Id #' . $id . '.', 'admin');
 
         return view('admin.customers.show', [
             'title' => 'Customer Detail',
@@ -68,8 +71,21 @@ class CustomerManagementController extends Controller
         ]);
     }
 
+    public function showCustomerLog($customer_id) {
+        $logData = LogActivity::getLogActivityByCustomerId($customer_id);
+        $customerData = Customer::find($customer_id);
+        LogActivity::storeLogActivity('Membuka halaman Customer Log Activity: ' . $customerData->name_customer . '.', 'admin');
+
+        return view('admin.customers.log_activity', [
+            'title' => 'Customer Log Activities Detail',
+            'customer_data' => $customerData,
+            'log_data' => $logData,
+        ]);
+    }
+
     public function destroy(Customer $customer) {
         Customer::destroy($customer->id);
+        LogActivity::storeLogActivity('Menghapus Customer: Id #' . $customer->id . '.', 'admin');
 
         return redirect('/admin/customers')->with('success', 'Customer: <strong>' . $customer->name_customer . '</strong> has been deleted.');
     }
