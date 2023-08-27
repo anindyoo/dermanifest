@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\TopProduct;
-use Illuminate\Http\Request;
+use App\Models\LogActivity;
 
+use Illuminate\Http\Request;
 use function PHPUnit\Framework\isEmpty;
 
 class TopProductController extends Controller
 {
     public function index() {
+        LogActivity::storeLogActivity('Membuka halaman Top Products Management.', 'admin');
         $topProductsData = TopProduct::all();
         $productsData = Product::all();
 
@@ -45,6 +47,7 @@ class TopProductController extends Controller
                 
             }
         }
+        LogActivity::storeLogActivity('Menetapkan Top Products.', 'admin');
 
         return redirect('admin/top_products')->with('success', 'Top Products have been saved.');
     }

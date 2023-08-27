@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Customer;
 use App\Models\Order;
+use App\Models\Customer;
+use App\Models\LogActivity;
 use Illuminate\Http\Request;
 
 class AdminHomeController extends Controller
@@ -14,6 +15,7 @@ class AdminHomeController extends Controller
         $customers = Customer::all();
         $deliveringOrCompletedOrders = Order::where('status', 'delivering')->orWhere('status', 'completed')->get();
         $gross_sales = (new AdminOrderController)->sumSubtotalQuantity($deliveringOrCompletedOrders)['subtotal'];
+        LogActivity::storeLogActivity('Membuka halaman Admin Home.', 'admin');
 
         return view('admin.home', [
             'title' => 'Home',

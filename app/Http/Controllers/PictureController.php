@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Picture;
 use App\Models\Product;
+use App\Models\LogActivity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -13,6 +14,7 @@ class PictureController extends Controller
     public function show($product_id) {
         $productData = (new Product)->getProductById($product_id);
         $productPicsturesData = (new Picture)->getPicturesByProductId($productData->id);
+        LogActivity::storeLogActivity('Membuka halaman Product Pictures Management.', 'admin');
 
         return view('admin.products.pictures', [
             'title' => 'Product Pictures Management',
@@ -43,13 +45,15 @@ class PictureController extends Controller
                 'name_picture' => $newPicName,
             ]);
         }
-
+        LogActivity::storeLogActivity('Menambahkan gambar baru pada Product: ' . $product->name_product . '.', 'admin');
+        
         return redirect("/admin/pictures/$request->product_id")->with('success', 'New additional product pictures have been added.');
     }
-
+    
     public function destroy(Picture $picture) {
         Storage::delete("products/$picture->name_picture");
         Picture::destroy($picture->id);
+        LogActivity::storeLogActivity('Menghapus gambar Product: ' . $picture->id . '.', 'admin');
 
         return redirect("admin/pictures/$picture->product_id")->with('success', 'Picture: <strong>' . $picture->name_picture . '</strong> has been deleted.');
     }
