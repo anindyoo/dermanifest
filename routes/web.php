@@ -19,6 +19,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerManagementController;
 use App\Http\Controllers\FAQController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LogActivityController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderInvoiceController;
 use App\Http\Controllers\OrderPaymentController;
@@ -135,12 +136,17 @@ Route::get('/admin/completed_orders', [AdminOrderController::class, 'completedOr
 
 // Admin Customers Management
 Route::resource('/admin/customers', CustomerManagementController::class)->middleware(['auth:admin']);
+Route::get('/admin/customers/log_activity/{customer_id}', [CustomerManagementController::class, 'showCustomerLog'])->middleware(['auth:admin']);
 
 // Admins Management
 Route::resource('/admin/admins_management', AdminManagementController::class)->middleware(['auth:admin']);
+Route::get('/admin/admins_management/log_activity/{admin_id}', [AdminManagementController::class, 'showAdminLog'])->middleware(['auth:admin']);
 
 // FAQs Management
 Route::resource('/admin/faqs', FAQController::class)->middleware(['auth:admin']);
 
 // Admin Messages
 Route::resource('/admin/messages', AdminMessageController::class)->middleware(['auth:admin']);
+
+// Log Activities
+Route::resource('/admin/log_activities', LogActivityController::class)->middleware(['auth:admin']);
