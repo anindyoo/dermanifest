@@ -69,9 +69,15 @@
         </a>
       </li>
       <li>
-        <a href="/admin/messages" class="{{ (Request::is('admin/faqs*') ? 'link-active' : '') }}">
+        <a href="/admin/messages" class="{{ (Request::is('admin/messages*') ? 'link-active' : '') }}">
           <span class="icon"><i class="fas fa-comments fa-lg" aria-hidden="true"></i></span>
           <span class="title">Messages</span>
+        </a>
+      </li>
+      <li>
+        <a href="/admin/log_activities" class="{{ (Request::is('admin/log_activities*') ? 'link-active' : '') }}">
+          <span class="icon"><i class="fas fa-history fa-lg" aria-hidden="true"></i></span>
+          <span class="title">Log Activities</span>
         </a>
       </li>
       <li>
