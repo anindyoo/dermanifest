@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Picture;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\LogActivity;
 use Illuminate\Http\Request;
 
 class ProductListController extends Controller
 {
     public function index() {
+        LogActivity::storeLogActivity('Membuka halaman Product List.');
         $productsData = Product::all();
         $categoriesData = Category::all();
 
@@ -21,6 +23,7 @@ class ProductListController extends Controller
     }
 
     public function show($slug) {
+        LogActivity::storeLogActivity('Membuka halaman Product Detail.');
         $productData = (new Product)->getProductBySlug($slug);
         $categoryData = (new Category)->getCategoryById($productData->category_id)->name_category;
         $picturesData = (new Picture)->getPicturesByProductId($productData->id);

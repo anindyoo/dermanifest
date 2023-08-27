@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Product;
+use App\Models\Category;
+use App\Models\LogActivity;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
     public function index() {
         if (session()->has('cart')) {
+            LogActivity::storeLogActivity('Membuka halaman Cart terisi.');
             $cart = $this->getCart();
             $cartItems = $cart['cart_items'];
             $productsData = $cart['products_data'];
         } else {
+            LogActivity::storeLogActivity('Membuka halaman Cart kosong.');
             $cartItems = [];
             $productsData = [];
         }
@@ -45,6 +48,7 @@ class CartController extends Controller
             $cart['quantity_total']++;
         }
         session()->put('cart', $cart);
+        LogActivity::storeLogActivity('Menambahkan produk ke cart.');
 
         return redirect()->back()->with('success', 'Product: <strong>' . $productData->name_product . '</strong> has been add to cart');
     }
@@ -53,20 +57,18 @@ class CartController extends Controller
         $cart = session()->get('cart', []);
         $productData = Product::findOrFail($request->id);
         $cartItems = $cart['products'];
-
         $request->validate([
             'item_quantity' => 'integer|min:1|max:' . $productData->stock,
         ], [
             'item_quantity.max' => 'The quantity for <strong>' . $productData->name_product . '</strong> must not be greater than ' . $productData->stock . '.'
         ]);
-
         foreach ($cartItems as $key => $item) {
             if ($item['product_id'] == $request->id) {
                 $cart['products'][$key]['quantity'] = (int)$request->item_quantity;
             }
         }
-        
         session()->put('cart', $cart);
+        LogActivity::storeLogActivity('Memperbarui jumlah produk di cart.');
         
         return redirect('/cart')->with('success', 'The quantity of <strong>' . $productData->name_product . '</strong> has been updated.');
     }
@@ -75,20 +77,20 @@ class CartController extends Controller
         $cart = session()->get('cart', []);
         $productData = Product::findOrFail($request->id);
         $cartItems = $cart['products'];
-
         foreach ($cartItems as $key => $item) {
             if ($item['product_id'] == $request->id) {
                 unset($cart['products'][$key]);
             }
         }
-
         session()->put('cart', $cart);
+        LogActivity::storeLogActivity('Menghapus produk dari cart.');
         
         return redirect('/cart')->with('success', '<strong>' . $productData->name_product . '</strong> has been removed from cart.');
     }
 
     public function destroyAll() {
         session()->forget('cart');
+        LogActivity::storeLogActivity('Mengosongkan isi cart.');
         
         return redirect('/cart')->with('success', 'Cart has been emptied.');
     }

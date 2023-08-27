@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Faq;
 use App\Models\Message;
+use App\Models\LogActivity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ContactController extends Controller
 {
     public function index() {
+        LogActivity::storeLogActivity('Membuka halaman Contact & FAQ.');
         $faqsData = Faq::all();
 
         return view('contact.index', [
@@ -28,6 +30,7 @@ class ContactController extends Controller
             ]);
             $validatedData['customer_id'] = Auth::user()->id;
             Message::create($validatedData);
+            LogActivity::storeLogActivity('Mengirimkan pesan melalui halaman Contact Us.');
             return back()->with('success', 'Message has successfully been sent! Thank you.');
         }
 

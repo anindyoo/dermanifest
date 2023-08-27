@@ -3,13 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\LogActivity;
 use App\Models\Product;
 use App\Models\TopProduct;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
     public function index() {
+        LogActivity::storeLogActivity('Membuka halaman Home.');
+
         $topProductsData = TopProduct::all();
         $productsData = [];
 

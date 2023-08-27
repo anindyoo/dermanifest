@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\LogActivity;
 use App\Models\OrderPayment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,6 +16,7 @@ class OrderPaymentController extends Controller
         if ($orderData != null) {
             if ($orderData->customer_id == Auth::user()->id) {
                 $snapToken = $orderData->snap_token;
+                LogActivity::storeLogActivity('Membuka halaman Order Payment.');
                 return view('order_payment.show', [
                     'title' => 'Order #' . $id . ' Payment',
                     'order_data' => $orderData,
@@ -33,13 +35,13 @@ class OrderPaymentController extends Controller
             if ($request->transaction_status == 'capture' OR $request->transaction_status == 'settlement') {
                 $order = Order::find($request->order_id);
                 $order->update(['status' => 'paid']);
-                
                 OrderPayment::create([
                     'order_id' => $request->order_id,
                     'payment_type' => $request->payment_type,
                     'gross_amount' => (int)$request->gross_amount,
                     'transaction_time' => $request->transaction_time,
                 ]);
+                LogActivity::storeLogActivity('Melakukan Order Payment.');
             }
         }
     }

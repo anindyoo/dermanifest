@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\LogActivity;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +14,7 @@ use Symfony\Component\Console\Input\Input;
 class RegisterController extends Controller
 {
     public function index() {
+        LogActivity::storeLogActivity('Membuka halaman Register.');
         return view('register.index', [
             "title" => "Register"
         ]);
@@ -27,10 +29,9 @@ class RegisterController extends Controller
         ]);
         $validatedData['password'] = Hash::make($validatedData['password']);
         $customer = Customer::create($validatedData);
-
         event(new Registered($customer));
-
         Auth::login($customer);
+        LogActivity::storeLogActivity('Melakukan registrasi akun.');
 
         return redirect('email/verify');
     }

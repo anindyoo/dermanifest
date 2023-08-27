@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Address;
+use Carbon\Carbon;
 use App\Models\Order;
+use App\Models\Address;
+use App\Models\Product;
+use App\Models\LogActivity;
 use App\Models\OrderAddress;
 use App\Models\OrderProduct;
-use App\Models\Product;
-use Carbon\Carbon;
-use Hamcrest\Number\OrderingComparison;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Hamcrest\Number\OrderingComparison;
 
 class OrderController extends Controller
 {
@@ -24,6 +25,7 @@ class OrderController extends Controller
         $addressesData = (new Address)->getAddressesByCustomerId(Auth::user()->id);
         $provinces = (new ProfileController)->getProvincesOptions();
         $date = Carbon::now();
+        LogActivity::storeLogActivity('Membuka halaman Order Checkout.');
 
         return view('order.create', [
             'title' => 'Order Checkout',
@@ -41,6 +43,7 @@ class OrderController extends Controller
             if ($orderData->customer_id == Auth::user()->id) {
                 $orderProductsData = (new OrderProduct)->getOrderProductsByOrderId($id);
                 $orderAddressData = (new OrderAddress)->getOrderAddressByOrderId($id);
+                LogActivity::storeLogActivity('Membuka halaman Order Detail.');
                 return view('order.show', [
                     'title' => 'Order Detail',
                     'order_data' => $orderData,
@@ -131,6 +134,8 @@ class OrderController extends Controller
         $snapToken = $this->getSnap($orderId);
         Order::where('id', $orderId)->update(['snap_token' => $snapToken]);
         session()->forget('cart');
+        LogActivity::storeLogActivity('Membuat Order baru.');
+
         return redirect('/order/' . $orderId);
     }
 
@@ -138,6 +143,7 @@ class OrderController extends Controller
         $orderProducts = OrderProduct::where('order_id', $order->id)->get();
         $this->readdStock($orderProducts);
         Order::destroy($order->id);
+        LogActivity::storeLogActivity('Membatalkan Order.');
 
         return redirect('/profile')->with('success', '<strong> Order #' . $order->product_id . '</strong> has been canceled.');
     }
@@ -146,10 +152,10 @@ class OrderController extends Controller
         $orderData = Order::find($id);
         if ($orderData->customer_id == Auth::user()->id) {        
             $orderData->update(['status' => 'completed']);
+            LogActivity::storeLogActivity('Menyelesaikan Order.');
             return redirect('/profile')->with('success', '<strong> Order #' . $id . '</strong> has been completed. Thank you.');
         }
         return redirect('/profile');
-
     }
 
     public function getAddressById(Request $request) {
