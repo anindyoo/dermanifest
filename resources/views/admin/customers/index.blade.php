@@ -36,23 +36,24 @@
             <td>{{ $customer->transactions_total }}</td>
             <td>
               <a href="/admin/customers/{{ $customer->id }}" class="btn btn-info text-white me-1"><i class="fa-solid fa-circle-info"></i> Detail</a>
+              <a href="/admin/customers/log_activity/{{ $customer->id }}" class="btn btn-secondary me-1"><i class="fas fa-history"></i> Log</a>
               <a href="" class="btn btn-danger me-1" data-bs-toggle="modal" data-bs-target="#deleteCustomer-{{ $customer->id }}"><i class="fa-solid fa-xmark"></i> Delete</a>
             </td>
           </tr>
           @include('partials/modal', [
-          'modal_id' => 'deleteCustomer-' . $customer->id,
-          'modal_title' => 'Delete Customer',
-          'include_form' => 'true',
-          'form_action' => '/admin/customers/' . $customer->id ,
-          'form_method' => 'post', 
-          'additional_form_method' => 'delete', 
-          'modal_body' => '
-          Are you sure to delete Customer: <strong>' . $customer->name_customer . '</strong>?',
-          'modal_footer' => '
-          <button type="button" class="btn btn-secondary-native-regular" data-bs-dismiss="modal"> Back</button>
-          <button type="submit" class="btn btn-danger">Continue Delete Customer</button>
-          ',
-        ])
+            'modal_id' => 'deleteCustomer-' . $customer->id,
+            'modal_title' => 'Delete Customer',
+            'include_form' => 'true',
+            'form_action' => '/admin/customers/' . $customer->id ,
+            'form_method' => 'post', 
+            'additional_form_method' => 'delete', 
+            'modal_body' => '
+            Are you sure to delete Customer: <strong>' . $customer->name_customer . '</strong>?',
+            'modal_footer' => '
+            <button type="button" class="btn btn-secondary-native-regular" data-bs-dismiss="modal"> Back</button>
+            <button type="submit" class="btn btn-danger">Continue Delete Customer</button>
+            ',
+          ])
         @endforeach
       </tbody>
     </table>
