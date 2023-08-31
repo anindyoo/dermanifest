@@ -14,28 +14,26 @@ class LogActivity extends Model
     protected $guarded = ['id'];
 
     public static function storeLogActivity($activity, $role = null) {
-        if (self::all()->count() > 0) {
-            if (self::orderBy('created_at', 'desc')->first()->role != 'disabled') {
-                $log = [
-                    'activity' => $activity,
-                    'role' => 'guest',
-                    'url' => Request::fullUrl(),
-                    'method' => Request::method(),
-                    'ip' => Request::ip(),
-                    'agent' => Request::header('user-agent'),                
-                ];
-                if (Auth::check()) {
-                    if ($role == 'admin') {
-                        $log['user_id'] = Auth::user()->id;
-                        $log['role'] = 'admin';
-                    }
-                    if (Customer::where('email', Auth::user()->email)->exists()) {
-                        $log['user_id'] = Auth::user()->id;
-                        $log['role'] = 'customer';
-                    }
+        if (self::all()->count() == 0 OR self::orderBy('created_at', 'desc')->first()->role != 'disabled') {
+            $log = [
+                'activity' => $activity,
+                'role' => 'guest',
+                'url' => Request::fullUrl(),
+                'method' => Request::method(),
+                'ip' => Request::ip(),
+                'agent' => Request::header('user-agent'),                
+            ];
+            if (Auth::check()) {
+                if ($role == 'admin') {
+                    $log['user_id'] = Auth::user()->id;
+                    $log['role'] = 'admin';
                 }
-                return self::create($log);
+                if (Customer::where('email', Auth::user()->email)->exists()) {
+                    $log['user_id'] = Auth::user()->id;
+                    $log['role'] = 'customer';
+                }
             }
+            return self::create($log);
         }
     }
 
