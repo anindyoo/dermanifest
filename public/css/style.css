@@ -148,16 +148,6 @@ h4, h5, h6 {
     height: 110px;
     top: 0px;
 }
-@media screen and (max-width: 778px) {
-   .image-register-form,
-   .image-login-form {
-       display: none;
-   } 
-   .register-content,
-   .login-content {
-       border-radius: 20px;
-   }
-}
 .logout-button {
     background: none;
     color: inherit;
@@ -578,7 +568,6 @@ h4, h5, h6 {
     color: #333D29;
     font-size: 18px;
     font-weight: 600;
-    padding: 8px 38px;
     outline: #333D29 !important;
     border-style: none;
 }
@@ -598,6 +587,10 @@ h4, h5, h6 {
     color: #81b4ff !important;
     font-weight: 600;
 }
+.image-register-form img,
+.image-login-form img {
+    max-width: 460px;
+} 
 
 /* Verification Page */
 .verification-page {
@@ -916,10 +909,6 @@ h4, h5, h6 {
     100%{background-position:0% 9%}
 }
 
-/* About Us */
-/* body:has(.about_us) {
-    overflow-x: hidden;
-} */
 .about_us img {
     max-width: 49.5vw;
 }
@@ -1012,6 +1001,26 @@ h4, h5, h6 {
     }
 }
 
+/* Smaller Mobile Size */
+@media screen and (max-width: 618px) {
+    /*  Login */
+    .col-register-page,
+    .col-login-page {
+        align-items: center;
+        padding-left: 15px !important;
+    }
+    .image-register-form,
+    .image-login-form {
+        display: none;
+    } 
+    .register-content,
+    .login-content {
+        border-radius: 20px !important;
+        padding: 16px 20px;
+        margin: 30px 10px;
+    }
+ }
+
 /* Mobile Size */
 @media screen and (max-width: 764px) {
     /* Navbar */
@@ -1047,6 +1056,19 @@ h4, h5, h6 {
         order: 1;
         border-radius: 20px 20px 0px 0px !important;
     }
+
+    /*  Login */
+    .col-register-page,
+    .col-login-page {
+        padding: 0;
+    }
+    .image-register-form img,
+    .image-login-form img {
+        max-width: 200px;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 20px 0px 0px 20px;
+    } 
 
     /* About Us */
     .about_us-row {
