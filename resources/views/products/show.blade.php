@@ -88,6 +88,10 @@
         <h4>Ingredients</h4>
         <div>{!! $product_data->ingredients !!}</div>
       </div>
+      <div class="stock-detail mt-3">
+        <h4>Stock</h4>
+        <div>{{  $product_data->stock  }} pc(s)</div>
+      </div>
       <div class="neto-price d-flex justify-content-between">
         <div class="neto-detail mt-3">
           <h4>Net Weight</h4>
