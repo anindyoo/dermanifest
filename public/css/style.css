@@ -97,7 +97,10 @@ h4, h5, h6 {
   -moz-border-radius: 9px;
   border-radius: 9px;
 }
-
+.nav-logo img {
+    max-width: 60px;
+    max-height: 80px;
+}
 .label-warning[href],
 .badge-warning[href] {
   background-color: #c67605;
@@ -191,15 +194,14 @@ h4, h5, h6 {
 .text-hero {
     color: #FFFFFF;
     background-color: #333d29d4;
-    padding: 94px 34px;
+    padding: 50px 34px;
     border-radius: 20px;
-    max-width: 520px;
+    width: 420px;
     max-height: 370px;
     position: absolute;
     z-index: 100;
     top: 80px;
     margin: auto;
-    left: 5%;
 }
 .text-hero p {
     color: #FFFFFF;
@@ -209,7 +211,7 @@ h4, h5, h6 {
     z-index: 10;
     top: 100%;
     margin: auto;
-    left: 20%;
+    left: 30%;
 }
 .image-hero img {
     border-radius: 20px !important;
@@ -217,9 +219,9 @@ h4, h5, h6 {
 .text-hero h2 {
     color: #ffffff;
 }
-.hero .carousel-item-start,
-.hero .carousel-item-end {
-  width: 84% !important;
+.carousel-item img {
+    max-width: 860px;
+    max-height: 520px;
 }
 
 /* spacer */
@@ -485,6 +487,10 @@ h4, h5, h6 {
 .contact-footer {
     display: grid;
     grid-template-columns: repeat(4,1fr);
+}
+.img-footer {
+    max-width: 130px;
+    max-height: 94px;
 }
 
 /* term */
@@ -1011,6 +1017,35 @@ h4, h5, h6 {
     /* Navbar */
     .nav-logo img {
         max-height: 40px;
+    }
+
+    /* Hero */
+    .hero {
+        margin-bottom: 0px;
+    }
+    .hero-col {
+        display: grid;
+    }
+    .text-hero,
+    .image-hero {
+        position: relative;
+        padding: auto;
+        margin: auto;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        padding: auto;
+        max-width: none;
+        max-height: none;
+    }
+    .text-hero {
+        order: 2;
+        border-radius: 0px 0px 20px 20px !important;
+    }
+    .image-hero img {
+        order: 1;
+        border-radius: 20px 20px 0px 0px !important;
     }
 
     /* About Us */
