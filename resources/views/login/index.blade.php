@@ -5,7 +5,7 @@
   <div class="row login-row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-login-page">
       <div class="image-login-form">
-        <img src="{{ asset('img/login-pic.webp"') }} alt="Login page">
+        <img src="{{ asset('img/login-pic.webp') }}" alt="Login page">
       </div>
 
       <div class="login-content">
