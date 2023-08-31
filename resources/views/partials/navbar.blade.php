@@ -2,7 +2,7 @@
   <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light nav-dermanifest">
       <div class="container-fluid">
-        <a class="navbar-brand nav-logo" href="/"><img src="{{ asset("img/logo-dark.svg") }}" alt="" srcset=""></a>
+        <a class="navbar-brand nav-logo" href="/"><img src="{{ asset("img/logo-dark.webp") }}" alt="" srcset=""></a>
       </div>
 
       <button class="navbar-toggler nav-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

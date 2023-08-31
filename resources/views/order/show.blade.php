@@ -157,7 +157,7 @@
   </div>
   <div class="row picture-row mt-4 mb-5">
     <div class="col-md-12">
-      <img src="{{ asset("img/order_detail_thank_you.svg") }}" alt="Thank you for ordering our products!" class="w-100">
+      <img src="{{ asset("img/order_detail_thank_you.webp") }}" alt="Thank you for ordering our products!" class="w-100">
     </div>
   </div>
 </section>

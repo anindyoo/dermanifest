@@ -5,7 +5,7 @@
       <li>
         <a href="/admin" class="d-flex justify-content-center">
           <span class="title-logo text-center">
-            <img src="{{ asset('img/logo-light.svg') }}" alt="Dermanifest Logo Light">
+            <img src="{{ asset('img/logo-light.webp') }}" alt="Dermanifest Logo Light">
             <h3 class="text-light">Admin Page</h3>
           </span>
         </a>

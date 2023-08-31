@@ -5,12 +5,12 @@
   <div class="row register-row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-register-page">
       <div class="image-register-form">
-        <img src="img/register-pic.svg" alt="">
+        <img src="{{ asset('img/register-pic.webp') }}" alt="Register page">
       </div>
 
       <div class="register-content">
         <div class="img-form mb-3">
-          <a href="/"><img src="img/logo-light.svg" alt=""></a>
+          <a href="/"><img src="{{ asset('img/logo-light.webp') }}" alt="Dermanifest Logo Light"></a>
         </div>
         <div class="form">
           <form action="/register" method="post" class="register-form">

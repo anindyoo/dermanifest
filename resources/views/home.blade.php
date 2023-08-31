@@ -20,8 +20,8 @@
                 Welcome to</br>Dermanifest!
               </h2>
               <p>
-                Take a litte journey here</br>
-                and we will guide you manifest your inner-out tranquilty.
+                Take a litte journey here and</br>
+                let's manifest your inner-out tranquilty!
               </p>
               <br>
               <div>        
@@ -49,22 +49,22 @@
             </div>
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img src="img/hero-1.svg" class="d-block w-100" alt="Visit Dermanifest on Shopee">
+                <img src="{{ asset('img/hero-1.webp') }}" class="d-block w-100" alt="Visit Dermanifest on Shopee">
               </div>
               <div class="carousel-item">
-                <img src="img/hero-2.svg" class="d-block w-100" alt="Dermanifest Aromatherapy Candles New Edition">
+                <img src="{{ asset('img/hero-2.webp') }}" class="d-block w-100" alt="Dermanifest Aromatherapy Candles New Edition">
               </div>
               <div class="carousel-item">
-                <img src="img/hero-3.svg" class="d-block w-100" alt="Dermanifest Organic Beauty Mask">
+                <img src="{{ asset('img/hero-3.webp') }}" class="d-block w-100" alt="Dermanifest Organic Beauty Mask">
               </div>
               <div class="carousel-item">
-                <img src="img/hero-4.svg" class="d-block w-100" alt="Dermanifest Etawa Goat Milk Mask">
+                <img src="{{ asset('img/hero-4.webp') }}" class="d-block w-100" alt="Dermanifest Etawa Goat Milk Mask">
               </div>
               <div class="carousel-item">
-                <img src="img/hero-5.svg" class="d-block w-100" alt="Dermanifest Scented Candle Classic Edtion">
+                <img src="{{ asset('img/hero-5.webp') }}" class="d-block w-100" alt="Dermanifest Scented Candle Classic Edtion">
               </div>
               <div class="carousel-item">
-                <img src="img/hero-6.svg" class="d-block w-100" alt="Dermanifest Candlenut Oil">
+                <img src="{{ asset('img/hero-6.webp') }}" class="d-block w-100" alt="Dermanifest Candlenut Oil">
               </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -110,7 +110,7 @@
       </div>
       <div class="col-lg-4 col-md-6 col-sm-12">
         <div class="image-about">
-          <img src="{{ 'img/about-pics.svg' }}" alt="About us collage">
+          <img src="{{ asset('img/about-pics.webp') }}" alt="About us collage">
         </div>
       </div>
     </div>
@@ -203,7 +203,7 @@
         </div>
       </div>
       <div class="col-lg-6 col-md-6 col-sm-12 col-12 col-img">
-        <img src="img/buy-pic.svg" alt="Dermanifest Organic Beauty Mask">
+        <img src="{{ asset('img/buy-pic.webp') }}" alt="Dermanifest Organic Beauty Mask">
       </div>
     </div>
 
@@ -211,12 +211,12 @@
       <div class="col-lg-12 col-md-12 col-sm-12 col-12 col-eshop">
         <div class="image-item">
             <a href="https://shopee.co.id/dermanifest">
-              <img src="{{ asset('img/shopee.svg') }}" alt="Shopee Logo">
+              <img src="{{ asset('img/shopee.webp') }}" alt="Shopee Logo">
             </a>
         </div>
         <div class="image-item">
             <a href="https://www.instagram.com/dermanifest/">
-              <img src="{{ asset('img/instagram.svg') }}" alt="Instagram Logo">
+              <img src="{{ asset('img/instagram.webp') }}" alt="Instagram Logo">
             </a>
         </div>
       </div>

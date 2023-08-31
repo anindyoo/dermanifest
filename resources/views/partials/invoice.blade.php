@@ -1,7 +1,7 @@
 <div id="invoice-print" class="row invoice-row mt-5 mb-5 d-flex justify-content-center">
   <div class="invoice-container">
     <div class="d-flex invoice-header justify-content-between align-items-start">
-      <img src="{{ asset('img/logo-dark.svg') }}" alt="Dermanifest Logo">
+      <img src="{{ asset('img/logo-dark.webp') }}" alt="Dermanifest Logo">
       <div class="text-end">
         <h1>INVOICE</h1>
         <h5 class="mt-3 fw-bold">DERMANIFEST</h5>
