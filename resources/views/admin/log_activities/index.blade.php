@@ -64,9 +64,19 @@
       <tbody>
         @foreach ($logs_data as $log)
           <tr>
-            <td>{{ $loop->iteration }}</td>
-            <td>{{ $log->id }}</td>
-            <td>{{ $log->user_id }} @empty($log->user_id) guest @endempty</td>
+            <td>{{ $loop->iteration }}.</td>
+            <td>{{ $log->id }}</td>            
+            <td>
+              @if ($log->role == 'customer')
+              <a href="/admin/customers/log_activity/{{ $log->user_id }}" class="text-primary-native">{{ $log->user_id }} <i class="fas fa-external-link-alt fa-xs"></i></a>
+              @elseif ($log->role == 'admin')
+              <a href="/admin/admins_management/log_activity/{{ $log->user_id }}" class="text-primary-native">{{ $log->user_id }} <i class="fas fa-external-link-alt fa-xs"></i></a>
+              @elseif ($log->role == 'guest')
+              guest
+              @else
+              system
+              @endif
+            </td>    
             <td>{{ $log->role }}</td>
             <td>{{ $log->activity }}</td>
             <td>{{ $log->url }}</td>
