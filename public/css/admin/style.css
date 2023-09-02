@@ -361,6 +361,7 @@ trix-editor {
 
 /* Log Activity */
 .td-url {
-	max-width: 299px !important;
+	min-width: 250px;
+	max-width: 350px !important;
 	word-break: break-all;
 }
