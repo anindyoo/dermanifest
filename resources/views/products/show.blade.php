@@ -15,11 +15,9 @@
       <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">
         <div class="swiper-wrapper">
           @foreach ($pictures_data as $pic)
-          @if ($pic->name_picture != $product_data->main_picture)
           <div class="swiper-slide">
             <img src="{{ asset("storage/products/$pic->name_picture") }}" />
           </div>              
-          @endif
           @endforeach
         </div>
         <div class="swiper-button-next"></div>
@@ -27,15 +25,10 @@
       </div>
       <div thumbsSlider="" class="swiper mySwiper thumbs">
         <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <img src="{{ asset("storage/products/$product_data->main_picture") }}" />
-          </div>
           @foreach ($pictures_data as $pic)
-          @if ($pic->name_picture != $product_data->main_picture)
           <div class="swiper-slide">
             <img src="{{ asset("storage/products/$pic->name_picture") }}" />
           </div>              
-          @endif
           @endforeach
         </div>
       </div>
