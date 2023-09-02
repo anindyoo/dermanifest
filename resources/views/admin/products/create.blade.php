@@ -41,11 +41,11 @@
       <input type="text" class="form-control" name="stock" value="{{ old('stock') }}" required>
     </div>
     <div class="form-group mb-3">
-      <label class="form-label">Net Weight</label>
+      <label class="form-label">Net Weight (gram)</label>
       <input type="text" class="form-control" name="net_weight" value="{{ old('net_weight') }}" required>
     </div>
     <div class="form-group mb-3">
-      <label class="form-label">Gross Weight (For Delivery) </label>
+      <label class="form-label">Gross Weight (For Delivery, in gram)</label>
       <input type="text" class="form-control" name="gross_weight" value="{{ old('gross_weight') }}" required>
     </div>
     <div class="form-group mb-3">
