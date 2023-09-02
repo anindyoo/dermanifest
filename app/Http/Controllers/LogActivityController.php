@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 class LogActivityController extends Controller
 {
     public function index() {
-        // dd(LogActivity::orderBy('created_at', 'desc')->first());
         LogActivity::storeLogActivity('Membuka halaman Log Activities.', 'admin');
         $logsData = LogActivity::orderBy('created_at', 'desc')->get();
         $latestLog = $logsData->first();
