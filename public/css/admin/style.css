@@ -358,3 +358,9 @@ trix-editor {
 .warning-status {
 	background-color: #ffc107;
 }
+
+/* Log Activity */
+.td-url {
+	max-width: 299px !important;
+	word-break: break-all;
+}

@@ -79,7 +79,7 @@
             </td>    
             <td>{{ $log->role }}</td>
             <td>{{ $log->activity }}</td>
-            <td>{{ $log->url }}</td>
+            <td class="td-url">{{ $log->url }}</td>
             <td>{{ $log->method }}</td>
             <td>{{ $log->ip }}</td>
             <td>{{ $log->agent }}</td>
