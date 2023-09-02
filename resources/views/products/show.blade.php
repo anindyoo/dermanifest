@@ -12,35 +12,8 @@
   @endif
   <div class="row mt-3">
     <div class="pictures d-flex justify-content-center flex-column col-md-5">
-      @if (1+2 ==232)
-      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="##########NEXT#########" aria-label="#######################"></button>
-        </div>
-        <div class="carousel-inner">         
-          <div class="carousel-item active">
-            <img src="{{ asset("storage/products/$product_data->main_picture") }}" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="https://placehold.co/400x600" class="d-block w-100" alt="...">
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>  
-      </div>
-      @endif
       <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">
         <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <img src="{{ asset("storage/products/$product_data->main_picture") }}" />
-          </div>
           @foreach ($pictures_data as $pic)
           @if ($pic->name_picture != $product_data->main_picture)
           <div class="swiper-slide">
