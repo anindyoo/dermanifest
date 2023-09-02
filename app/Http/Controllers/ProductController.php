@@ -85,6 +85,10 @@ class ProductController extends Controller
         
         $createProduct = Product::create($validatedData);
         $lastInsertedProductId = $createProduct->id;
+        Picture::create([
+            'product_id' => $lastInsertedProductId,
+            'name_picture' => $mainPicNewName, 
+        ]);
 
         date_default_timezone_set("Asia/Jakarta");
         $date_created = date('d-m-Y_H-i-s');
