@@ -16,6 +16,6 @@ class Product extends Model
     }
 
     public function getProductBySlug($slug) {
-        return $this::where('slug', $slug)->first();
+        return $this::where('slug', $slug)->firstOrFail();
     }
 }

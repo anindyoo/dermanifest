@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 class OrderInvoiceController extends Controller
 {
     public function show($id) {
-        $orderData = Order::find($id);
+        $orderData = Order::findOrFail($id);
         if ($orderData != null) {
             if ($orderData->customer_id == Auth::user()->id) {
                 $orderAddressData = (new OrderAddress)->getOrderAddressByOrderId($id);

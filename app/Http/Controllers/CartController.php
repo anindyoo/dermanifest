@@ -102,7 +102,7 @@ class CartController extends Controller
         $productsData = [];
 
         foreach ($cartItems as $item) {
-            $product = Product::find($item['product_id']);
+            $product = Product::findOrFail($item['product_id']);
             if ($product != null) {
                 if ($product->stock != 0) {
                     $productsData[$product->id] = $product;
