@@ -23,11 +23,11 @@ class LoginController extends Controller
         ]);
 
         if (Auth::guard('web')->attempt($credentials)) {
-            LogActivity::storeLogActivity('Melakukan Login ke akun Customer.');
+            LogActivity::storeLogActivity('Melakukan Login ke akun Customer.', $url = '/auth/google/callback');
             $request->session()->regenerate();
             return redirect()->intended('/')->with('success', 'Login with email:'. $credentials['email'] .' is successful!');
         } elseif (Auth::guard('admin')->attempt($credentials)) {
-            LogActivity::storeLogActivity('Melakukan Login ke akun Admin.', 'admin');
+            LogActivity::storeLogActivity('Melakukan Login ke akun Admin.', 'admin', $url = '/auth/google/callback');
             $request->session()->regenerate();
             return redirect()->intended('admin')->with('success', 'Login with email:'. $credentials['email'] .' is successful!');
         }
@@ -36,7 +36,7 @@ class LoginController extends Controller
     }
 
     public function logout(Request $request) {
-        LogActivity::storeLogActivity('Melakukan Logout.');
+        LogActivity::storeLogActivity('Melakukan Logout.', $url = '/auth/google/callback');
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();

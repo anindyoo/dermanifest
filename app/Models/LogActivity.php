@@ -13,12 +13,12 @@ class LogActivity extends Model
 
     protected $guarded = ['id'];
 
-    public static function storeLogActivity($activity, $role = null) {
+    public static function storeLogActivity($activity, $role = null, $url = Request::fullUrl()) {
         if (self::all()->count() == 0 OR self::orderBy('created_at', 'desc')->first()->role != 'disabled') {
             $log = [
                 'activity' => $activity,
                 'role' => 'guest',
-                'url' => Request::fullUrl(),
+                'url' => $url,
                 'method' => Request::method(),
                 'ip' => Request::ip(),
                 'agent' => Request::header('user-agent'),                
