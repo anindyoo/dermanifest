@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('user_id')->nullable();
             $table->enum('role', ['guest', 'customer', 'admin', 'disabled', 'enabled']);            
             $table->string('activity');
-            $table->text('url');
+            $table->string('url');
             $table->string('method');
             $table->string('ip');
             $table->string('agent')->nullable();
