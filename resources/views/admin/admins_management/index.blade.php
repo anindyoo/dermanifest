@@ -37,7 +37,7 @@
             <td>{{ $admin->created_at }}</td>
             <td>
               <a href="/admin/admins_management/log_activity/{{ $admin->id }}" class="btn btn-secondary me-1"><i class="fas fa-history"></i> Log</a>
-              @if ($admin->email != 'dermanifest@gmail.com')
+              @if ($admin->email != env('ADMIN_DEFAULT_EMAIL'))
               <a href="" class="btn btn-danger me-1" data-bs-toggle="modal" data-bs-target="#deleteAdmin-{{ $admin->id }}"><i class="fa-solid fa-xmark"></i> Delete</a>                  
               @endif
             </td>
