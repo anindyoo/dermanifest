@@ -91,14 +91,16 @@ class ProductController extends Controller
 
         if ($request->file('pictures')) {
             foreach ($request->file('pictures') as $key => $pic) {
-                $extension = $pic->getClientOriginalExtension();
-                $newPicName =  $request->slug . '_' . $key . '_' . $date_created . '.' . $extension;
-                $pic->storeAs('products', $newPicName);
+                if ($key != 0){
+                    $extension = $pic->getClientOriginalExtension();
+                    $newPicName =  $request->slug . '_' . $key . '_' . $date_created . '.' . $extension;
+                    $pic->storeAs('products', $newPicName);
 
-                Picture::create([
-                    'product_id' => $lastInsertedProductId,
-                    'name_picture' => $newPicName,
-                ]);
+                    Picture::create([
+                        'product_id' => $lastInsertedProductId,
+                        'name_picture' => $newPicName,
+                    ]);
+                }
             }
         }
         LogActivity::storeLogActivity('Menambahkan Product baru: ' . $validatedData['name_product'] . '.', 'admin');
@@ -143,6 +145,7 @@ class ProductController extends Controller
         foreach ($picturesData as $pic) {
             Storage::delete("products/$pic->name_picture");
         }
+        Storage::delete("products/$product->main_picture");
         Product::destroy($product->id);
         LogActivity::storeLogActivity('Menambahkan Product baru: ' . $product->name_product . '.', 'admin');
 
