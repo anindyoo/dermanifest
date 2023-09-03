@@ -365,3 +365,10 @@ trix-editor {
 	max-width: 350px !important;
 	word-break: break-all;
 }
+
+/* Mobile Size */
+@media screen and (max-width: 764px) {
+	.btn {
+			margin-bottom: 6px;
+	}
+}
