@@ -33,9 +33,9 @@
         <table class="table table-responsive table-cartorder table-responsive p-3">
           <thead>
             <tr>
-              <th class="text-center"><h5>Product</h5></th>
-              <th><h5>Quantity</h5></th>
-              <th><h5>Amount</h5></th>
+              <th class="text-center" style="width=74%"><h5>Product</h5></th>
+              <th style="width=6%"><h5>Quantity</h5></th>
+              <th style="width=20%"><h5>Amount</h5></th>
             </tr>
           </thead>
           <tbody>
