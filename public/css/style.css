@@ -1023,6 +1023,13 @@ h4, h5, h6 {
 
 /* Mobile Size */
 @media screen and (max-width: 764px) {
+    .btn {
+        margin-bottom: 6px;
+    }
+    .product-content button {
+        min-height: 60px;
+    }
+
     /* Navbar */
     .nav-logo img {
         max-height: 40px;
@@ -1070,6 +1077,11 @@ h4, h5, h6 {
         border-radius: 20px 0px 0px 20px;
     } 
 
+    /* Profile */
+    .account img {
+        margin-bottom: 10px;
+    }
+
     /* About Us */
     .about_us-row {
         flex-direction: column-reverse!important;
@@ -1079,5 +1091,21 @@ h4, h5, h6 {
     }
     .description-col {
         padding: 20px;
+    }
+
+    /* Order Checkout */
+    .order-checkout .row {
+        margin-bottom: 25px !important;
+        flex-direction: column-reverse;
+    }
+    .order-checkout .table-responsive {
+        margin-top: 15px;
+    }
+    .checkout-buttons {
+        display: none !important;
+    }
+    .checkout-buttons-mobile {
+        display: block !important;
+        margin-bottom: 40px !important;
     }
 }
