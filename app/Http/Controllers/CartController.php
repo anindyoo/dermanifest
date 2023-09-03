@@ -50,7 +50,7 @@ class CartController extends Controller
         session()->put('cart', $cart);
         LogActivity::storeLogActivity('Menambahkan produk ke cart.');
 
-        return redirect()->back()->with('success', 'Product: <strong>' . $productData->name_product . '</strong> has been add to cart');
+        return redirect()->back()->with('success', 'Product: <strong>' . $productData->name_product . '</strong> has been added to cart');
     }
 
     public function update(Request $request) {
