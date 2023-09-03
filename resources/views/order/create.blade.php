@@ -30,17 +30,17 @@
   </div>
   @endforeach
   <form action="/order" method="post">
+  <h1 class="mb-3">Order Checkout</h1>
   <div class="row mt-4 mb-5">
-    <h1 class="mb-3">Order Checkout</h1>
     @csrf
     <div class="col-md-7">
       <div class="table-responsive">
         <table class="table table-cartorder table-responsive p-3">
           <thead>
             <tr>
-              <th class="text-center"><h5>Product</h5></th>
-              <th><h5>Quantity</h5></th>
-              <th><h5>Amount</h5></th>
+              <th class="text-center" style="width=74%"><h5>Product</h5></th>
+              <th style="width=6%"><h5>Quantity</h5></th>
+              <th style="width=20%"><h5>Amount</h5></th>
             </tr>
           </thead>
           <tbody>
@@ -260,13 +260,17 @@
             <textarea class="form-control" name="note" id="addres-input" rows="3"></textarea>
           </div>            
         </div>
-        <div class="chekout-buttons d-flex flex-column">
+        <div class="checkout-buttons d-flex flex-column">
           <button type="submit" class="btn btn-primary-native mb-2">Make Order</button>
           <a href="/cart" class="btn btn-secondary-native">Back</a>
         </div>       
-      </div>
+      </div>      
     </div>
   </div>
+  <div class="checkout-buttons-mobile d-flex flex-column d-none">
+    <button type="submit" class="btn btn-primary-native mb-2">Make Order</button>
+    <a href="/cart" class="btn btn-secondary-native">Back</a>
+  </div> 
   </form>
 </section>
 @endsection
