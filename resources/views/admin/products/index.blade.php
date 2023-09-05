@@ -65,8 +65,8 @@
             'additional_form_method' => 'delete', 
             'modal_body' => 'Are you sure to delete address: <strong>' . $product->name_product . '</strong>?',
             'modal_footer' => '
-            <button type="submit" class="btn btn-outline-danger"><span class="fa-regular fa-trash-can me-1"></span>Delete Product</button>
-            <button type="button" class="btn btn-primary-native-regular" data-bs-dismiss="modal"><span class="fa-solid fa-pen-to-square me-1"></span>Cancel Delete</button>
+            <button type="button" class="btn btn-secondary-native-regular" data-bs-dismiss="modal">Cancel Delete</button>
+    <button type="submit" class="btn btn-danger"><span class="fa-regular fa-trash-can me-1"></span>Delete Product</button>
             ',
           ])
         @endforeach
