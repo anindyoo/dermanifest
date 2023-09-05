@@ -21,7 +21,7 @@
   <div class="row mt-4">
     <div class="col-md-12">
       <h3>Invoice</h3>
-      <h6>Invoice for the <strong>Order Id: 123</strong></h6>
+      <h6>Invoice for <strong>Order Id: {{ $order_data->id }}</strong></h6>
     </div>
   </div>
   <div class="row">
