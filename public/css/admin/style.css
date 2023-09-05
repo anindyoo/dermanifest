@@ -274,6 +274,11 @@ button, input[type="submit"], input[type="reset"] {
 	min-width: 100px;
 }
 
+.btn-secondary-native-regular {
+	color: #333d29;
+	border: 2px solid #333d29;
+}
+
 .btn-primary-native:hover {
 	background-color: #293121;
 	color: #FFFFFF;
