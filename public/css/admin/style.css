@@ -251,6 +251,10 @@ button, input[type="submit"], input[type="reset"] {
 }
 
 /* buttons */
+.btn {
+	margin-bottom: 6px;
+}
+
 .btn-primary-native {
 	padding: 12px 24px;
 	background-color: #333d29;
@@ -374,6 +378,6 @@ trix-editor {
 /* Mobile Size */
 @media screen and (max-width: 764px) {
 	.btn {
-			margin-bottom: 6px;
+		margin-bottom: 6px;
 	}
 }
