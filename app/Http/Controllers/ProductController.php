@@ -151,7 +151,7 @@ class ProductController extends Controller
         }
         Storage::delete("products/$product->main_picture");
         Product::destroy($product->id);
-        LogActivity::storeLogActivity('Menambahkan Product baru: ' . $product->name_product . '.', 'admin');
+        LogActivity::storeLogActivity('Menghapus Product baru: ' . $product->name_product . '.', 'admin');
 
         return redirect('admin/products')->with('success', 'Product: <strong>' . $product->name_product . '</strong> has been deleted.');
     }
