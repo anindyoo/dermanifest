@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('order_products', function (Blueprint $table) {
             $table->id();
             $table->foreignId('order_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('product_id')->constrained();
+            $table->integer('product_id');
             $table->string('product_slug');
             $table->string('product_name');
             $table->string('category_name');
