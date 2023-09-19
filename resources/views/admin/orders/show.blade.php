@@ -86,7 +86,7 @@
           <tr>
             <td>{{ $loop->iteration }}</td>
             <td>
-              <a href="/products/{{ $product->slug }}">
+              <a href="/products/{{ $product->product_slug }}">
                 <img src="{{ asset('storage/products/' . $product->main_picture) }}" alt="{{ $product->product_name }}" style="object-fit: contain;" width="100" class="rounded-3">
               </a>
             </td>
