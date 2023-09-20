@@ -14,33 +14,27 @@
           <div class="footer-info">
               <h5>Contact</h5>
               <ul class="footer-items">
-                <li class="item">Phone : <a href="#"><u>Chat on Whatsapp</u></a></li>
                 <li class="item">Mail : dermanifest@gmail.com </li>
               </ul>
           </div>
           <div class="footer-info">
               <h5>Media Social</h5>
               <ul class="footer-items">
-                <li class="item">Facebook</li>
-                <li class="item"><a href="https://www.instagram.com/dermanifest">Instagram <i class="fa fa-external-link" aria-hidden="true"></i></a></li>
-                <li class="item"><a href="https://www.tiktok.com/@dermanifest">Tiktok <i class="fa fa-external-link" aria-hidden="true"></i></a></li>
-                <li class="item">Twitter</li>
+                <li class="item"><a href="https://instagram.com/dermanifest">Instagram <i class="fa fa-external-link" aria-hidden="true"></i></a></li>
+                <li class="item"><a href="https://tiktok.com/@dermanifest">Tiktok <i class="fa fa-external-link" aria-hidden="true"></i></a></li>
               </ul>
           </div>
           <div class="footer-info">
               <h5>Our Store</h5>
               <ul class="footer-items">
-                <li class="item">Tokopedia</li>
-                <li class="item">Shopee</li>
-                <li class="item">Bukalapak</li>
+                <li class="item"><a href="https://shopee.co.id/dermanifest">Instagram <i class="fa fa-external-link" aria-hidden="true"></i></a></li>
               </ul>
           </div>
           <div class="footer-info">
               <h5>Address</h5>
               <ul class="footer-items">
-                <li class="item">Kelapa Gading, Jakarta Utara</li>
+                <li class="item">Pegangsaan Dua, Jakarta Utara</li>
                 <li class="item">Rawamangun, Jakarta Timur</li>
-                <li class="item">Ciracas, Jakarta Timur</li>
               </ul>
           </div>
         </div>
