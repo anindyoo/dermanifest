@@ -921,8 +921,8 @@ h4, h5, h6 {
 
 /* Contact & Faq */
 .contact-faq li {
-    list-style: unset !important;
-    color: unset !important;
+    list-style: disc !important;
+    color: #212529 !important;
 }
 .contact-faq input,
 .contact-faq textarea {
