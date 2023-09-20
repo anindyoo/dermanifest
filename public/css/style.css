@@ -920,6 +920,10 @@ h4, h5, h6 {
 }
 
 /* Contact & Faq */
+.contact-faq li {
+    list-style: unset !important;
+    color: unset !important;
+}
 .contact-faq input,
 .contact-faq textarea {
     border: 1px solid #333D29;
