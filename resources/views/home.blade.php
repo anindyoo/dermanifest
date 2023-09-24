@@ -124,7 +124,7 @@
       <div class="col-lg-12 col-md-12 col-sm-12">
         <div class="product-content">
           <div class="title">
-            <h1>Top Product</h1>
+            <h1>Top Products</h1>
           </div>
           <div class="paragraph">
             <p>Our top product, truthfully crafted for you.</p>
