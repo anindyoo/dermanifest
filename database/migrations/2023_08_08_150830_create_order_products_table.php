@@ -19,10 +19,10 @@ return new class extends Migration
             $table->string('product_name');
             $table->string('category_name');
             $table->string('main_picture');
-            $table->string('price');
-            $table->string('discount_price')->nullable();
-            $table->string('quantity');
-            $table->string('price_total'); 
+            $table->integer('price');
+            $table->integer('discount_price')->nullable();
+            $table->integer('quantity');
+            $table->integer('price_total'); 
             $table->timestamps();
         });
     }
