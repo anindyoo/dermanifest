@@ -166,11 +166,13 @@ class OrderController extends Controller
     public function readdStock($orderProducts) {
         foreach ($orderProducts as $product) {
             $productData = Product::find($product['product_id']);
-            $stock = $productData->stock;
-            $quantity = $product['quantity'];
-            $refillStock = $stock + $quantity;
-            
-            Product::where('id', $product['product_id'])->update(['stock' => $refillStock]);
+            if ($productData !== null) {
+                $stock = $productData->stock;
+                $quantity = $product['quantity'];
+                $refillStock = $stock + $quantity;
+                
+                Product::where('id', $product['product_id'])->update(['stock' => $refillStock]);
+            }
         }
     }
 

@@ -8,7 +8,7 @@
       'modal_id' => 'cancelOrder-' . $order_id,
       'modal_title' => 'Cancel Order',
       'include_form' => 'true',
-      'form_action' => '/order/' . $order_id ,
+      'form_action' => '/admin/orders/' . $order_id ,
       'form_method' => 'post', 
       'additional_form_method' => 'delete', 
       'modal_body' => '

@@ -77,12 +77,12 @@ class AdminOrderController extends Controller
     }
 
     public function destroy(Order $order) {
-        $orderProducts = OrderProduct::where('order_id', $order->id)->get();
-        $this->readdStock($orderProducts);
+        $orderProducts = OrderProduct::where('order_id', $order->id)->get();        
+        (new OrderController)->readdStock($orderProducts);
         Order::destroy($order->id);
         LogActivity::storeLogActivity('Membatalkan Order: Id #' . $order->id . '.', 'admin');
 
-        return redirect('/admin/orders')->with('success', '<strong> Order #' . $order->product_id . '</strong> has been canceled.');
+        return redirect('/admin/orders')->with('success', '<strong> Order #' . $order->id . '</strong> has been canceled.');
     }
 
     public function sumSubtotalQuantity($completed_orders) {
