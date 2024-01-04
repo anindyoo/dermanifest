@@ -29,7 +29,7 @@ class LoginController extends Controller
         } elseif (Auth::guard('admin')->attempt($credentials)) {
             LogActivity::storeLogActivity('Melakukan Login ke akun Admin.', 'admin', $url = '/auth/google/callback');
             $request->session()->regenerate();
-            return redirect()->intended('admin')->with('success', 'Login with email:'. $credentials['email'] .' is successful!');
+            return redirect('admin')->with('success', 'Login with email:'. $credentials['email'] .' is successful!');
         }
 
         return back()->with('loginError', 'Login failed.');
